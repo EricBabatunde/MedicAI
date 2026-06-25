@@ -1,0 +1,322 @@
+{
+  "medical_records": [
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_lytes_hypernatraemia_01",
+      "primary_topic": "Hypernatraemia",
+      "clinical_signs": [
+        "Thirst",
+        "Fatigue",
+        "Weakness",
+        "Confusion",
+        "Coma",
+        "Convulsions",
+        "Signs of dehydration (decreased skin turgor, low urine output)"
+      ],
+      "suspected_conditions": [
+        "Excessive water loss (gastrointestinal, cutaneous, or renal)",
+        "Diabetes insipidus",
+        "Insufficient water intake",
+        "Excessive sodium administration (IV normal saline)"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_lytes_hyponatraemia_01",
+      "primary_topic": "Hyponatraemia",
+      "clinical_signs": [
+        "Nausea",
+        "Lethargy",
+        "Confusion",
+        "Muscle weakness",
+        "Muscle cramps",
+        "Seizures",
+        "Coma"
+      ],
+      "suspected_conditions": [
+        "Renal losses (diuretics, Addison's disease)",
+        "Gastrointestinal losses (vomiting, diarrhoea)",
+        "Syndrome of inappropriate ADH release (SIADH)",
+        "Nephrotic syndrome",
+        "Cirrhosis",
+        "Congestive cardiac failure"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_lytes_hyperkalaemia_01",
+      "primary_topic": "Hyperkalaemia",
+      "clinical_signs": [
+        "Muscle weakness",
+        "General lethargy",
+        "Sudden serious cardiac arrhythmias",
+        "ECG: peaked T waves",
+        "ECG: prolonged PR interval",
+        "ECG: small or loss of P waves",
+        "ECG: widening of the QRS complex"
+      ],
+      "suspected_conditions": [
+        "Renal failure",
+        "Shock",
+        "Diabetic ketoacidosis",
+        "Potassium-sparing diuretics or ACE inhibitors use",
+        "Rhabdomyolysis",
+        "Addison's disease",
+        "Haemolysed blood sample (false high)"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_lytes_hypokalaemia_01",
+      "primary_topic": "Hypokalaemia",
+      "clinical_signs": [
+        "Lethargy",
+        "Generalized weakness leading to ascending paralysis",
+        "Ileus",
+        "Muscle cramps",
+        "ECG: ST depression",
+        "ECG: flattened or absent T waves",
+        "ECG: U waves",
+        "ECG: prolonged PR interval"
+      ],
+      "suspected_conditions": [
+        "Gastrointestinal losses (diarrhoea, vomiting)",
+        "Diuretics (e.g. furosemide)",
+        "Diabetic ketoacidosis",
+        "Metabolic alkalosis"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_lytes_hypercalcaemia_01",
+      "primary_topic": "Hypercalcaemia",
+      "clinical_signs": [
+        "Confusion",
+        "Coma",
+        "Abdominal pain",
+        "Dysphagia",
+        "Constipation",
+        "Nausea and vomiting",
+        "Dehydration",
+        "Polyuria",
+        "Bone pain",
+        "ECG: shortened QT interval",
+        "ECG: widened QRS"
+      ],
+      "suspected_conditions": [
+        "Malignancy",
+        "Hyperparathyroidism",
+        "Granulomatous disorders (TB, sarcoidosis)",
+        "Vitamin D or thiazide diuretics use",
+        "Immobilization",
+        "Adrenal failure"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_ipc_hand_hygiene_01",
+      "primary_topic": "Hand washing",
+      "equipment_needed": [
+        "Clean running water",
+        "Soap",
+        "Single-use clean towels",
+        "Alcohol-based hand rub"
+      ],
+      "step_by_step_guide": [
+        "Wet hands and apply soap.",
+        "Rub all surfaces, including wrists and spaces between the fingers, for at least 40-60 seconds.",
+        "Rinse hands thoroughly.",
+        "Dry thoroughly with a single use towel.",
+        "Use towel to turn off faucet and dispose of the used towel."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_ipc_ppe_01",
+      "primary_topic": "Putting on and removing PPE",
+      "equipment_needed": [
+        "Clean, non-sterile gloves",
+        "Clean, non-sterile fluid-resistant gown",
+        "Medical mask or surgical mask",
+        "Eye protection (eye visor, goggles) or face shield",
+        "Particulate respirator (e.g. N-95) if airborne precautions required"
+      ],
+      "step_by_step_guide": [
+        "To put on: 1. Assess risk. 2. Select and gather the necessary PPE. 3. Put on the gown. 4. Put on the mask. 5. Put on eye protection. 6. Put on gloves (over cuff).",
+        "To remove: 1. Peel off gown and gloves and roll inside-out. 2. Dispose of safely. 3. Perform hand hygiene. 4. Remove cap and eye protection (from behind head). 5. Put eye protection in a separate container for reprocessing. 6. Remove mask from behind head. 7. Perform hand hygiene."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Neglecting to perform hand hygiene after removing PPE will reduce or negate any benefits of the protective equipment.",
+        "Avoid any contact between the soiled items and any area of the face."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_amoxicillin_01",
+      "primary_topic": "Amoxicillin",
+      "adult_dosing": "Oral: 500-1000 mg 3 times daily for 5-7 days (non-severe pneumonia). Oral: 1 gram 3 times daily for 7 days (sinusitis).",
+      "contraindications": [
+        "Known hypersensitivity/anaphylaxis to penicillins or other beta-lactams"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "Vomiting",
+        "Diarrhoea",
+        "Hypersensitivity reaction (discontinue if severe rash, urticaria, wheezing)",
+        "Superinfection including candidiasis",
+        "Anaphylaxis",
+        "Erythematous rashes"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_fluconazole_01",
+      "primary_topic": "Fluconazole",
+      "adult_dosing": "Vaginal candidiasis: Oral: 150 mg as a single dose. Oesophageal candidiasis: IV/oral: 100-200 mg daily for 14-21 days. Cryptococcal meningitis (secondary prophylaxis): Oral: 200 mg daily.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "Abdominal pain",
+        "Diarrhoea",
+        "Headache",
+        "Hepatic disorders",
+        "Dizziness",
+        "Seizures",
+        "Alopecia",
+        "Rash",
+        "Hypokalaemia"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_cotrimoxazole_01",
+      "primary_topic": "Cotrimoxazole (TMP-SMX)",
+      "adult_dosing": "Primary prophylaxis for PLHIV: 1 DS tablet or 2 SS tablets once daily. Total daily dose is 960 mg (800 mg SMX + 160 mg TMP). PCP pneumonia: IV: 5 mg/kg (based on TMP component) 4 times daily for 21 days.",
+      "contraindications": [
+        "Severe renal or hepatic impairment",
+        "Previous severe reactions to sulfa-containing drugs"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "Vomiting",
+        "Diarrhoea",
+        "Headache",
+        "Hyperkalaemia",
+        "Rash",
+        "Stevens-Johnson syndrome",
+        "Toxic epidermal necrolysis",
+        "Bone marrow suppression (leukopenia, thrombocytopenia)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ciprofloxacin_01",
+      "primary_topic": "Ciprofloxacin",
+      "adult_dosing": "Severe infections (e.g. acute pyelonephritis, typhoid fever): Oral: 500 mg twice daily OR IV: 400 mg twice daily for 10-14 days.",
+      "contraindications": [
+        "History of quinolone-associated tendon disorder"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "Vomiting",
+        "Diarrhoea",
+        "Dyspepsia",
+        "Abdominal pain",
+        "Tendon damage (including rupture)",
+        "Hepatitis",
+        "Convulsions",
+        "Photosensitivity reaction",
+        "C. difficile colitis"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_tb_rhze_01",
+      "primary_topic": "Rifampicin + isoniazid + pyrazinamide + ethambutol (R+H+Z+E)",
+      "adult_dosing": "Oral: Rifampicin 10 mg/kg daily (max 300 mg) AND isoniazid 5 mg/kg (max 600 mg) AND pyrazinamide 25 mg/kg AND ethambutol 15 mg/kg once daily.",
+      "contraindications": [
+        "Hypersensitivity to rifampicin",
+        "Hepatic disease",
+        "Porphyria",
+        "Optic neuritis",
+        "Severe renal impairment"
+      ],
+      "side_effects_or_warnings": [
+        "Hyperuricaemia",
+        "Polyarthritis",
+        "Nausea",
+        "Hepatotoxicity (jaundice, liver failure)",
+        "Optic neuritis (visual disturbances)",
+        "Peripheral neuropathy"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_amitriptyline_01",
+      "primary_topic": "Amitriptyline",
+      "adult_dosing": "Depression / Neuropathic pain: Oral: Start 50 mg at bedtime AND increase gradually as necessary by 25-50 mg every 1-2 weeks to 100-150 mg daily.",
+      "contraindications": [
+        "Patient has taken an MAO-I within 2 weeks",
+        "Recent myocardial infarction",
+        "Arrhythmias (especially heart block)",
+        "Bipolar disorder",
+        "Severe liver disease"
+      ],
+      "side_effects_or_warnings": [
+        "Orthostatic hypotension (fall risk)",
+        "Dizziness",
+        "Sedation",
+        "Dry mouth",
+        "Constipation",
+        "Blurred vision",
+        "Urinary retention",
+        "Cardiac arrhythmias",
+        "Seizures",
+        "Mania/hypomania"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ivermectin_01",
+      "primary_topic": "Ivermectin",
+      "adult_dosing": "Strongyloidiasis: 200 mcg/kg as a single dose OR 200 mcg/kg daily for 2 days and then maintenance therapy 6 mg monthly. Scabies: 200 mcg/kg as a single dose and repeat in 2 weeks.",
+      "contraindications": [
+        "Do not co-administer ivermectin if onchocerciasis or loaiasis are co-endemic with filariasis."
+      ],
+      "side_effects_or_warnings": [
+        "Diarrhoea",
+        "Dizziness",
+        "Nausea",
+        "Mild ocular irritation",
+        "Somnolence",
+        "Mazzotti reaction (fever, headache, cough, pruritus, conjunctivitis)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_benzylpenicillin_01",
+      "primary_topic": "Benzylpenicillin (penicillin G)",
+      "adult_dosing": "Streptococcal endocarditis: IV: 7.2-10.8 g (12-18 million IU) daily in 4 or 6 equally divided doses for 4 weeks. Severe anthrax / Leptospirosis: IV: 1.8-3.6 g every 4-6 hours.",
+      "contraindications": [
+        "Severe hypersensitivity to penicillins or other beta-lactams"
+      ],
+      "side_effects_or_warnings": [
+        "Pain/inflammation at injection site",
+        "Hypersensitivity reactions",
+        "Anaphylaxis",
+        "Haemolytic anaemia",
+        "Interstitial nephritis",
+        "CNS toxicity",
+        "Jarisch-Herxheimer reaction"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,470 @@
+{
+  "medical_records": [
+    {
+      "record_type": "triage",
+      "id": "triage_qc_airway_01",
+      "primary_topic": "Airway and Breathing Emergencies",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Appears obstructed",
+        "Central cyanosis",
+        "Severe respiratory distress",
+        "Check for obstruction (noisy breathing), wheezing, choking, not able to speak"
+      ],
+      "immediate_actions": [
+        "If foreign body aspiration, treat choking patient",
+        "If suspect anaphylaxis, give 1:1000 epinephrine (adrenaline) IM",
+        "Manage airway",
+        "Give oxygen 5 litres",
+        "If inadequate breathing, assist ventilation with bag valve mask",
+        "Help patient assume position of comfort",
+        "If wheezing, give salbutamol"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_qc_circulation_01",
+      "primary_topic": "Circulation Emergencies (Shock or Heavy Bleeding)",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Weak or fast pulse",
+        "Capillary refill longer than three seconds",
+        "Heavy bleeding from any site",
+        "Severe trauma",
+        "SBP <90 mmHg or pulse >110 per minute"
+      ],
+      "immediate_actions": [
+        "Give oxygen 5 litres if respiratory distress or SpO2 <90",
+        "Insert IV, give 1 litre bolus crystalloid (LR or NS) then reassess",
+        "Keep warm (cover)",
+        "If in second half pregnancy, place on her side (preferably on the left), not on back",
+        "If anaphylaxis, give 1:1000 epinephrine (adrenaline) IM",
+        "If external bleeding: Apply pressure immediately to stop bleeding",
+        "If possible femur fracture - splint",
+        "If possible pelvic fracture - apply pelvic binder"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_qc_consciousness_01",
+      "primary_topic": "Altered level of consciousness or convulsing",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Altered level consciousness",
+        "Convulsing"
+      ],
+      "immediate_actions": [
+        "Protect from fall or injury",
+        "Manage airway and assist into recovery position",
+        "Give oxygen 5 litres",
+        "Call for help but do not leave patient alone",
+        "Give glucose (if blood glucose is low or unknown)",
+        "Check (then monitor and record) level of consciousness on AVPU scale",
+        "If convulsing: Give diazepam IV or rectally",
+        "If convulsing in second half of pregnancy or post-partum up to one week, give magnesium sulfate rather than diazepam"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_qc_pain_01",
+      "primary_topic": "Pain from life-threatening cause",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Severe abdominal pain and abdomen hard on palpation",
+        "Severe headache or stiff neck or trauma to head/neck",
+        "New onset chest pain",
+        "Major burn",
+        "Snake-bite",
+        "Not able to walk",
+        "Sweating",
+        "Guarding against pain/abnormal position",
+        "Very silent or moaning"
+      ],
+      "immediate_actions": [
+        "Nothing by mouth (NPO)",
+        "IV fluids",
+        "Give oxygen if respiratory distress or SpO2 <90",
+        "Empirical antibiotics IV/IM",
+        "Treat pain",
+        "If crushing, retrosternal pain and no history of trauma, give aspirin 300 mg chewed, morphine for pain, do ECG"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_qc_priority_01",
+      "primary_topic": "Priority signs for urgent care",
+      "triage_level": "YELLOW",
+      "clinical_signs": [
+        "Any respiratory distress/complaint of difficulty breathing",
+        "Violent behaviour toward self or others or very agitated",
+        "Very pale",
+        "Very weak/ill",
+        "Recent fainting",
+        "Bleeding: Large haemoptysis, GI bleeding, External bleeding",
+        "Fractures or dislocations",
+        "Burns",
+        "Bites from rabid animal",
+        "Frequent diarrhoea >5 times per day",
+        "Visual changes",
+        "New loss of function (possible stroke)",
+        "Rape/abuse",
+        "New extensive rash with peeling and mucous membrane involvement",
+        "Acute pain, cough or dyspnea, priapism, or fever in patient with sickle-cell disease"
+      ],
+      "immediate_actions": [
+        "Give oxygen 5 litres if SpO2 <90",
+        "If wheezing, give salbutamol",
+        "If violent behaviour or very agitated, protect, calm, and sedate the patient as appropriate",
+        "Measure haemoglobin if any bleeding, pale, weak, fainting, abdominal pain",
+        "Repeat Quick Check if in line more than 20 minutes"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_choking_01",
+      "primary_topic": "How to help the choking patient",
+      "equipment_needed": [
+        "bag valve mask (BVM)",
+        "laryngoscope (if available)"
+      ],
+      "step_by_step_guide": [
+        "If patient is able to speak or cough: Encourage patient to cough, and observe carefully until obstruction is removed.",
+        "If the patient is conscious but not able to speak or cough: Tell patient that you are going to help him or her.",
+        "Deliver five abdominal thrusts (if patient is pregnant give chest thrusts): Go behind patient. Have patient standing if possible. Form a fist with one hand and place hand just below the breastbone. Place the other hand over the fist. Pull in and up quickly, using hard thrusts.",
+        "If still obstruction, give five back blows.",
+        "Repeat abdominal thrusts then back blows until patient speaks or coughs or patient becomes unconscious.",
+        "In the unconscious patient: Lie patient on hard surface, open airway, and give two breaths via bag valve mask (BVM), if available.",
+        "If you can see foreign body in mouth, manually remove it.",
+        "Deliver five abdominal thrusts."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_epinephrine_01",
+      "primary_topic": "Epinephrine (adrenaline)",
+      "adult_dosing": "For anaphylaxis: give 1:1000 epinephrine (adrenaline) IM. 0.5 ml if 50 kg or above, 0.4 ml if 40 kg, 0.3 ml if 30 kg. Give IM in anterior lateral thigh. Repeat in five minutes if no response.",
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_airway_01",
+      "primary_topic": "How to manage the airway",
+      "equipment_needed": [
+        "Oropharyngeal airway",
+        "Nasopharyngeal airway",
+        "suction equipment",
+        "bag valve mask (BVM)"
+      ],
+      "step_by_step_guide": [
+        "Assess Airway: Talk to the patient. Look/listen for snoring, gurgling, stridor, or noisy breathing. Look for foreign body or vomit in mouth.",
+        "If Airway Obstructed (No trauma): Position patient on firm surface. Tilt the head. Lift the chin. Remove foreign body if visible. Clear secretions. If unconscious, place in recovery position.",
+        "If Airway Obstructed (Trauma): Stabilize cervical spine - do not lift head. Place fingers behind both sides of mandible and lift up (jaw thrust). Clear secretions with suction.",
+        "If airway obstructed by tongue, insert airway device: Oropharyngeal airway (if unconscious, slide over tongue) or Nasopharyngeal airway (if semi-conscious, pass well-lubricated airway into one nostril).",
+        "Assess Ventilation: If inadequate or patient is cyanotic/unconscious with respiratory distress, assist breathing via bag valve mask. Attach BVM to highest available flow oxygen, place mask over mouth and nose, create seal, squeeze bag to give one breath every 6 seconds."
+      ],
+      "contraindications": [
+        "Oropharyngeal airway: If patient resists, gags, or vomits remove immediately."
+      ],
+      "side_effects_or_warnings": [
+        "Avoid over-aggressive bagging, as it will result in damage to lungs."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_salbutamol_01",
+      "primary_topic": "Salbutamol",
+      "adult_dosing": "For moderate-severe wheezing: by nebulizer, place 5 mg salbutamol in 5 ml sterile saline driven by oxygen every 10-20 minutes, or continuously. By metered dose inhaler: prime space with 5 puffs, then give 2 puffs via spacer every 2 minutes. For mild wheezing: 100 mcg/puff, give 2 puffs every 20 minutes x 3 times then 2 puffs every 3 to 6 hours.",
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_iv_fluids_01",
+      "primary_topic": "How to insert IV and give fluids rapidly",
+      "equipment_needed": [
+        "Two large bore cannulae (at least 16 or 18 gauge)",
+        "Lactated Ringer's (LR) or Normal Saline (NS)",
+        "urinary catheter"
+      ],
+      "step_by_step_guide": [
+        "If heavy bleeding or shock, insert two large bore cannulae - at least 16 or 18 gauge.",
+        "Attach LR or NS. Give one litre as rapidly with infusion wide open.",
+        "Assess response of pulse, SBP and signs of perfusion (urine output, mental status).",
+        "If still in shock and no evidence of fluid overload, give another bolus.",
+        "If still in shock after 2 litres and suspect ongoing blood loss, start blood transfusion and search again for source of bleeding.",
+        "Insert urinary catheter and monitor hourly urine output. A urine output of at least 30 ml/hour suggests adequate hydration.",
+        "If not able to insert peripheral IV, use alternative: External jugular vein cannulation, Femoral vein cannulation, or Venous cut-down."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Fluid overload"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_naloxone_01",
+      "primary_topic": "Naloxone",
+      "adult_dosing": "If IV inserted: Give naloxone 100 mcg IV - repeat dose until patient RR >10/minute. May be repeated. If no IV: Give naloxone 400 mcg IM or subcutaneous 800 mcg - repeat 2 minutes later if necessary. If patient responded to naloxone for long-acting opioid: Give naloxone IV infusion 0.4 mg/hour (for approximately 12 hours).",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Naloxone effect lasts only 40 minutes.",
+        "Giving naloxone can precipitate an opioid withdrawal syndrome that can cause temporary but often significant agitation and discomfort.",
+        "Realize that on awakening, the patient may be angry and combative and could injure self or others.",
+        "Death can occur if the infusion is interrupted or the patient discharges themselves."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_glucose_01",
+      "primary_topic": "Glucose",
+      "adult_dosing": "If blood glucose <3 mmol/l (54 mg/dl): Give IV glucose D50 25 to 50 ml or, if D10 available, give 125 to 250 ml rapidly. If no IV glucose is available, give sugar water by mouth (if conscious) or nasogastric tube (dissolve four level teaspoons of sugar in a 200 ml cup of clean water).",
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_diazepam_01",
+      "primary_topic": "Diazepam",
+      "adult_dosing": "Maximum total IV diazepam dose: 30 mg. Typical dose for 50 kg adult: Initial dose 2 ml (10 mg) IV or 4 ml (20 mg) rectally. Second dose after 10 minutes: 1 ml (5 mg) IV or 2 ml (10 mg) rectally.",
+      "contraindications": [
+        "Do not give further diazepam if breathing less than 16 breaths per minute."
+      ],
+      "side_effects_or_warnings": [
+        "Respiratory arrest (ventilate with bag valve mask if it develops)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_empirical_antibiotics_01",
+      "primary_topic": "Empirical IV/IM antibiotics for emergency management",
+      "adult_dosing": "Give ceftriaxone 1 gm IV or IM (2 gm if suspect meningitis). If ceftriaxone not available, give: ampicillin 2 gm IV or IM AND gentamicin 240 mg IV or IM.",
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_spine_immob_01",
+      "primary_topic": "How to immobilize spine",
+      "equipment_needed": [
+        "cervical collar",
+        "towel rolls, newspaper, sandbags, or bags of IV fluids",
+        "flat surface"
+      ],
+      "step_by_step_guide": [
+        "Apply cervical collar or stabilize the neck with locally available material.",
+        "Keep the patient lying on a flat surface.",
+        "Prevent the neck from moving with locally available materials.",
+        "If patient vomits, turn whole patient on their side, keeping head in line with the body.",
+        "Keep someone with patient at all times to watch the airway.",
+        "To move patient, use log roll technique."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_tension_pneumo_01",
+      "primary_topic": "How to manage tension pneumothorax or massive haemothorax",
+      "equipment_needed": [
+        "large bore (#14) cannula",
+        "oxygen"
+      ],
+      "step_by_step_guide": [
+        "Treat tension pneumothorax with emergency needle decompression: insert large bore (#14) cannula along the upper edge of third rib through second intercostal space in mid-clavicular line.",
+        "If tension pneumothorax, there will be a rush of expelled air.",
+        "Give high flow oxygen.",
+        "Call for help from district clinician.",
+        "Chest tube should be placed as soon as possible following needle decompression."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_sucking_chest_wound_01",
+      "primary_topic": "How to treat sucking chest wound",
+      "equipment_needed": [
+        "high flow oxygen",
+        "petroleum gauze",
+        "tape"
+      ],
+      "step_by_step_guide": [
+        "Give high flow oxygen.",
+        "Cover with petroleum gauze.",
+        "Tape three sides of the dressing, leaving one side untaped to act as flap valve.",
+        "Definitive treatment is to insert chest tube (never insert chest tube through wound).",
+        "Debride wound and consider closure."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_pelvic_binder_01",
+      "primary_topic": "How to apply pelvic binder",
+      "equipment_needed": [
+        "bed sheet"
+      ],
+      "step_by_step_guide": [
+        "Place bed sheet under the pelvis.",
+        "Pull over the great trochanters/iliac wings - cross over anteriorly.",
+        "Pull tight and tie."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_tamponade_uterine_01",
+      "primary_topic": "How to inflate condom over foley catheter to tamponade uterine bleeding",
+      "equipment_needed": [
+        "sterile foley catheter",
+        "condom",
+        "sterile gauze ties",
+        "sterile speculum",
+        "sponge holding forceps",
+        "bag of sterile fluid"
+      ],
+      "step_by_step_guide": [
+        "Insert sterile foley catheter up to 3-5 cm below the bulb into a condom.",
+        "Tie the condom tightly around the stem of the catheter using sterile gauze ties.",
+        "Using a sterile speculum and sponge holding forceps, insert catheter with the condom attached well into the uterine cavity.",
+        "Clamp the catheter and leave the end inside the vagina.",
+        "Connect a bag of sterile fluid to the end of the catheter (ensuring a tight fit) and allow the fluid to run in and fill the catheter.",
+        "Make arrangements for further treatment as appropriate.",
+        "Deflate the foley catheter after 24 hours, and if bleeding does not recur remove it."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_oxytocin_01",
+      "primary_topic": "Oxytocin",
+      "adult_dosing": "Initial dose: IM 10 IU or IV infusion 20 IU in 1 litre at 60 drops/min. Continuing dose: IM repeat 10 IU after 20 minutes if heavy bleeding persists, or IV infusion 20 IU in 1 litre at 30 drops/min. MAXIMUM DOSE: Not more that 3 litres of IV fluids containing oxytocin.",
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_manual_placenta_removal_01",
+      "primary_topic": "How to manually remove the placenta",
+      "equipment_needed": [
+        "IV fluids",
+        "diazepam or ketamine",
+        "antiseptic",
+        "urinary catheter",
+        "long sterile gloves"
+      ],
+      "step_by_step_guide": [
+        "Explain to the woman the need for manual removal of the placenta and obtain her consent.",
+        "Insert an IV line.",
+        "Give diazepam (10 mg IV) or ketamine sedation if not comatose.",
+        "Ensure the bladder is empty. Catheterize if necessary.",
+        "Wash hands and forearms well and put on long sterile gloves.",
+        "With the left hand, hold the umbilical cord with the clamp. Then pull the cord gently until it is horizontal.",
+        "Insert right hand into the vagina and up into the uterus.",
+        "Leave the cord and hold the fundus with the left hand in order to support the fundus of the uterus and to provide counter-traction during removal.",
+        "Detach the placenta from the implantation site by keeping the fingers tightly together and using the edge of the hand to gradually make a space.",
+        "Withdraw the right hand from the uterus gradually, bringing the placenta with it.",
+        "Explore the inside of the uterine cavity to ensure all placental tissue has been removed.",
+        "Examine the uterine surface of the placenta to ensure that lobes and membranes are complete."
+      ],
+      "contraindications": [
+        "If hours or days have passed since delivery, or if the placenta is retained due to constriction ring or closed cervix (DO NOT persist)",
+        "If the placenta does not separate from the uterine surface by gentle sideways movement (suspect placenta accreta, DO NOT persist)"
+      ],
+      "side_effects_or_warnings": [
+        "Inversion of the uterus (prevent by providing counter-traction to the fundus)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_magnesium_sulfate_01",
+      "primary_topic": "Magnesium sulfate",
+      "adult_dosing": "Give IV and IM combined dose (loading dose): Insert IV line and give fluids slowly. Give 4 g of magnesium sulfate (20 ml of 20% solution) IV slowly over 20 minutes. AND Give 10 g of magnesium sulfate IM: give 5 g (10 ml of 50% solution) IM deep in upper outer quadrant of each buttock with 1 ml of 2% lidocaine. If convulsions recur after 15 minutes, give an additional 2 g IV.",
+      "contraindications": [
+        "DO NOT give the next dose if: knee jerk absent, urine output <100 ml/4 hours, or RR <16/minute."
+      ],
+      "side_effects_or_warnings": [
+        "Respiratory failure or death (if injected too rapidly)",
+        "Antidote: calcium gluconate 1 g IV over 10 minutes."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_qc_ketamine_01",
+      "primary_topic": "Ketamine",
+      "adult_dosing": "Pretreat with midazolam 0.05 mg/kg IV over 2 minutes or diazepam 0.05-0.1 mg/kg IV. Sedate: give ketamine 1-2 mg/kg IV over 2 minutes. Repeat 0.5 mg/kg IV every 10 minutes as needed. Alternative to IV: give 4 mg/kg IM.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Agitation or hallucination (emergence reaction)",
+        "Secretions",
+        "Laryngospasm"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_intubation_01",
+      "primary_topic": "Tracheal intubation",
+      "equipment_needed": [
+        "Laryngoscope with working light",
+        "Endotracheal tube (6.0-7.0 in females, 7.0-8.0 in males)",
+        "Oxygen source",
+        "Bag valve mask",
+        "Suction"
+      ],
+      "step_by_step_guide": [
+        "Give high flow oxygen via BVM or face mask with reservoir before the procedure.",
+        "Position patient in sniffing position (place pillow under neck if no trauma).",
+        "Give sedation if required (midazolam or ketamine).",
+        "Open the patient's mouth by separating the lips and pulling on the upper jaw with the index finger.",
+        "Hold a laryngoscope in the left hand, insert it into the mouth directed to the right tonsil. Sweep to the midline, keeping the tongue on the left to bring the epiglottis into view.",
+        "Advance the blade until the angle between the base of the tongue and the epiglottis is reached.",
+        "Lift laryngoscope up and away from you at a 45 degree angle to bring the vocal cords into view.",
+        "Take the endotracheal tube in the right hand and insert it into the mouth through the cords so the cuff rests just below the cords.",
+        "Inflate the cuff to provide a minimal leak when the bag is squeezed.",
+        "Attach tube to bag connected to high flow oxygen.",
+        "Confirm placement (listen over lung fields/stomach, look for condensation, chest rise)."
+      ],
+      "contraindications": [
+        "No post-intubation plan (invasive mechanical ventilator unavailable, except for short-term reversible conditions or planned transfer)"
+      ],
+      "side_effects_or_warnings": [
+        "Oesophageal intubation (remove tube immediately)",
+        "Right mainstem bronchus intubation (pull ETT out in small increments)"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_qc_cricothyroidotomy_01",
+      "primary_topic": "Surgical cricothyroidotomy",
+      "equipment_needed": [
+        "local anaesthetic",
+        "#22 or #23 scalpel blade",
+        "curved artery forceps",
+        "thin introducer or nasogastric tube",
+        "4-6 endotracheal tube"
+      ],
+      "step_by_step_guide": [
+        "Hyperextend the neck (unless known or suspected C-spine injury).",
+        "Clean the area and infiltrate with local anaesthetic.",
+        "Incise through the skin vertically with a 1.5 cm cut and use blunt dissection to ensure that you can see the membrane between the thyroid and cricoid.",
+        "With a #22 or #23 scalpel blade, stab through the membrane into the hollow trachea.",
+        "Rotate the blade 90 degrees, insert a curved artery forceps alongside the blade, remove the blade and open the forceps side to side, widening the space.",
+        "Pass a thin introducer or a nasogastric tube into the trachea if very small access.",
+        "Run a 4-6 endotracheal tube over the introducer and pass it into the trachea.",
+        "Remove the introducer, if used."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Wrong placement",
+        "Bleeding",
+        "Delay can cause death"
+      ]
+    }
+  ]
+}

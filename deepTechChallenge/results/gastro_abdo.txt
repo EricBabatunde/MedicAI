@@ -1,0 +1,272 @@
+{
+  "medical_records": [
+    {
+      "record_type": "triage",
+      "id": "triage_gi_01",
+      "primary_topic": "Severe abdominal pain",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Severe abdominal pain",
+        "Abdomen hard on palpation",
+        "Not able to walk",
+        "Sweating",
+        "Guarding against pain/abnormal position",
+        "Very silent or moaning"
+      ],
+      "immediate_actions": [
+        "Nothing by mouth (NPO)",
+        "IV fluids",
+        "Give oxygen if respiratory distress or SpO2 <90",
+        "Empirical antibiotics IV/IM",
+        "Treat pain",
+        "Suspect surgical abdomen - call for help",
+        "send blood for type and cross match",
+        "If early pregnancy possible, consider ectopic and check rapid pregnancy test"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_gi_02",
+      "primary_topic": "Heavy upper gastrointestinal bleeding",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Bleeding: GI bleeding (vomiting or in stools)",
+        "Vomiting blood",
+        "Melena",
+        "Weak or fast pulse",
+        "SBP <90 mmHg or pulse >110 per minute"
+      ],
+      "immediate_actions": [
+        "Call for help",
+        "Insert IV and give fluids rapidly",
+        "Send blood specimen for type and cross match then transfuse as needed",
+        "Repeat Quick Check and monitor pulse, SBP and haemoglobin",
+        "Insert nasogastric tube to decompress - do not lavage",
+        "If endoscope and trained provider: locate site and cauterize",
+        "Give proton pump inhibitor in high dose (e.g. omeprazole 80 mg)",
+        "Check whole blood clotting time"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_gi_bleed_01",
+      "primary_topic": "Gastrointestinal bleeding",
+      "clinical_signs": [
+        "Vomiting blood or melena",
+        "History of peptic ulcer disease",
+        "History of cirrhosis",
+        "Abdominal pain and tenderness"
+      ],
+      "suspected_conditions": [
+        "Gastrointestinal bleeding (peptic ulcer, bleeding varices)"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_gi_paracentesis_01",
+      "primary_topic": "Paracentesis (abdominal tap)",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5-10 ml syringe, 23- to 25-gauge needle)",
+        "needle and syringe",
+        "drainage bag and tubing or IV drip giving set",
+        "dressing material",
+        "microscope slides",
+        "specimen tubes and culture media"
+      ],
+      "step_by_step_guide": [
+        "The patient should be instructed to empty their bladder. Occasionally, insertion of a urinary catheter may be required.",
+        "Patients with significant ascites can be positioned lying face up; those with less ascites can be positioned lying down on the left side.",
+        "The left lower quadrant (2-3 cm lateral to the border of the rectus muscles) has been shown to be a good site for paracentesis. The right lower quadrant and a site 3-4 cm below the umbilicus have also been used.",
+        "Cleanse the area with antiseptic.",
+        "Anaesthetize the puncture site with lidocaine.",
+        "Carefully insert the needle at the site. A small amount of give may be felt as the needle enters the peritoneal cavity. Caution is required to avoid sudden penetration of the needle.",
+        "Remove only the necessary amount of fluid. A drainage bag attached to the needle with tubing may be used when large amounts of fluid must be removed. Note that removal of more than 1 litre of fluid may result in post-paracentesis hypotension."
+      ],
+      "contraindications": [
+        "a bleeding diathesis (other than DIC) as the risk of bleeding is very low",
+        "bowel distention or obstruction",
+        "infection or surgical scars at the site of needle entry"
+      ],
+      "side_effects_or_warnings": [
+        "Post-paracentesis hypotension",
+        "Bowel perforation",
+        "Puncture site infection",
+        "Abdominal wall haematoma",
+        "Continued leakage of ascitic fluid"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_gi_ng_tube_01",
+      "primary_topic": "Inserting a nasogastric (NG) tube",
+      "equipment_needed": [
+        "NG tube",
+        "lubricant",
+        "a cup of water",
+        "a 50-100 ml syringe"
+      ],
+      "step_by_step_guide": [
+        "Elevate the head of the bed, or ask the patient to assume an upright, sitting position.",
+        "In order to determine the appropriate length of tubing to be inserted, measure from the xyphoid (bottom of the sternum or breastbone) to the ear and then to the nose. Add 15 cm to this distance to obtain the insertion distance. The NG tube itself may be used to measure, marking the approximate point on the tube with tape.",
+        "Lubricate the tube with a liberal quantity of water-based lubricant prior to insertion.",
+        "The tube should then be inserted gently in the posterior (not superior) direction. Proceed gently to avoid trauma to the tissue behind the nose. If there is resistance, attempt to use the other nostril.",
+        "If the patient is having difficulty, instruct them to sip some water while simultaneously trying to pass the tube.",
+        "The patient can help direct the tube into the oesophagus by putting their chin to their chest. Tracheal insertion should be suspected if there is excessive coughing or condensation inside the tube.",
+        "Make sure to confirm placement of the tube before using it, especially in patients with an altered level of consciousness. Successful placement in the stomach can be confirmed by rapidly pushing air into the tube with a large syringe; there should be gurgling sounds which can be heard through a stethoscope placed on the stomach. A chest X-ray may be done to confirm placement.",
+        "The tube should be secured carefully to the nose and the patient's gown (to avoid displacing the tube if there is a sudden tug). A butterfly type bandage or tape may be used to secure the tube to the nose. Avoid the tube pressing on the medial or lateral aspects of the inner nostril, as this may result in necrosis or bleeding."
+      ],
+      "contraindications": [
+        "facial fractures (use orogastric tube instead)",
+        "severe coagulopathy",
+        "oesophageal stricture",
+        "recent alkali ingestion (may cause oesophageal perforation)"
+      ],
+      "side_effects_or_warnings": [
+        "Vomiting and aspiration during placement",
+        "Pulmonary placement (pneumothorax)",
+        "Intracranial placement",
+        "Gastric erosions and bleeding if the tube is in place long term"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_gi_gastric_lavage_01",
+      "primary_topic": "Gastric lavage",
+      "equipment_needed": [
+        "suction apparatus",
+        "orogastric or NG tube",
+        "100 ml syringe",
+        "water or saline"
+      ],
+      "step_by_step_guide": [
+        "Patients who are comatose or unable to protect the airway must be intubated prior to lavage. If intubation is not possible, lavage should not be attempted.",
+        "Place the patient on their left side with the head down by 15-30 degrees. This is important to reduce the risk of aspiration.",
+        "Measure and mark the length of tube needed before insertion.",
+        "If the patient has ingested a solid poison (e.g. tablets), insert an appropriately sized (French 36-40) and properly lubricated orogastric tube. If the patient vomits, carefully and quickly apply suction to remove the vomitus. Do not use force to pass the tube.",
+        "If the patient has ingested a liquid poison (e.g. pesticide), insert a properly lubricated nasogastric tube. If the patient vomits, carefully and quickly apply suction to remove the vomitus. Do not use force to pass the tube.",
+        "Check the proper positioning of the tube in the stomach by air insufflation or aspiration with pH testing of aspirate.",
+        "Instil and lavage with no more than 100-300 ml lukewarm or tepid water or normal saline. Remove the fluid before giving more. Repeat until 1-2 litres have been given and removed."
+      ],
+      "contraindications": [
+        "unconsciousness or depressed sensorium with unprotected airway (possibility of aspiration)",
+        "ingestion of corrosive substances because of the danger of perforation",
+        "ingestion of hydrocarbons, unless a more toxic substance is combined with the hydrocarbon, such as pesticide (possibility of aspiration)",
+        "presence of frank convulsions (possibility of aspiration)",
+        "patient at risk of haemorrhage or gastrointestinal perforation",
+        "an uncooperative patient (the tube can injure the gastrointestinal tract)"
+      ],
+      "side_effects_or_warnings": [
+        "aspiration pneumonia",
+        "laryngospasm",
+        "cardiac arrhythmias",
+        "hypoxia and hypercapnia",
+        "mechanical injury to the throat, oesophagus and stomach",
+        "fluid and electrolyte imbalance"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_omeprazole_01",
+      "primary_topic": "Omeprazole",
+      "adult_dosing": "Gastritis/peptic ulcer disease (PUD): Oral: 20 mg daily for 4-8 weeks. Helicobacter pylori gastritis: Oral: 20 mg twice daily AND clarithromycin + amoxicillin.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "abdominal pain",
+        "flatulence",
+        "diarrhoea",
+        "constipation",
+        "headache",
+        "Dry mouth",
+        "peripheral oedema",
+        "dizziness",
+        "sleep disturbances",
+        "fatigue",
+        "paraesthesia",
+        "arthralgia",
+        "myalgia",
+        "rash",
+        "pruritus",
+        "taste disturbance",
+        "stomatitis",
+        "hepatitis",
+        "jaundice",
+        "agitation",
+        "impotence",
+        "fever",
+        "depression",
+        "hallucinations",
+        "confusion",
+        "gynaecomastia",
+        "interstitial nephritis",
+        "hyponatraemia",
+        "blood disorders",
+        "visual disturbances",
+        "sweating",
+        "photosensitivity",
+        "alopecia",
+        "Stevens-Johnson syndrome",
+        "toxic epidermal necrolysis",
+        "increased risk of gastro-intestinal infections (including C. difficile infection)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_metoclopramide_01",
+      "primary_topic": "Metoclopramide",
+      "adult_dosing": "Oral/IV: 10 mg every 8 hours. 15-19 years (<60 kg): 5 mg 3 times daily.",
+      "contraindications": [
+        "Gastrointestinal obstruction (often used to empty the stomach of blood prior to EGD)",
+        "within 3-4 days after gastrointestinal surgery",
+        "convulsive disorders",
+        "phaeochromocytoma"
+      ],
+      "side_effects_or_warnings": [
+        "Drowsiness",
+        "headache",
+        "restlessness",
+        "dizziness",
+        "Extrapyramidal symptoms",
+        "hyperprolactinaemia",
+        "depression",
+        "diarrhoea",
+        "hypotension",
+        "hypertension",
+        "neuroleptic malignant syndrome",
+        "rash",
+        "cardiac conduction abnormalities following IV administration"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_lactulose_01",
+      "primary_topic": "Lactulose",
+      "adult_dosing": "20-30 g (30-45 ml) 3-4 times daily; adjust dose every 1-2 days to produce 2-3 soft stools daily.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Flatulence",
+        "abdominal discomfort",
+        "cramps",
+        "Diarrhoea",
+        "dehydration",
+        "hyponatraemia",
+        "hypokalaemia"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_senna_01",
+      "primary_topic": "Senna",
+      "adult_dosing": "Oral: 2-4 tablets, usually at night. Initial dose should be low; then gradually increased to 30 mg.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Abdominal discomfort",
+        "cramps",
+        "Hypokalaemia (with prolonged use or overdosage)"
+      ]
+    }
+  ]
+}

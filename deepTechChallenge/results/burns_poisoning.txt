@@ -1,0 +1,395 @@
+{
+  "medical_records": [
+    {
+      "record_type": "triage",
+      "id": "triage_burns_severe_01",
+      "primary_topic": "Severe Burn",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Any full-thickness burn",
+        "Partial-thickness burn ≥15% TBSA in adults or ≥10% TBSA in children",
+        "Special regions affected (hands, face, feet, perineum)",
+        "Any circumferential burn",
+        "Inhalation injury",
+        "Significant associated trauma",
+        "Burn in the very young or elderly",
+        "Significant pre-burn illness (diabetes, HIV)"
+      ],
+      "immediate_actions": [
+        "Protect airway (consider laryngeal oedema with or without inhalation injury)",
+        "Cool burn if acute",
+        "Fluid resuscitation (Give fluid according to Parkland formula, insert urinary catheter)",
+        "Consider escharotomy for circumferential burns",
+        "Give tetanus toxoid",
+        "Manage acute pain",
+        "Place a nasogastric tube for feeding and give medication for gastric acid suppression",
+        "Admit to hospital"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_burn_skin_care_01",
+      "primary_topic": "Burn skin care",
+      "equipment_needed": [
+        "sterile techniques for cleaning and debridement",
+        "non-adherent dressing (paraffin gauze or honey and ghee)",
+        "topical antibiotic (bacitracin, silver sulfadiazine)"
+      ],
+      "step_by_step_guide": [
+        "Use sterile techniques for cleaning and debridement.",
+        "Remove loose, necrotic skin and broken, tense, or infected blisters.",
+        "Apply a non-adherent dressing and provide a moist healing environment.",
+        "Change the dressing daily.",
+        "Mobilize any burned joints twice a day and at dressing changes (move through range of motion, medicate for pain as needed).",
+        "If a burn encircles a limb, elevate any burned extremity and monitor it frequently.",
+        "Consider escharotomy for limb cyanosis, decreased pulses, or worsening neurological status.",
+        "Consider escharotomy in the severe burn patient with difficulty ventilating secondary to burned skin that limits chest movement."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Infection",
+        "Contractures",
+        "Compartment syndrome"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_tox_eye_irrigation_01",
+      "primary_topic": "Manage chemicals in the eye",
+      "equipment_needed": [
+        "cool, clean water",
+        "sterile pad",
+        "local anaesthetic"
+      ],
+      "step_by_step_guide": [
+        "Hold the eyes open (the patient may need a local anaesthetic to prevent blepharospasm).",
+        "Wash any chemicals out with cool, clean water for 15–20 minutes. Take care that run-off does not enter the other eye.",
+        "In the case of acids or alkalis, check the pH of the conjunctival fluid and continue irrigation until the pH is 7.4.",
+        "Do not let the patient rub the eyes.",
+        "Treat pain.",
+        "If light causes pain, cover the eye with a sterile pad.",
+        "Examine the eye."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_tox_organophosphate_01",
+      "primary_topic": "Organophosphate and carbamate poisoning",
+      "clinical_signs": [
+        "Muscarinic effects: DUMBBELS (defecation, urination, miosis, bronchospasm, bronchorrhea, emesis, lacrimation, salivation)",
+        "Nicotinic effects: weakness, fasciculation, paralysis, mydriasis",
+        "agitation, confusion, lethargy, convulsions, coma",
+        "pinpoint pupils",
+        "bradycardia",
+        "sweating",
+        "coarse crackles, aspiration"
+      ],
+      "suspected_conditions": [
+        "Organophosphate poisoning",
+        "Carbamate poisoning"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_atropine_tox_01",
+      "primary_topic": "Atropine (for Organophosphate poisoning)",
+      "adult_dosing": "IM/IV: Give bolus 1–3 mg (aim for clear lungs, stable blood pressure and dry mucous membranes) THEN double initial dose if no improvement at 5 minutes. Once stable, initiate an infusion of atropine (20% of the total dose required to atropinize) as an hourly infusion.",
+      "contraindications": [
+        "Angle-closure glaucoma"
+      ],
+      "side_effects_or_warnings": [
+        "Dry mouth",
+        "tachycardia",
+        "blurred vision",
+        "photophobia",
+        "constipation",
+        "urinary retention",
+        "flushing",
+        "delirium",
+        "fever",
+        "Atropine toxicity (agitation, confusion, hyperthermia)"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_tox_co_01",
+      "primary_topic": "Carbon monoxide poisoning",
+      "clinical_signs": [
+        "dizziness",
+        "headache",
+        "nausea",
+        "vomiting",
+        "weakness",
+        "confusion",
+        "syncope",
+        "tachypnoea",
+        "dyspnoea",
+        "respiratory failure or pulmonary oedema",
+        "coma",
+        "seizures",
+        "cerebral oedema",
+        "cardiac dysrhythmias",
+        "myocardial ischemia",
+        "bullous lesions of the skin",
+        "muscle necrosis",
+        "rhabdomyolysis",
+        "compartment syndrome"
+      ],
+      "suspected_conditions": [
+        "Carbon monoxide poisoning"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_acetylcysteine_01",
+      "primary_topic": "Acetylcysteine (for Paracetamol overdosage)",
+      "adult_dosing": "IV: Initially 150 mg/kg over 15 minutes; then 50 mg/kg over 4 hours; then 100 mg/kg over 16 hours. Oral: Loading dose of 140 mg/kg; THEN 4 hours after loading dose, initiate maintenance dose of 70 mg/kg administered at 4-hour intervals for 17 doses.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Flushing",
+        "urticaria",
+        "itch",
+        "Anaphylactoid or hypersensitivity-like reactions including angioedema, bronchospasm/respiratory distress, hypotension, tachycardia or hypertension"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_trauma_splint_01",
+      "primary_topic": "Splint application",
+      "equipment_needed": [
+        "stockinette and padding",
+        "support material – plaster, pre-formed splints, modified local materials",
+        "elastic bandages",
+        "adhesive tape",
+        "knife or scissors",
+        "bucket or pail of wet plaster",
+        "apron and gloves"
+      ],
+      "step_by_step_guide": [
+        "Always explain to the patient what you are doing and why.",
+        "Treat pain prior to applying a splint.",
+        "Remove clothing to adequately visualize the injured extremity.",
+        "Check and document neurovascular status (circulation, motor, sensory) before and after application of the splint.",
+        "Cover open fractures or joints with saline moistened sterile gauze.",
+        "If the injured extremity is visibly deformed, first straighten (reduce) prior to the application of the splint.",
+        "Place the joint in the desired position prior to splinting.",
+        "If available, place a stockinette over the skin, extending 10–15 cm beyond the area to be splinted.",
+        "Wrap padding around the entire area to be splinted (at least 2–3 layers thick).",
+        "Measure the length of material needed to secure the limb.",
+        "Soak the plaster roll in a pail containing water at room temperature until the air bubbles cease to rise.",
+        "Smooth the wet plaster with the palm into a homogeneous layer.",
+        "Place the plaster splint over the area to be immobilized.",
+        "Fold the padding and stockinette back to secure the splint in place and form smooth rounded edges.",
+        "While still wet, mould the plaster to the limb contours and secure with an elastic bandage or gauze wrap."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "plaster becomes hot when wet and can cause skin burns",
+        "pressure sores from improper application or using fingertips to hold wet plaster",
+        "compartment syndrome from tight casts or dressings"
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_trauma_splint_01",
+      "primary_topic": "Patient instructions for splints and casts",
+      "home_care_instructions": [
+        "Keep the splint dry at all times.",
+        "Do not try to scratch your skin under the cast or splint with any object, sharp or blunt.",
+        "For acute injuries, elevate the injured part for 24–48 hours and wiggle your fingers or toes frequently."
+      ],
+      "return_to_clinic_warning_signs": [
+        "your splint gets wet or becomes soft or broken",
+        "you have increasing pain",
+        "you experience numbness or tingling, or have difficulty moving your fingers or toes",
+        "you see a change in skin colour of the extremity",
+        "your cast or splint has a foul odour"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_activated_charcoal_01",
+      "primary_topic": "Activated charcoal",
+      "adult_dosing": "Oral (adults and adolescents >13 years of age): 50–100 g as a single dose. May give multiple doses for sustained-release preparations or certain toxins like theophylline.",
+      "contraindications": [
+        "Poisoning by hydrocarbons, with high potential for harm if aspirated",
+        "poisoning by corrosive substances",
+        "unprotected airway without endotracheal intubation",
+        "risk of gastrointestinal haemorrhage or perforation"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "constipation",
+        "black stools",
+        "colicky abdominal pain",
+        "aspiration pneumonitis",
+        "dehydration and electrolyte imbalances",
+        "gastrointestinal obstruction/faecal impaction in dehydrated patients"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_trauma_thorax_01",
+      "primary_topic": "Thorax Trauma",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Bruising, deformity",
+        "Uneven chest wall movement",
+        "Subcutaneous air",
+        "Decreased breath sounds",
+        "Muffled heart tones",
+        "Severe back pain"
+      ],
+      "immediate_actions": [
+        "Manage airway.",
+        "Treat suspected pneumothorax or haemothorax, flail chest, sucking chest wound.",
+        "Treat pain.",
+        "Send Hb, and type and cross-match.",
+        "Call for surgical help.",
+        "If haemodynamically unstable (SBP <90 mm Hg) with muffled heart tones, emergent pericardiocentesis.",
+        "Obtain chest X-ray."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_trauma_high_risk_01",
+      "primary_topic": "High-risk mechanism of injury / High-risk injuries",
+      "clinical_signs": [
+        "Fall more than 3 metres",
+        "Road traffic accident at speed more than 30 km/hour or with significant damage to vehicle",
+        "Thrown from a vehicle or trapped in a vehicle",
+        "Pedestrian or cyclist hit by a car",
+        "Motorcycle crash with separation of rider from bike",
+        "Death of another person in the same accident",
+        "Injury from a high- or low-velocity weapon",
+        "Penetrating injuries to head, neck, torso, and extremities proximal to elbow and knee",
+        "Flail chest",
+        "Combination of trauma with burns",
+        "Two or more proximal long-bone fractures",
+        "Pelvic fractures",
+        "Limb paralysis",
+        "Amputation proximal to wrist or ankle"
+      ],
+      "suspected_conditions": [
+        "Severe occult injury",
+        "Major trauma requiring admission for observation"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_calcium_gluconate_tox_01",
+      "primary_topic": "Calcium gluconate (for Calcium channel blocker overdose)",
+      "adult_dosing": "IV: 0.6 ml/kg (600 mg/kg) to a maximum of 30 ml over 5 minutes; can be repeated every 10–20 minutes, up to 4 doses (using 10% solution).",
+      "contraindications": [
+        "Conditions associated with hypercalcaemia and hypercalciuria (for example, some forms of malignant disease)"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "constipation",
+        "injection site reactions",
+        "fall in blood pressure",
+        "Bradycardia/arrhythmia",
+        "peripheral vasodilation",
+        "renal calculi",
+        "severe tissue damage with extravasation"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_methylene_blue_01",
+      "primary_topic": "Methylthioninium chloride (methylene blue)",
+      "adult_dosing": "IV (loading dose): 2 mg/kg of 1% solution (10 mg/ml) over 5 minutes. Assess after 15 minutes. THEN further dose of 1 mg/kg if no improvement.",
+      "contraindications": [
+        "Severe renal impairment",
+        "methaemoglobinaemia due to chlorate or induced by sodium nitrite in treatment of cyanide poisoning",
+        "G6PD deficiency (may cause haemolytic anaemia)"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "abdominal pain",
+        "chest pain",
+        "headache",
+        "dizziness",
+        "confusion",
+        "profuse sweating",
+        "hypertension",
+        "hypotension",
+        "haemolytic anaemia (in G6PD deficiency)",
+        "bluish skin discoloration",
+        "blue saliva, urine, and faeces"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_trauma_compartment_syndrome_01",
+      "primary_topic": "Compartment syndrome",
+      "clinical_signs": [
+        "tense muscle compartments to palpation",
+        "weakness of the involved muscle groups",
+        "pain with passive stretch of the involved muscle",
+        "pain out of proportion to the injury",
+        "decreased sensation (late finding)",
+        "pallor and decreased capillary refill (late finding)",
+        "elevated compartment pressure (>40 mmHg)"
+      ],
+      "suspected_conditions": [
+        "Compartment syndrome"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_tranexamic_acid_01",
+      "primary_topic": "Tranexamic acid (TXA)",
+      "adult_dosing": "IV: loading dose of 1 g over 10 minutes THEN infusion of 1 g over 8 hours.",
+      "contraindications": [
+        "History of thromboembolic disease"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "diarrhoea",
+        "allergic skin reactions",
+        "Rapid intravenous injection may cause dizziness and/or hypotension",
+        "Thromboembolic events",
+        "disturbances in colour vision"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_trauma_wound_closure_01",
+      "primary_topic": "Wound management (Primary closure)",
+      "equipment_needed": [
+        "antiseptic",
+        "normal saline or clean water for irrigation",
+        "lidocaine",
+        "scissors or blade for debridement",
+        "suture material",
+        "sterile dressings"
+      ],
+      "step_by_step_guide": [
+        "Stabilize the patient and assess and treat any life-threatening injuries.",
+        "Apply pressure to any active bleeding.",
+        "Check and record perfusion distal to the wound.",
+        "Examine the wound, explore and remove any foreign body.",
+        "Give tetanus toxoid or immunoglobulin for a tetanus-prone wound.",
+        "Thoroughly flush the wound with normal saline or clean water (at least 2 litres for contaminated wounds).",
+        "Debridement: remove dead tissue until pink, bleeding tissue is visible.",
+        "If indicated (clean wounds less than 8 hours old), close the wound with sutures to bring wound edges together.",
+        "Use both deep sutures and superficial sutures to reduce tension on the wound."
+      ],
+      "contraindications": [
+        "infected wound",
+        "puncture wounds",
+        "grossly contaminated wounds",
+        "bite wounds"
+      ],
+      "side_effects_or_warnings": [
+        "Infection",
+        "Poor healing",
+        "Scarring"
+      ]
+    }
+  ]
+}

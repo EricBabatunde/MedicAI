@@ -1,0 +1,50 @@
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the  Gastrointestinal & Abdominal sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the  Neurological & Trauma sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the  Fever & Systemic Infections sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the  Maternal & Reproductive Health Emergencies sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the  Trauma, Burns, and Poisoning / Toxicology sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Quick Check and Emergency Treatments sections
+
+
+
+Role: You are an expert clinical data extraction assistant. I have attached Volume 2 of the WHO IMAI District Clinician Manual.
+
+    Task: Your objective is to map the clinical knowledge within these PDFs into a highly structured JSON database.
+
+    Current Batch: For this prompt, scan the manuals and extract ALL relevant records but strictly limit your extraction to the Chronic Care & Non-Communicable Diseases (NCDs) sections. Do not extract data for trauma, obstetrics, or infectious diseases yet.
+
+    Extraction Rules:
+
+        Identify and categorize every piece of knowledge into one of the following record_types: triage, procedure, drug_formulary, differential_diagnosis, chronic_care, or patient_discharge.
+
+        Read the description for each JSON key carefully. Only populate keys that are relevant to the specific record_type. If a key does not apply (e.g., adult_dosing for a triage record), omit it entirely.
+
+        Do not summarize or dilute the medical instructions. Copy dosages, warning signs, and physiological parameters exactly as they appear in the text.
+
+        Ensure every id is unique and descriptive (e.g., drug_salbutamol_01 or diag_chronic_cough_01).
+
+        Output strictly as JSON using the provided schema.
+
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Chronic Care & Non-Communicable Diseases (NCDs) sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the HIV & Opportunistic Infections Management sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Clinical Procedures sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Essential Medicines and Drug Formulary sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Palliative Care & Symptom Control sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Discharge Planning & Patient Education sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Severe malnutrition and Infectious Diseases sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Mental Health & Psychiatry sections
+
+Excellent. Now, using the exact same rules, extract ALL relevant records but strictly limit your extraction to the Women's Health & Obstetrics sections

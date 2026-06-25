@@ -1,0 +1,210 @@
+{
+  "medical_records": [
+    {
+      "record_type": "triage",
+      "id": "triage_inf_01",
+      "primary_topic": "Fever and suspected septic shock or malaria",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Fever",
+        "SBP <90 mmHg",
+        "pulse >110 per minute",
+        "Respiratory rate >24 breaths per minute",
+        "Abnormal temperature (<36°C or >38°C)"
+      ],
+      "immediate_actions": [
+        "Give oxygen 5 litres if SpO2 <90 or respiratory distress.",
+        "Insert IV, give 1 litre bolus crystalloid (LR or NS) then reassess.",
+        "Give empirical antibiotics.",
+        "Give antimalarial and glucose (if blood glucose is low or unknown).",
+        "Send blood culture if feasible before starting antibiotics."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_inf_septic_shock_01",
+      "primary_topic": "Septic shock",
+      "clinical_signs": [
+        "Fever (temperature more than 38°C) or hypothermia (less than 36°C)",
+        "Warm extremities, bounding pulses (often not present) or weak, thready pulse and cold extremities when hypovolaemic from fluid shifts",
+        "Signs of infection: headache or neck stiffness (meningitis), severe rash, severe abdominal pain (peritonitis), cough or difficult breathing (pneumonia), painful urination or blood in the urine (pyelonephritis)"
+      ],
+      "suspected_conditions": [
+        "Septic shock",
+        "Severe malaria",
+        "Severe pneumonia",
+        "Tuberculosis",
+        "Suspect amnionitis during pregnancy",
+        "Postpartum sepsis or septic abortion",
+        "PID, pelvic or tubo-ovarian abscess",
+        "Viral haemorrhagic fever"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_inf_fever_01",
+      "primary_topic": "Fever with altered level of consciousness",
+      "clinical_signs": [
+        "Fever",
+        "Altered mental state",
+        "Neck stiffness",
+        "Photophobia",
+        "Headache",
+        "Confusion",
+        "Shock"
+      ],
+      "suspected_conditions": [
+        "Cerebral malaria",
+        "Meningitis",
+        "Encephalitis",
+        "Sepsis from various causes including pneumonia, UTI",
+        "Human African trypanosomiasis",
+        "Rabies"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_inf_malaria_smear_01",
+      "primary_topic": "Thin and thick blood films for malaria",
+      "equipment_needed": [
+        "2 microscope slides",
+        "methanol",
+        "Giemsa solution"
+      ],
+      "step_by_step_guide": [
+        "Place a small amount of blood near the middle of the slide for the thin film. Place two or three smaller drops off to the side for the thick film. Place the slide on a flat surface.",
+        "Hold another slide over the first at a 45 degree angle so that it just touches it. Slowly drag the upper (spreader) slide towards the drop of blood.",
+        "On contact with the spreader slide, the blood should spread along the width of the slide.",
+        "The spreader should then be drawn smoothly and rapidly in the opposite direction, producing a feathered edge.",
+        "Join the drops of blood intended for the thick film using a corner of the spreader slide. This should not require excessive stirring, only 3 to 6 circular or rectangular movements.",
+        "Allow the slide to air dry and label with a soft lead pencil.",
+        "Fix the thin film by adding a few drops of methanol and allow to dry. Try to avoid exposing the thick film to methanol.",
+        "Flood the slide with Giemsa solution and allow 30–45 minutes out of sunlight.",
+        "Rinse with water, drain, and air dry.",
+        "On the thick film, leukocyte nuclei should appear a deep, rich purple. Malaria parasites should have deep red chromatin and pale purplish blue cytoplasm."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_inf_afb_smear_01",
+      "primary_topic": "AFB (Ziehl Neelsen) smear",
+      "equipment_needed": [
+        "microscope slide",
+        "Bunsen burner or spirit lamp",
+        "3 mm wire loop",
+        "forceps",
+        "Ziehl Neelsen carbol fuchsin",
+        "decolouriser: 3% HCL-ethanol or 20–25% H2SO4",
+        "methylene blue 0.1%"
+      ],
+      "step_by_step_guide": [
+        "Label slide carefully.",
+        "Using loop, take sputum sample from most dense portion of specimen (sample blood-specked, opaque, greyish, or yellowish cheesy mucus when present).",
+        "Smear the sample onto a slide over an area 2.0 X 1.0 cm; the broken end of a wooden stick may be used.",
+        "Air dry for 15 minutes.",
+        "Heat fix the sample by passing the slide smear side up through a Bunsen burner 3 times. The proper thickness of a heat fixed smear has been achieved when newsprint is just readable through it.",
+        "Flood the slide with carbol fuchsin.",
+        "Heat the slide until steam rises from the slide and wait 10 minutes.",
+        "Rinse with water and drain.",
+        "Flood the slide with decolouriser and wait 3 minutes.",
+        "Rinse with water and drain.",
+        "Flood the slide with methylene blue and wait 1 minute.",
+        "Rinse with water and drain.",
+        "Air dry.",
+        "Heat fix smear.",
+        "Acid-fast bacilli will appear as red, slender, rod-shaped bacilli against a blue background."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_artesunate_01",
+      "primary_topic": "Artesunate",
+      "adult_dosing": "IM/IV: 2.4 mg/kg on admission AND repeat at 12 hours, 24 hours; then once daily. Start appropriate oral treatment as soon as tolerated, and give full course.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Mild gastrointestinal disturbances",
+        "dizziness",
+        "tinnitus",
+        "reticulocytopenia",
+        "neutropenia",
+        "elevated liver enzyme values",
+        "ECG abnormalities (bradycardia, prolongation of the QT interval)",
+        "Type 1 hypersensitivity reactions",
+        "Post-treatment hemolysis has been observed with high cumulative doses"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ceftriaxone_01",
+      "primary_topic": "Ceftriaxone",
+      "adult_dosing": "IV: 1 g daily for 7–14 days for severe infection. For meningitis: IV: 2 g twice daily for 5–14 days.",
+      "contraindications": [
+        "Cephalosporin hypersensitivity (anaphylaxis, hives)",
+        "porphyria",
+        "hypoalbuminaemia or impaired bilirubin binding"
+      ],
+      "side_effects_or_warnings": [
+        "Diarrhoea",
+        "nausea",
+        "rash",
+        "electrolyte disturbances",
+        "pain and inflammation at injection site",
+        "Antibiotic-associated colitis",
+        "hypersensitivity reactions (including anaphylaxis)",
+        "erythema multiforme",
+        "transient hepatitis/jaundice",
+        "blood disorders (leukopenia, thrombocytopenia, agranulocytosis, aplastic anaemia, haemolytic anaemia)",
+        "interstitial nephritis",
+        "pancreatitis",
+        "cholecystitis",
+        "pseudolithiasis",
+        "nephrolithiasis"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_gentamicin_01",
+      "primary_topic": "Gentamicin",
+      "adult_dosing": "IM/IV (slow): 4–6 mg/kg daily in divided doses every 8 hours for 2 weeks AND ampicillin. For initial empirical antibiotics in emergency management: IV: 240 mg in a single dose.",
+      "contraindications": [
+        "Hypersensitivity to aminoglycoside group of antibiotics"
+      ],
+      "side_effects_or_warnings": [
+        "Nephrotoxicity",
+        "ototoxicity",
+        "Neuromuscular blockade",
+        "renal electrolyte wasting (Mg, K, Ca)",
+        "antibiotic-associated colitis",
+        "nausea/vomiting",
+        "hypersensitivity reactions"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_chloramphenicol_01",
+      "primary_topic": "Chloramphenicol",
+      "adult_dosing": "IV: 1 gram every 6 hours. Epidemics of meningococcal meningitis: IM (oily): 100 mg/kg (maximum 3 g) as a single dose; repeat after 24–48 hours if necessary.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "headache",
+        "reversible bone marrow suppression",
+        "Diarrhoea",
+        "stomatitis/glossitis",
+        "depression",
+        "hypersensitivity reactions (including anaphylaxis)",
+        "aplastic anaemia",
+        "peripheral/optic neuritis",
+        "minor disulfiram-like reactions",
+        "grey baby syndrome (premature and newborn infants)",
+        "C. difficile colitis"
+      ]
+    }
+  ]
+}

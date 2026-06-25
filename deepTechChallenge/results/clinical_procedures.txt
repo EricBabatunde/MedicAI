@@ -1,0 +1,465 @@
+{
+  "medical_records": [
+    {
+      "record_type": "procedure",
+      "id": "proc_skin_biopsy_shave_01",
+      "primary_topic": "Skin biopsy – shaving or scraping",
+      "equipment_needed": [
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- to 25-gauge needle)",
+        "scalpel blade and handle",
+        "culture media",
+        "microscope slides",
+        "formalin"
+      ],
+      "step_by_step_guide": [
+        "Cleanse the area of the biopsy with skin antiseptic.",
+        "Anaesthetize the area with 1–2% lidocaine.",
+        "If flat, inject anaesthetic or saline under the lesion to raise it slightly.",
+        "Hold the scalpel parallel to the skin and begin. Complete the incision in one stroke. The aim is to take only a specimen of superficial tissue.",
+        "If done for the diagnosis of cutaneous leishmaniasis, the slit-skin technique should be used. Incise several millimetres outward from the active border of a lesion, making sure to go deep enough to penetrate the dermis. This should be followed by a scrape.",
+        "Dress the wound with simple dry gauze dressing."
+      ],
+      "contraindications": [
+        "Do not perform shave biopsy of pigmented lesions – melanoma is more difficult to stage if shaved."
+      ],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_skin_biopsy_punch_01",
+      "primary_topic": "Skin biopsy – punch",
+      "equipment_needed": [
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- to 25-gauge needle)",
+        "cylindrical punch biopsy knife",
+        "formalin",
+        "suture material, needle driver, forceps"
+      ],
+      "step_by_step_guide": [
+        "Cleanse the area of the biopsy with skin antiseptic.",
+        "Anaesthetize the area with 1–2% lidocaine.",
+        "Stretch the skin perpendicular to the Langer’s lines (natural creases in the skin).",
+        "Hold the cylindrical knife (trephine) perpendicular to the skin and gently push downward while rotating it clockwise and counter clockwise to cut through the skin.",
+        "Use a forceps or needle to lift the specimen, and cut it free from the underlying tissue below the dermis."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Avoid squeezing the specimen with a haemostat or forceps to avoid crush artefact."
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_skin_snip_01",
+      "primary_topic": "Skin snip for the diagnosis of microfilariasis",
+      "equipment_needed": [
+        "antiseptic",
+        "23- to 25-gauge needles",
+        "razor blade or scalpel",
+        "water or saline",
+        "microscope slides and cover slips",
+        "inverted microscope"
+      ],
+      "step_by_step_guide": [
+        "Select the sites with the highest numbers of microfilariae for examination (e.g., over the scapula, iliac crest, or calf).",
+        "Clean the skin with antiseptic and allow it to dry.",
+        "Insert a fine sterile needle almost horizontally into the skin and raise the point of the needle, lifting with it a small piece of skin measuring about 2 mm in diameter and height.",
+        "Cut off the piece of skin with a sterile razor blade or scalpel.",
+        "Disinfect all instruments used during the procedure.",
+        "Place the tissue sample on a microscope slide with a few drops of saline or water, cover with cover slip, and send to the laboratory immediately."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_fna_01",
+      "primary_topic": "Fine needle aspiration (FNA)",
+      "equipment_needed": [
+        "antiseptic",
+        "10 ml syringe",
+        "22-gauge needle",
+        "microscope slides",
+        "mask for the health worker if TB is suspected"
+      ],
+      "step_by_step_guide": [
+        "Clean the skin with antiseptic.",
+        "Fix the lymph node or mass so that it will not move.",
+        "Enter the lymph node parallel to the fingers of the left hand.",
+        "Apply gentle suction syringe by pulling back the plunger 2–3 ml.",
+        "The mass is entered and multiple, sequential passes are made without exiting the skin surface.",
+        "Release the syringe completely and exit the skin.",
+        "Place a small drop of aspirated fluid on a glass slide.",
+        "A smear is made by laying another glass slide on top of the drop of fluid and pulling the slides apart to spread the fluid."
+      ],
+      "contraindications": [
+        "Pulsatile or air-filled mass."
+      ],
+      "side_effects_or_warnings": [
+        "Pneumothorax",
+        "Haemorrhage or haematoma"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_lymph_node_biopsy_01",
+      "primary_topic": "Lymph node biopsy (excisional)",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- to 25-gauge needle)",
+        "scalpel blade and handle",
+        "suture material, needle driver, forceps",
+        "formalin",
+        "culture media"
+      ],
+      "step_by_step_guide": [
+        "A general anaesthetic may be required as lymph nodes are located beneath the fascia.",
+        "Make an incision along the skin lines and dissect through the subcutaneous tissue, while controlling any bleeding.",
+        "Identify the lymph node with a fingertip and incise the overlying superficial fascia.",
+        "Dissect the node from surrounding tissue without directly grasping it.",
+        "Grasp the attached adventitial tissue with a small artery forceps, or place a figure-of-8 suture into the node for traction.",
+        "Separate all the tissue attached to the node.",
+        "Control the hilar vessels with forceps and ligate them with absorbable suture after the node has been removed."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_bone_marrow_01",
+      "primary_topic": "Bone marrow aspiration and biopsy",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- and 21-gauge needles)",
+        "scalpel blade and handle",
+        "bone marrow aspiration needle with removable stylet and 1–2 ml syringe",
+        "bone marrow biopsy (Jamshidi) needle",
+        "microscope slides, culture media"
+      ],
+      "step_by_step_guide": [
+        "Position the patient lying face down or lying on the side opposite to that where the procedure will be done.",
+        "Identify the site, usually three finger widths from the midline and two finger widths below the posterior iliac crest, and cleanse with antiseptic.",
+        "Anaesthetize the skin, subcutaneous tissue, and periosteum using lidocaine.",
+        "Make a small 3 mm incision at the site.",
+        "Aspiration: Insert the bone marrow aspiration needle perpendicular to the skin. Turn needle toward anterior superior iliac spine upon hitting periosteum, twist into marrow cavity, remove stylet, and aspirate max 0.5 ml at a time.",
+        "Biopsy: Using the same incision, insert the biopsy needle at a slightly different spot. Twist until lodged firmly, remove stylet, advance 15–20 mm, change direction to sever sample, and remove needle."
+      ],
+      "contraindications": [
+        "haemophilia",
+        "severe disseminated intravascular coagulopathy (DIC)",
+        "other severe bleeding disorder",
+        "low platelets (<20 x 109/litre) may require a platelet transfusion",
+        "skin infection or osteomyelitis near the chosen site"
+      ],
+      "side_effects_or_warnings": [
+        "bleeding",
+        "needle breakage",
+        "tumour seeding",
+        "infection"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_cervical_visual_screening_01",
+      "primary_topic": "Cervical cancer screening: visual screening",
+      "equipment_needed": [
+        "speculum",
+        "cotton swab",
+        "3–5% acetic acid or Lugol’s iodine solution"
+      ],
+      "step_by_step_guide": [
+        "Begin by performing a speculum exam.",
+        "Adjust the light source in order to get the best view of the cervix.",
+        "Use a cotton swab to remove any discharge, blood, or mucus from the cervix.",
+        "Identify the squamocolumnar junction (SCJ), and the area around it.",
+        "Apply acetic acid or Lugol’s iodine to the cervix; wait a minute or two to allow colour changes to develop.",
+        "Inspect the SCJ carefully, and be sure to visualize all of it. Look for any raised and thickened white plaques or acetowhite epithelium (or saffron-yellow areas if iodine used).",
+        "Use a fresh swab to remove any remaining acetic acid or iodine solution from the cervix and vagina.",
+        "Gently remove the speculum."
+      ],
+      "contraindications": [
+        "Not recommended for use in postmenopausal women, because their transition zone is most often inside the endocervical canal and not visible on speculum exam."
+      ],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_endometrial_biopsy_01",
+      "primary_topic": "Endometrial biopsy",
+      "equipment_needed": [
+        "speculum",
+        "cotton swab",
+        "iodine",
+        "forceps",
+        "tenaculum or vulsellum",
+        "uterine sound",
+        "long needle and syringe",
+        "lidocaine",
+        "cervical dilators",
+        "biopsy curette and syringe",
+        "formalin",
+        "microscope slides",
+        "culture media"
+      ],
+      "step_by_step_guide": [
+        "Carry out the procedure during the patient’s premenstrual phase.",
+        "Perform a bimanual exam to determine the size of the uterus and direction of the cervix.",
+        "Perform a speculum examination and cleanse the cervical os with iodine.",
+        "Grasp the cervix with a toothed tenaculum and pass a uterine sound to determine the size of the uterus. If sound cannot be passed, perform cervical block with lidocaine.",
+        "If the sound still cannot be passed, attempt to dilate the cervix using narrow metal dilators.",
+        "Insert an endometrial biopsy curette and obtain at least 4 pieces of the endometrium for histopathological examination."
+      ],
+      "contraindications": [
+        "pregnancy"
+      ],
+      "side_effects_or_warnings": [
+        "Uterine perforation",
+        "Abdominal cramping",
+        "Vasovagal reflex (dizziness, fainting)",
+        "Bleeding",
+        "Post-procedure infection"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_urinary_catheter_female_01",
+      "primary_topic": "Urinary catheter insertion – female",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "2% lidocaine jelly or mineral oil",
+        "urinary catheter",
+        "10 ml syringe filled with water or saline",
+        "tape and suture material",
+        "container for drainage"
+      ],
+      "step_by_step_guide": [
+        "Position the patient lying face up with knees bent and apart.",
+        "Put on sterile gloves and apply antiseptic to the labia and urethra. Isolate the area with a perforated sterile towel.",
+        "Check the integrity of the urinary catheter balloon, and then lubricate the catheter with a generous amount of sterile liquid paraffin or lidocaine jelly.",
+        "Gently insert the urinary catheter into the urethra, located just at the top of the vaginal opening.",
+        "Insert at least 20 cm of the catheter to ensure that it is in the bladder.",
+        "Inflate the balloon with 10–15 ml of sterile water or clean urine. Partially withdraw the catheter until its balloon abuts on the bladder neck.",
+        "Secure the catheter to the patient’s thigh using tape and connect to a closed system sterile container."
+      ],
+      "contraindications": [
+        "possible fracture of the pubic symphysis (demonstrated by blood at the urethral opening after trauma)"
+      ],
+      "side_effects_or_warnings": [
+        "Urinary tract infection or sepsis",
+        "Bladder rupture",
+        "Vaginal placement",
+        "Urethral trauma"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_urinary_catheter_male_01",
+      "primary_topic": "Urinary catheter insertion – male",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "2% lidocaine jelly or mineral oil",
+        "urinary catheter",
+        "10 ml syringe filled with water or saline",
+        "tape and suture material",
+        "container for drainage"
+      ],
+      "step_by_step_guide": [
+        "Position the patient lying face up.",
+        "Wash the area with soap and water, retracting the foreskin. Put on sterile gloves, apply antiseptic to the urethra and glans.",
+        "Check the balloon integrity and lubricate the catheter with sterile liquid paraffin or lidocaine jelly.",
+        "Hold the penis vertically and slightly stretched with one hand, and introduce the urinary catheter gently.",
+        "If resistance is felt at 12–15 cm, angle it down to allow it to enter the posterior urethra.",
+        "Urine escaping confirms entry. Advance the catheter 5–10 cm before inflating the balloon.",
+        "Pull the foreskin back over the glans once the catheter has been placed to prevent paraphimosis.",
+        "Inflate the balloon with 10–15 ml of sterile water, partially withdraw until the balloon abuts the bladder neck.",
+        "Strap the penis and catheter laterally to the abdominal wall to prevent compression ulceration."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Paraphimosis",
+        "Urinary tract infection or sepsis",
+        "Bladder rupture",
+        "Urethral or prostate trauma"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_suprapubic_catheter_01",
+      "primary_topic": "Suprapubic catheter",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- to 25-gauge needle)",
+        "16-gauge needle, 50 ml syringe",
+        "trochar and cannula",
+        "10 ml syringe filled with water or saline",
+        "tape and suture material",
+        "container for drainage",
+        "dressing material"
+      ],
+      "step_by_step_guide": [
+        "Assess the extent of bladder distension by inspection and palpation.",
+        "Clean the area with antiseptic.",
+        "Raise a weal of local anaesthetic in the midline, 2 cm above the symphysis pubis, and then continue with deeper infiltration.",
+        "Make a simple puncture 2 cm above the symphysis pubis in the midline with a 16-gauge needle attached to a 50 ml syringe while aspirating to find urine.",
+        "Introduce the trochar and cannula and advance them vertically with care.",
+        "Introduce the catheter well into the bladder. Once urine flows freely, withdraw the cannula and inflate the catheter balloon.",
+        "Fix the catheter to the skin with a stitch and connect it to a bag or bottle."
+      ],
+      "contraindications": [
+        "Caution should be taken in patients with previous abdominal surgeries due to adhesions putting them at greater risk for bowel injury."
+      ],
+      "side_effects_or_warnings": [
+        "Bowel perforation",
+        "Leakage of urine into the abdomen"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_iud_placement_01",
+      "primary_topic": "Intrauterine device (IUD) placement",
+      "equipment_needed": [
+        "sterile gloves",
+        "speculum",
+        "cotton swab",
+        "antiseptic",
+        "tenaculum",
+        "uterine sound",
+        "IUD",
+        "scissors"
+      ],
+      "step_by_step_guide": [
+        "Perform a bimanual examination and speculum examination to assess eligibility.",
+        "Clean the cervix and vagina with appropriate antiseptic.",
+        "Slowly insert the tenaculum through the speculum and close it just enough to gently hold the cervix.",
+        "Pass the uterine sound through the cervix to measure the depth and position of the uterus.",
+        "Load the IUD into the inserter while both are still in the unopened sterile package.",
+        "Insert the IUD and then remove the inserter.",
+        "Cut the strings on the IUD, leaving about 3 centimetres hanging out of the cervix."
+      ],
+      "contraindications": [
+        "recent, untreated puerperal sepsis or septic abortion",
+        "unusual vaginal bleeding",
+        "current cervical or endometrial cancer",
+        "untreated pelvic tuberculosis",
+        "symptomatic cervicitis",
+        "current pregnancy",
+        "between 48 hours and 4 weeks since giving birth",
+        "noncancerous gestational trophoblast disease",
+        "current ovarian cancer"
+      ],
+      "side_effects_or_warnings": [
+        "Uterine perforation",
+        "Ectopic pregnancy",
+        "Intrauterine pregnancy",
+        "Pelvic inflammatory disease (PID)",
+        "Changes in bleeding patterns"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_paraphimosis_reduction_01",
+      "primary_topic": "Reduction of paraphimosis",
+      "equipment_needed": [
+        "sterile gloves and sterile towels",
+        "antiseptic",
+        "lidocaine without epinephrine, 5–10 ml syringe, 23- to 25-gauge needle",
+        "scalpel",
+        "two artery forceps",
+        "straight scissors",
+        "suture material, needle driver, forceps"
+      ],
+      "step_by_step_guide": [
+        "Sedate the patient if necessary – consider ketamine.",
+        "Cleanse the skin of the genitalia with antiseptic.",
+        "Isolate the penis with a perforated towel and inject lidocaine in a ring around its base.",
+        "Take hold of the oedematous part of the penis in the fist and squeeze firmly until the oedema fluid passes proximally under the constricting band.",
+        "Pull the foreskin over the glans.",
+        "If manual reduction fails, perform a phimotic ring incision. Infiltrate proximally to distally through the constricting ring and incise slowly.",
+        "If necessary, perform a dorsal slit by clamping the foreskin with 2 artery forceps and incising between them."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Bleeding or oozing",
+        "Lacerations"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_venous_cutdown_01",
+      "primary_topic": "Venous cutdown",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- to 25-gauge needle)",
+        "suture material",
+        "scalpel",
+        "curved haemostat",
+        "scissors",
+        "venous dilator",
+        "large bore IV catheter",
+        "IV tubing",
+        "needle driver, forceps",
+        "antibiotic ointment, tape, dressing material"
+      ],
+      "step_by_step_guide": [
+        "Clean the area with antiseptic and cover with sterile drapes.",
+        "Anaesthetize the skin and subcutaneous tissue with lidocaine.",
+        "Place a tourniquet proximal to the cutdown site to visualize the vein.",
+        "Incise the skin perpendicular to the vein using a scalpel.",
+        "Isolate and mobilize the vein using blunt dissection.",
+        "Pass two sutures under the vein proximal and distal to the cannulation site.",
+        "Tie the distal suture.",
+        "Incise the vein at a 45° angle between the two sutures.",
+        "Cannulate the vein with the IV catheter using the venous dilator.",
+        "Tie the proximal suture around the vein and the catheter to hold it in place.",
+        "Remove the tourniquet and close the incision."
+      ],
+      "contraindications": [
+        "Should not be performed if less invasive means of obtaining venous access are available.",
+        "Infection over cutdown site."
+      ],
+      "side_effects_or_warnings": [
+        "Bleeding",
+        "Vein tearing and retraction"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_arthrocentesis_01",
+      "primary_topic": "Arthrocentesis (joint aspiration)",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- to 25-gauge needle)",
+        "21-gauge needle and syringe",
+        "dressing material",
+        "microscope slides",
+        "specimen tubes and culture media"
+      ],
+      "step_by_step_guide": [
+        "Position the patient lying face up on the examination table.",
+        "Palpate the superolateral or superomedial aspect of the patella and mark a spot 1 cm superior and lateral to this point.",
+        "Cleanse the area with skin antiseptic and anaesthetize.",
+        "Steady the patella with one hand.",
+        "Insert a 21-gauge needle at a 45° angle to the knee, aiming for below the patella.",
+        "Aspirate fluid once the needle has penetrated more than a few centimetres.",
+        "Withdraw the needle and send fluid for studies."
+      ],
+      "contraindications": [
+        "significant overlying cellulitis or soft tissue infection",
+        "bleeding diathesis",
+        "joint prosthesis"
+      ],
+      "side_effects_or_warnings": [
+        "Iatrogenic septic arthritis",
+        "joint instability",
+        "re-accumulation of joint effusion"
+      ]
+    }
+  ]
+}

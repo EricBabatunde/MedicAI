@@ -1,0 +1,637 @@
+{
+  "medical_records": [
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_resp_diff_breathing_01",
+      "primary_topic": "Difficulty breathing not due to upper airway obstruction",
+      "clinical_signs": [
+        "Very fast or very slow respiratory rates",
+        "Use of accessory muscles to breathe",
+        "Cyanosis",
+        "Depressed level of consciousness",
+        "SpO2 <90",
+        "Crackles or rhonchi on auscultation",
+        "Fever, cough",
+        "Pleuritic chest pain",
+        "Frothy sputum"
+      ],
+      "suspected_conditions": [
+        "Pneumothorax",
+        "Cardiac tamponade",
+        "Pneumonia (bacterial, viral, PCP, TB)",
+        "Lower airways obstruction (asthma, COPD)",
+        "Pulmonary oedema (fluid overload, heart failure, renal failure)",
+        "Severe malaria",
+        "Severe anaemia",
+        "Pulmonary embolism",
+        "Pleural effusion",
+        "Acute lung injury",
+        "Metabolic acidosis",
+        "Opioid intoxication",
+        "Organophosphate poisoning",
+        "Alcohol or sedative intoxication"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_cv_shock_01",
+      "primary_topic": "Shock",
+      "clinical_signs": [
+        "Low BP (SBP <90)",
+        "Fast pulse",
+        "Pallor or cold extremities",
+        "Decreased capillary refill",
+        "Dizziness or inability to stand",
+        "Decreased urine output (<30 ml/hour)",
+        "Difficulty breathing",
+        "Impaired consciousness, lethargy, agitation, confusion"
+      ],
+      "suspected_conditions": [
+        "Haemorrhagic shock",
+        "Hypovolaemic shock",
+        "Septic shock",
+        "Anaphylactic shock",
+        "Cardiogenic shock",
+        "Obstructive shock (tamponade, pulmonary emboli, tension pneumothorax)",
+        "Endocrine shock (Addisonian crisis)",
+        "Neurogenic shock (Acute spinal cord injury)"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_resp_pulmonary_oedema_01",
+      "primary_topic": "Acute pulmonary oedema",
+      "clinical_signs": [
+        "Respiratory rate >30 or SpO2 <90",
+        "Bilateral crackles on lung exam",
+        "Signs of volume overload: distended neck veins, hepatomegaly, ascites, lower-extremity oedema",
+        "History of cardiomyopathy or kidney disease",
+        "Frothy sputum"
+      ],
+      "suspected_conditions": [
+        "Cardiomyopathy",
+        "Valvular heart disease",
+        "Myocarditis (Chagas disease)",
+        "Endocarditis",
+        "Chronic kidney disease",
+        "Acute lung injury (severe malaria, severe pneumonia, severe sepsis, poisoning, acute pancreatitis, tocolytic medication/pre-eclampsia)"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_gyn_pelvic_exam_01",
+      "primary_topic": "Pelvic examination",
+      "equipment_needed": [
+        "speculum",
+        "gloves",
+        "female chaperone or assistant"
+      ],
+      "step_by_step_guide": [
+        "Ask the woman to empty her bladder (urinate) and remove her underwear. Position the woman on the examination table.",
+        "External genital exam: look for redness, lumps, swelling, unusual discharge, sores, tears, and scars around the genitals.",
+        "Speculum exam: Hold the speculum blades together sideways and insert them into the vagina.",
+        "When the speculum is halfway in, turn it so the handle is down. Gently open the blades and look for the cervix.",
+        "Tighten the screw to lock the speculum. Check the cervix for cysts, redness, discharge, ulcers, sores, or abnormal growths.",
+        "Gently pull the speculum until the blades are clear of the cervix, allow blades to close, and remove.",
+        "Bimanual exam: Put pointing and middle finger of a gloved hand in the vagina. Palpate the cervix for firmness and cervical motion tenderness.",
+        "Use the fingers in the vagina to move pelvic organs toward the abdomen to palpate the womb, tubes, and ovaries with the other hand.",
+        "Ask the woman to cough or push down to check for prolapse."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_gyn_pap_smear_01",
+      "primary_topic": "Cervical cancer screening: Pap smear",
+      "equipment_needed": [
+        "speculum",
+        "wooden spatula or brush",
+        "microscope slides",
+        "fixative"
+      ],
+      "step_by_step_guide": [
+        "Begin by performing a speculum exam.",
+        "Insert the long tip of the wooden spatula or brush into the os, and rotate it through a full circle (360 degrees).",
+        "Smear both sides of the spatula or brush onto a glass slide with one or two careful swipes.",
+        "Sample any abnormalities outside the cervical os, and smear on another slide.",
+        "Immediately fix each slide using spray fixative or immerse in 95% ethanol for at least 5 minutes.",
+        "Gently close and remove the speculum."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_gyn_colposcopy_01",
+      "primary_topic": "Colposcopy, cervical biopsy, and endocervical curettage",
+      "equipment_needed": [
+        "speculum",
+        "cotton swab",
+        "colposcope",
+        "saline",
+        "3–5% acetic acid",
+        "forceps",
+        "punch biopsy",
+        "endocervical curette",
+        "Monsel's paste",
+        "formalin"
+      ],
+      "step_by_step_guide": [
+        "Pain from cervical biopsies can be reduced by having the patient take paracetamol or ibuprofen 1–2 hours prior.",
+        "Inspect the cervix at low-power magnification (5X to 10X). Identify the transformation zone and the squamocolumnar junction (SCJ).",
+        "Apply saline to the cervix. Inspect with a green filter and 15X magnification for abnormal vascular patterns.",
+        "Apply acetic acid. Wait 1 or 2 minutes to allow colour changes to develop.",
+        "Integrate the findings of the saline test and acetic acid test.",
+        "Take cervical biopsies of the most abnormal areas.",
+        "If necessary, perform endocervical curettage by holding the curette like a pen and scraping the endocervical canal in short, firm strokes.",
+        "If active bleeding is noted, apply Monsel's paste to the bleeding areas.",
+        "Withdraw the colposcope and gently remove the speculum."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Active bleeding",
+        "Serious cramping or lower abdominal pain",
+        "Pus-like discharge or fever (post-procedure infection signs)"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_exam_breast_01",
+      "primary_topic": "Clinical breast examination",
+      "equipment_needed": [
+        "female chaperone or assistant"
+      ],
+      "step_by_step_guide": [
+        "Patient should be unclothed from the waist up.",
+        "Inspect breasts for asymmetry, bulging, skin changes, or nipple retraction/discharge.",
+        "Begin with patient in seated position. Ask patient to raise arms over her head, then lower arms and place them on her hips, pressing to contract pectoralis muscles.",
+        "Palpate regional lymph nodes, paying special attention to axillary nodes.",
+        "Position patient supine with the arm on the side being examined raised above her head.",
+        "Palpate the entire chest wall using a radial approach, concentric circles, or vertical strips, using the pads of the fingers."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_lab_gram_stain_01",
+      "primary_topic": "Gram stain",
+      "equipment_needed": [
+        "microscope slide",
+        "Bunsen burner or flame",
+        "crystal violet",
+        "iodine",
+        "decolouriser: acetone or ethanol",
+        "safranin"
+      ],
+      "step_by_step_guide": [
+        "Swab sample onto a slide.",
+        "Heat fix by passing the slide through a flame.",
+        "Stain with crystal violet (60 seconds) and rinse.",
+        "Stain with iodine (60 seconds) and rinse.",
+        "Decolourise with acetone or ethanol for a few seconds (until the liquid runs clear).",
+        "Stain with safranin (60 seconds) and rinse.",
+        "Gently blot dry and examine under oil immersion (1000X). Gram-positive organisms appear purple, Gram-negative organisms appear red."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_rad_ultrasound_01",
+      "primary_topic": "Ultrasound (Trauma and Basic 1st trimester obstetric)",
+      "equipment_needed": [
+        "ultrasound machine (with curved or phased array probe, and transvaginal probe)",
+        "ultrasound gel",
+        "cleaning solution",
+        "condom or probe cover for transvaginal probe"
+      ],
+      "step_by_step_guide": [
+        "Trauma FAST: Place patient supine. Assess 4 regions for free fluid (black on screen).",
+        "Pericardial (subxiphoid): Aim probe into left chest, assess for free fluid between myocardium and pericardium.",
+        "Right upper quadrant (RUQ): Assess for free fluid between liver and kidney or superior to diaphragm.",
+        "Left upper quadrant (LUQ): Assess for free fluid between spleen and diaphragm, spleen and kidney.",
+        "Pelvic: View with full bladder. Assess for fluid between bladder and uterus/rectum.",
+        "Obstetric (1st trimester): Place patient supine. Transabdominal: scan suprapubic area with full bladder. Assess for intrauterine gestational sac, yolk sac, or fetal pole. Assess for free fluid.",
+        "If unable to view pregnancy transabdominally, empty bladder and use transvaginal probe with cover/gel. Scan entire uterus in sagittal and coronal views."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Failure to find fluid in cases of haemoperitoneum",
+        "Misinterpreting pre-existing ascites or uroperitoneum as haemoperitoneum",
+        "Missed diagnosis of ectopic pregnancy"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_morphine_01",
+      "primary_topic": "Morphine",
+      "adult_dosing": "Oral morphine: 5 mg/5 ml or 50 mg/5 ml or tablets. Initially, 2.5–10 mg every 4 hours, increased by 30–50% if pain persists. IV (slow, 2 mg/min): 10 mg THEN 5–10 mg if necessary.",
+      "contraindications": [
+        "Acute respiratory depression",
+        "acute alcoholism",
+        "risk of paralytic ileus",
+        "raised intracranial pressure or head injury",
+        "injection in phaeochromocytoma"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "constipation",
+        "dry mouth",
+        "drowsiness",
+        "respiratory depression",
+        "hypotension",
+        "muscle rigidity",
+        "bradycardia",
+        "tachycardia",
+        "palpitation",
+        "euphoria",
+        "hallucinations",
+        "confusion",
+        "dependence",
+        "miosis"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_paracetamol_01",
+      "primary_topic": "Paracetamol (acetaminophen)",
+      "adult_dosing": "Oral: 0.5–1 g every 4–6 hours (max 4 g daily; max 2 g daily if hepatic impairment, cirrhosis). Rectally: 0.5–1 g every 4–6 hours.",
+      "contraindications": [
+        "Do not exceed 4 grams in 24 hours (more can cause serious liver toxicity)."
+      ],
+      "side_effects_or_warnings": [
+        "Increased transaminases",
+        "Urticarial or erythematous rash",
+        "blood disorders",
+        "liver damage following overdosage"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_aspirin_01",
+      "primary_topic": "Aspirin (acetylsalicylic acid)",
+      "adult_dosing": "Acute coronary syndrome: Oral: 300 mg (preferably chewed or dispersed in water) given immediately as a single dose. Mild to moderate pain: 300 mg–600 mg every 4 hours as needed; maximum 4 grams in 24 hours.",
+      "contraindications": [
+        "Hypersensitivity to acetylsalicylic acid or any other NSAID",
+        "active peptic ulceration",
+        "bleeding disorders",
+        "children and adolescents under 16 years (Reye syndrome)",
+        "Not for treatment of gout"
+      ],
+      "side_effects_or_warnings": [
+        "Gastrointestinal irritation with slight blood loss",
+        "tinnitus",
+        "deafness (large doses)",
+        "nausea",
+        "dyspepsia",
+        "increased bleeding time",
+        "iron deficiency anaemia",
+        "renal impairment",
+        "oesophageal ulceration",
+        "major GI bleeding",
+        "bronchospasm"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ibuprofen_01",
+      "primary_topic": "Ibuprofen",
+      "adult_dosing": "200–400 mg 3–4 times daily. Maximum 2.4 g daily.",
+      "contraindications": [
+        "Avoid unless potential benefit greater than risk",
+        "Regular use in third trimester may cause closure of fetal ductus arteriosus"
+      ],
+      "side_effects_or_warnings": [
+        "Dyspepsia",
+        "nausea",
+        "diarrhoea",
+        "GI ulceration and haemorrhage",
+        "raised liver enzymes",
+        "headache",
+        "dizziness",
+        "salt and fluid retention",
+        "hypertension",
+        "Heart failure",
+        "hypersensitivity reactions",
+        "bronchospasm",
+        "renal failure"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_codeine_01",
+      "primary_topic": "Codeine",
+      "adult_dosing": "Oral: 30 mg every 4 hours; maximum dose for pain 240 mg; consider switch to morphine when a dose of 180 mg is reached.",
+      "contraindications": [
+        "Conditions where inhibition of peristalsis should be avoided",
+        "abdominal distension",
+        "acute diarrhoeal conditions such as ulcerative colitis or antibiotic-associated colitis",
+        "acute respiratory depression"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "constipation",
+        "dizziness",
+        "headache",
+        "miosis",
+        "difficulty with micturition",
+        "urinary retention",
+        "dry mouth",
+        "Dependence",
+        "biliary spasm",
+        "palpitations",
+        "bradycardia",
+        "tachycardia",
+        "respiratory depression"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_isosorbide_dinitrate_01",
+      "primary_topic": "Isosorbide dinitrate",
+      "adult_dosing": "SL: 5 mg sublingual, repeat in 10–15 minutes, not to exceed 10 mg every 2–3 hours.",
+      "contraindications": [
+        "Hypersensitivity to nitrates",
+        "hypotension",
+        "hypovolaemia",
+        "hypertrophic obstructive cardiomyopathy",
+        "aortic stenosis",
+        "cardiac tamponade",
+        "constrictive pericarditis",
+        "mitral stenosis",
+        "marked anaemia",
+        "head trauma",
+        "cerebral haemorrhage",
+        "angle-closure glaucoma"
+      ],
+      "side_effects_or_warnings": [
+        "Throbbing headache",
+        "flushing",
+        "dizziness",
+        "fainting",
+        "postural hypotension",
+        "tachycardia",
+        "Paradoxical bradycardia"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_hydrocortisone_01",
+      "primary_topic": "Hydrocortisone",
+      "adult_dosing": "IV (slow): 100 mg in a single dose. For Addison's syndrome/acute adrenal insufficiency: IV: 100 mg initially AND repeat every 8 hours. Convert to oral dose once patient stable.",
+      "contraindications": [
+        "Systemic infection (unless life-threatening or specific antimicrobial therapy given)",
+        "avoid live virus vaccines"
+      ],
+      "side_effects_or_warnings": [
+        "Hypertension",
+        "sodium and water retention",
+        "potassium and calcium loss",
+        "Increased susceptibility to infection",
+        "hyperglycaemia",
+        "osteoporosis",
+        "delayed wound healing",
+        "myopathy",
+        "adrenal suppression",
+        "psychosis",
+        "peptic ulceration"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_dexamethasone_01",
+      "primary_topic": "Dexamethasone",
+      "adult_dosing": "IV: 8 mg; then repeat every 8 hours. Or IV/IM: Initially 24 mg daily; THEN reduce by 2 mg/day to lowest effective maintenance dose.",
+      "contraindications": [
+        "Systemic infection (unless life-threatening or specific antimicrobial therapy given)",
+        "avoid live virus vaccines"
+      ],
+      "side_effects_or_warnings": [
+        "Hypertension",
+        "sodium and water retention",
+        "potassium and calcium loss",
+        "Increased susceptibility to infection",
+        "hyperglycaemia",
+        "osteoporosis",
+        "delayed wound healing",
+        "myopathy",
+        "adrenal suppression",
+        "psychosis",
+        "peptic ulceration"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_prednisolone_01",
+      "primary_topic": "Prednisolone",
+      "adult_dosing": "Oral: 40–60 mg. For PCP pneumonia: Oral: 40 mg twice daily for 5 days THEN 40 mg daily for 5 days THEN 20 mg daily for 11 days.",
+      "contraindications": [
+        "Systemic infection (unless life-threatening or specific antimicrobial therapy given)",
+        "avoid live virus vaccines"
+      ],
+      "side_effects_or_warnings": [
+        "Hypertension",
+        "sodium and water retention",
+        "potassium and calcium loss",
+        "Increased susceptibility to infection",
+        "hyperglycaemia",
+        "osteoporosis",
+        "delayed wound healing",
+        "myopathy",
+        "adrenal suppression",
+        "psychosis",
+        "peptic ulceration"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_sodium_bicarbonate_01",
+      "primary_topic": "Sodium bicarbonate",
+      "adult_dosing": "IV: Emergency dosing: Initially, 1–2 mmol/kg over 1–2 minutes. Additional dose: 0.5 mmol/kg every 10 minutes. Maintenance: 100–150 mmol sodium bicarbonate in 1 litre 5% dextrose at 250 ml/hour.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Metabolic alkalosis (associated with muscle twitching, irritability, tetany)",
+        "hypernatraemia",
+        "severe allergic reactions",
+        "pain, redness, or swelling at the injection site"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_potassium_chloride_01",
+      "primary_topic": "Potassium chloride (KCl)",
+      "adult_dosing": "Oral: 20–50 mmol daily after meals. Slow IV infusion: 20–40 mmol/l in normal saline (not to exceed 10-20 mmol/hour).",
+      "contraindications": [
+        "Severe renal impairment",
+        "plasma potassium concentration above 5 mmol/l"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "hyperkalaemia",
+        "rapid infusion toxic to heart"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_thiamine_01",
+      "primary_topic": "Thiamine",
+      "adult_dosing": "IM/IV: 100 mg daily for 5 days THEN switch to oral 100 mg daily. For ethylene glycol poisoning: IM/IV: 100 mg every 8 hours for 6 doses.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Anaphylaxis (infrequent or rare)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_deferoxamine_01",
+      "primary_topic": "Deferoxamine (desferrioxamine mesilate)",
+      "adult_dosing": "IV (slow): Initially 15 mg/kg per hour THEN reduce after 4–6 hours so that total dose does not exceed 80 mg/kg in 24 hours.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "diarrhoea",
+        "abdominal cramps or pain",
+        "injection-site reactions",
+        "hypotension (especially when given too rapidly)",
+        "asthma",
+        "Disturbances of hearing and vision",
+        "acute respiratory distress syndrome",
+        "Yersinia and mucormycosis infections"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ethanol_01",
+      "primary_topic": "Ethanol (for Ethylene glycol or methanol poisoning)",
+      "adult_dosing": "Oral (or by NG): Loading: 1.8 ml/kg over 15–30 minutes (diluted). Maintenance dose: 0.2 ml/kg/hour (non-drinker) or 0.46 ml/kg/hour (heavy alcohol user).",
+      "contraindications": [
+        "Hypersensitivity to ethanol"
+      ],
+      "side_effects_or_warnings": [
+        "Signs of intoxication",
+        "confusion",
+        "drowsiness",
+        "coma",
+        "respiratory depression",
+        "hypoglycaemia"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_insulin_soluble_01",
+      "primary_topic": "Insulin (soluble)",
+      "adult_dosing": "For Hyperkalaemia: IV: 10–15 units in 50 ml D50 (50% dextrose water) infused over 2 hours THEN dextrose infusion + regular blood glucose monitoring. For DKA: IV bolus 0.15 U/kg followed by infusion at 0.1 U/kg/hour.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Hypoglycaemia",
+        "weight gain",
+        "hypersensitivity reactions",
+        "hypokalaemia",
+        "transient oedema",
+        "lipodystrophy",
+        "lipoatrophy"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ampicillin_01",
+      "primary_topic": "Ampicillin",
+      "adult_dosing": "IM/IV: 250 mg/kg daily, divided every 4 hours (range 6–12 g/day). Or IV: 2 g every 4 hours.",
+      "contraindications": [
+        "Severe hypersensitivity to penicillins and other beta-lactams"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "diarrhoea",
+        "Haemolytic anaemia",
+        "interstitial nephritis",
+        "blood disorders",
+        "C. difficile colitis",
+        "Hypersensitivity reaction",
+        "anaphylaxis"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_quinine_01",
+      "primary_topic": "Quinine",
+      "adult_dosing": "IV/IM (in anterior thigh): 20 mg/kg over 4 hours; THEN 10 mg/kg every 8 hours until oral medication is possible. Oral: 600 mg quinine sulfate 3 times daily for 7 days.",
+      "contraindications": [
+        "Haemoglobinuria",
+        "optic neuritis",
+        "tinnitus"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "diarrhoea",
+        "CNS disturbances",
+        "reversible hearing loss",
+        "cinchonism",
+        "tinnitus",
+        "headache",
+        "hypoglycaemia (after parenteral administration)",
+        "thrombocytopenia",
+        "ECG changes",
+        "Angioedema",
+        "intravascular haemolysis",
+        "acute renal failure",
+        "prolonged QT interval"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_erythromycin_01",
+      "primary_topic": "Erythromycin",
+      "adult_dosing": "Oral: 500 mg 4 times daily. IV/oral: 500 mg 4 times daily.",
+      "contraindications": [
+        "Hypersensitivity to erythromycin or other macrolides",
+        "porphyria"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "diarrhoea",
+        "abdominal pain or cramps",
+        "Allergic reactions",
+        "reversible hearing loss",
+        "jaundice",
+        "cardiac effects",
+        "myasthenia-like syndrome",
+        "erythema multiforme",
+        "QT prolongation",
+        "C. difficile colitis"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_burn_escharotomy_01",
+      "primary_topic": "Escharotomy",
+      "equipment_needed": [
+        "scalpel",
+        "local anaesthetic",
+        "dressings"
+      ],
+      "step_by_step_guide": [
+        "Performed for circumferential, partial-, and full-thickness burns if swelling cuts off circulation.",
+        "Cut through the burned skin in the mid-lateral and mid-medial axes of the extremity.",
+        "Cut through the burn down to fat, allowing the skin to spread apart.",
+        "Put a little “T” at the end of the incision where burn meets normal skin to allow more expansion.",
+        "Never cut un-burned skin.",
+        "Cover with dressings."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Bleeding",
+        "Infection"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,257 @@
+{
+  "medical_records": [
+    {
+      "record_type": "triage",
+      "id": "triage_maternal_bleeding_01",
+      "primary_topic": "Vaginal bleeding in pregnant woman or woman of childbearing age",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Heavy bleeding: pad or cloth soaked in <5 minutes",
+        "Constant trickling of blood",
+        "Any bleeding in late pregnancy (uterus above umbilicus)",
+        "Bleeding more than 100 ml since labour began"
+      ],
+      "immediate_actions": [
+        "Insert an IV line",
+        "Give fluids rapidly",
+        "If early pregnancy, give 0.2 mg ergometrine IM (repeat if continues)",
+        "If late pregnancy, DO NOT do vaginal examination",
+        "Call for help and admit to hospital",
+        "Consider ectopic pregnancy if light bleeding and abdominal pain"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_maternal_pph_01",
+      "primary_topic": "Postpartum haemorrhage (PPH)",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Heavy bleeding: pad or cloth soaked in <5 minutes",
+        "Constant trickling of blood",
+        "Bleeding >250 ml or delivered outside hospital and still bleeding",
+        "Placenta NOT delivered",
+        "Uterus remains soft after placenta delivered"
+      ],
+      "immediate_actions": [
+        "Call for extra help",
+        "Massage uterus until it is hard",
+        "Give oxytocin 10 IU IM",
+        "Insert IV line and give IV fluids with 20 IU oxytocin/litre at 60 drops/minute",
+        "Empty bladder, catheterize if necessary",
+        "Check and record SBP and pulse every 15 minutes and treat",
+        "If bleeding continues and uterus hard, check for perineal and lower vaginal tears",
+        "If bleeding continues and placenta not delivered, remove placenta manually"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_maternal_eclampsia_01",
+      "primary_topic": "Severe pre-eclampsia and eclampsia",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Current/recent pregnancy",
+        "Elevated BP and severe headache",
+        "Convulsing in second half of pregnancy or post-partum up to one week",
+        "Proteinuria (dipstick urine)"
+      ],
+      "immediate_actions": [
+        "Protect from fall or injury",
+        "Manage airway and assist into recovery position",
+        "Give oxygen 5 litres",
+        "Give magnesium sulfate if diastolic >110 mmHg with proteinuria or if convulsing",
+        "Do not leave the woman on her own",
+        "Give IV fluids slowly",
+        "Consider caesarian section unless delivery is imminent"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_maternal_manual_placenta_01",
+      "primary_topic": "Manual removal of the placenta",
+      "equipment_needed": [
+        "IV fluids",
+        "diazepam or ketamine",
+        "antiseptic",
+        "urinary catheter",
+        "long sterile gloves",
+        "apron or gown"
+      ],
+      "step_by_step_guide": [
+        "Explain to the woman the need for manual removal of the placenta and obtain her consent.",
+        "Insert an IV line. If bleeding, give fluids rapidly. If not bleeding, give fluids slowly.",
+        "Assist woman to get onto her back.",
+        "Give diazepam (10 mg IV) or ketamine sedation if not comatose.",
+        "Clean vulva and perineal area.",
+        "Ensure the bladder is empty. Catheterize if necessary.",
+        "Wash hands and forearms well and put on long sterile gloves.",
+        "With the left hand, hold the umbilical cord with the clamp. Then pull the cord gently until it is horizontal.",
+        "Insert right hand into the vagina and up into the uterus.",
+        "Leave the cord and hold the fundus with the left hand in order to support the fundus of the uterus and to provide counter-traction during removal.",
+        "Move the fingers of the right hand sideways until edge of the placenta is located.",
+        "Detach the placenta from the implantation site by keeping the fingers tightly together and using the edge of the hand to gradually make a space between the placenta and the uterine wall.",
+        "Withdraw the right hand from the uterus gradually, bringing the placenta with it.",
+        "Explore the inside of the uterine cavity to ensure all placental tissue has been removed.",
+        "With the left hand, provide counter-traction to the fundus through the abdomen by pushing it in the opposite direction of the hand that is being withdrawn (prevents inversion of the uterus).",
+        "Examine the uterine surface of the placenta to ensure that lobes and membranes are complete."
+      ],
+      "contraindications": [
+        "Placenta is retained due to constriction ring or closed cervix (do not persist)",
+        "Placenta does not separate from the uterine surface by gentle sideways movement (suspect placenta accreta, do not persist)"
+      ],
+      "side_effects_or_warnings": [
+        "Inversion of the uterus",
+        "Infection",
+        "Bleeding"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_maternal_uterine_compression_01",
+      "primary_topic": "Bimanual uterine and aortic compression",
+      "equipment_needed": [
+        "sterile or clean gloves"
+      ],
+      "step_by_step_guide": [
+        "Bimanual compression: Wear sterile or clean gloves.",
+        "Introduce the right hand into the vagina, clenched fist, with the back of the hand directed posteriorly and the knuckles in the anterior fornix.",
+        "Place the other hand on the abdomen behind the uterus and squeeze the uterus firmly between the two hands.",
+        "Continue compression until bleeding stops.",
+        "Aortic compression (if bimanual fails): Feel for femoral pulse.",
+        "Apply pressure above the umbilicus to stop bleeding. Apply sufficient pressure until femoral pulse is not felt.",
+        "Continue pressure until bleeding stops or while preparing for surgery/transport."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_maternal_balloon_tamponade_01",
+      "primary_topic": "Condom over foley catheter to tamponade uterine bleeding",
+      "equipment_needed": [
+        "sterile foley catheter",
+        "condom",
+        "sterile gauze ties",
+        "sterile speculum",
+        "sponge holding forceps",
+        "bag of sterile fluid"
+      ],
+      "step_by_step_guide": [
+        "Insert sterile foley catheter up to 3–5 cm below the bulb into a condom.",
+        "Tie the condom tightly around the stem of the catheter using sterile gauze ties.",
+        "Using a sterile speculum and sponge holding forceps, insert catheter with the condom attached well into the uterine cavity.",
+        "Clamp the catheter and leave the end inside the vagina.",
+        "Connect a bag of sterile fluid to the end of the catheter (ensuring a tight fit) and allow the fluid to run in and fill the catheter.",
+        "Make arrangements for further treatment as appropriate.",
+        "Deflate the foley catheter after 24 hours, and if bleeding does not recur remove it."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_magnesium_sulfate_01",
+      "primary_topic": "Magnesium sulfate",
+      "adult_dosing": "Severe pre-eclampsia and eclampsia: Give IV and IM combined dose (loading dose): Insert IV line and give fluids slowly. Give 4 g of magnesium sulfate (20 ml of 20% solution) IV slowly over 20 minutes AND Give 10 g of magnesium sulfate IM: give 5 g (10 ml of 50% solution) IM deep in upper outer quadrant of each buttock with 1 ml of 2% lidocaine. If convulsions recur after 15 minutes, give an additional 2 g of magnesium sulfate IV over 20 minutes.",
+      "contraindications": [
+        "Bradycardia or AV block",
+        "pre-existing hypermagnesaemia",
+        "renal insufficiency/failure",
+        "knee jerk absent",
+        "urine output <100 ml/4 hours",
+        "respiratory rate <16/minute"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "thirst",
+        "flushing of skin",
+        "hypotension",
+        "arrhythmias",
+        "coma",
+        "respiratory depression",
+        "drowsiness",
+        "confusion",
+        "loss of tendon reflexes",
+        "muscle weakness"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_oxytocin_01",
+      "primary_topic": "Oxytocin",
+      "adult_dosing": "Treatment of postpartum and post-abortion haemorrhage: IM 10 IU AND start IV fluids with 20 IU oxytocin at 60 drops/minute. Continue oxytocin at 20 IU at 20 drops/minute for at least 1 hour after bleeding stops.",
+      "contraindications": [
+        "Hypertonic uterine contractions",
+        "mechanical obstruction to delivery",
+        "fetal distress",
+        "any condition where spontaneous labour or vaginal delivery inadvisable",
+        "Avoid prolonged administration in oxytocin-resistant uterine inertia, severe pre-eclamptic toxaemia, severe cardiovascular disease."
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "arrhythmia",
+        "headache",
+        "Disseminated intravascular coagulation",
+        "rash",
+        "anaphylactoid reactions",
+        "uterine spasm",
+        "uterine hyperstimulation (may cause fetal distress, asphyxia, tetanic contractions, soft-tissue damage or uterine rupture)",
+        "water intoxication and hyponatraemia associated with high doses",
+        "placental abruption",
+        "amniotic fluid embolism"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_misoprostol_01",
+      "primary_topic": "Misoprostol",
+      "adult_dosing": "Postpartum haemorrhage not responding to oxytocin plus ergometrine: SL: 800 mcg. Incomplete abortion: Oral: Single dose of 400 mcg sublingually or 600 mcg by mouth.",
+      "contraindications": [
+        "See other sources for contraindications to use for induction of labour (such as placenta praevia, cephalopelvic distortion, history caesarean section or major uterine surgery, etc.)"
+      ],
+      "side_effects_or_warnings": [
+        "Diarrhoea",
+        "abdominal pain",
+        "dyspepsia",
+        "flatulence",
+        "nausea",
+        "vomiting",
+        "abnormal vaginal bleeding",
+        "rash",
+        "shivering and fever",
+        "Uterine rupture",
+        "Hypotension might precipitate severe complications"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ergometrine_01",
+      "primary_topic": "Ergometrine",
+      "adult_dosing": "Haemorrhage in early pregnancy: IM: 0.2 mg in a single dose AND repeat IM or IV if bleeding continues. Postpartum haemorrhage: IV (slow) or IM: 0.2 mg.",
+      "contraindications": [
+        "Contraindicated at induction of labour or first and second stages of labour",
+        "Vascular disease",
+        "severe cardiac disease (angina pectoris)",
+        "severe hypertension",
+        "severe renal or hepatic impairment",
+        "sepsis",
+        "pre-eclampsia or eclampsia"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea",
+        "vomiting",
+        "Headache",
+        "dizziness",
+        "tinnitus",
+        "abdominal pain",
+        "chest pain/palpitations",
+        "dyspnoea",
+        "bradycardia",
+        "transient hypertension",
+        "stroke",
+        "myocardial infarction",
+        "pulmonary oedema"
+      ]
+    }
+  ]
+}

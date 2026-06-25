@@ -1,0 +1,326 @@
+{
+  "medical_records": [
+    {
+      "record_type": "triage",
+      "id": "triage_neuro_01",
+      "primary_topic": "Altered level consciousness or convulsing",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Altered level consciousness",
+        "Convulsing",
+        "Deformity of skull",
+        "Pupils not equally reactive to light",
+        "Blood or fluid from ear or nose"
+      ],
+      "immediate_actions": [
+        "Protect from fall or injury.",
+        "Manage airway and assist into recovery position.",
+        "Give oxygen 5 litres.",
+        "Call for help but do not leave patient alone.",
+        "Give glucose (if blood glucose is low or unknown).",
+        "Check (then monitor and record) level of consciousness on AVPU scale.",
+        "If convulsing: Give diazepam IV or rectally."
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_trauma_01",
+      "primary_topic": "Head or neck trauma",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Trauma to head or neck",
+        "Respiratory distress",
+        "Trachea deviated",
+        "Decreased breath sounds",
+        "Low SBP"
+      ],
+      "immediate_actions": [
+        "Do not move neck if cervical spine injury possible - immobilize spine.",
+        "Give oxygen 5 litres.",
+        "Log-roll patient when moving.",
+        "Expose patient fully.",
+        "Look/feel for deformity of skull.",
+        "Call for help from district clinician/surgeon.",
+        "Treat tension pneumothorax with emergency needle decompression if present."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_neuro_coma_01",
+      "primary_topic": "Unconscious or decreased level of consciousness",
+      "clinical_signs": [
+        "Sweating",
+        "Seizures",
+        "Confusion",
+        "Decreased skin turgor",
+        "Cyanosis",
+        "Fever",
+        "Neck stiffness, photophobia, headache",
+        "Focal neurological signs",
+        "Pinpoint pupils"
+      ],
+      "suspected_conditions": [
+        "Hypoglycaemia",
+        "Severe dehydration",
+        "Heat stroke",
+        "Hypoxaemia",
+        "Cerebral malaria",
+        "Meningitis",
+        "Sepsis from various causes",
+        "HIV encephalopathy",
+        "Human African trypanosomiasis",
+        "Encephalitis",
+        "Rabies",
+        "Diabetic ketoacidosis (DKA) or hyperosmolar non-ketotic (HONK) coma",
+        "Electrolyte imbalances (Hypernatraemia, Hyponatraemia, Hyper/Hypokalaemia, Hyper/Hypocalcaemia)",
+        "Myxoedema",
+        "Poisoning",
+        "Drug overdose, intoxication or interactions",
+        "Status epilepticus",
+        "Eclampsia",
+        "Head trauma",
+        "Intracranial mass",
+        "Hypertensive encephalopathy",
+        "Cerebral vascular accident (CVA)"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_neuro_seizures_01",
+      "primary_topic": "Seizures",
+      "clinical_signs": [
+        "History of recurrent seizures",
+        "Usually occurs at term, during delivery, or immediately following delivery",
+        "Tendency to recurrent seizures",
+        "History of hazardous alcohol use or use of sedative-hypnotic drugs",
+        "Fever",
+        "Signs of meningitis (neck stiffness, photophobia)"
+      ],
+      "suspected_conditions": [
+        "Cysticercosis",
+        "Pregnancy (Eclampsia)",
+        "Epilepsy",
+        "Hypoglycaemia",
+        "Alcohol or sedative drug withdrawal",
+        "CNS infection (meningitis, cerebral malaria)",
+        "HIV-related (Toxoplasmosis, tuberculosis, cerebral lymphoma)",
+        "Poisoning"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_neuro_lumbar_puncture_01",
+      "primary_topic": "Lumbar puncture",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5-10 ml syringe, 23- to 25-gauge needle)",
+        "20- to 22-gauge spinal needle with stylet",
+        "CSF pressure manometer or IV tubing and pole",
+        "dressing material",
+        "microscope slides",
+        "specimen tubes and culture media"
+      ],
+      "step_by_step_guide": [
+        "Position the patient lying on one side with the spine flexed (draw shoulders forward and bring thighs towards the abdomen).",
+        "Clean area with antiseptic.",
+        "Anaesthetize the skin and subcutaneous tissues with lidocaine.",
+        "Gently introduce the spinal needle with bevel turned upward and angled slightly towards the head. Slowly advance.",
+        "When the subarachnoid space is entered, there may be a slight give. At this point, the stylet should be carefully withdrawn to confirm the flow of cerebrospinal fluid (CSF).",
+        "Measure opening pressure (usually between 10-20 cm H20).",
+        "Collect 2 ml CSF in each of 4 collection tubes.",
+        "Replace stylet and remove the needle. Apply pressure with sterile dressing for a few minutes."
+      ],
+      "contraindications": [
+        "Infection at the site.",
+        "Increased intracranial pressure evidenced by focal neurological signs, papilloedema, altered mental status, or recent seizure.",
+        "Bleeding disorder or low platelets."
+      ],
+      "side_effects_or_warnings": [
+        "Cerebral herniation",
+        "post-lumbar puncture headache",
+        "severe radicular pain",
+        "paraparesis",
+        "infection",
+        "bleeding"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_trauma_spine_immob_01",
+      "primary_topic": "Spine immobilization",
+      "equipment_needed": [
+        "cervical collar",
+        "locally available material (towel rolls, newspaper, sandbags, or bags of IV fluids)"
+      ],
+      "step_by_step_guide": [
+        "apply cervical collar or stabilize the neck with locally available material.",
+        "keep the patient lying on a flat surface.",
+        "prevent the neck from moving with locally available materials or cervical collar if available.",
+        "if patient vomits, turn whole patient on their side, keeping head in line with the body.",
+        "keep someone with patient at all times to watch the airway.",
+        "if need to move patient use log roll technique."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Aspiration if patient vomits and is not log-rolled onto their side."
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_trauma_pelvic_binder_01",
+      "primary_topic": "Pelvic binder",
+      "equipment_needed": [
+        "bed sheet"
+      ],
+      "step_by_step_guide": [
+        "Place bed sheet under the pelvis.",
+        "Pull over the great trochanters/iliac wings - cross over anteriorly.",
+        "Pull tight and tie."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_diazepam_01",
+      "primary_topic": "Diazepam",
+      "adult_dosing": "Convulsions: 10 mg IV slowly, or rectally if no IV access; can be repeated after 10 minutes if convulsion does not stop. DO NOT give IM. Acute alcohol withdrawal: Up to 20 mg, according to the severity of alcohol withdrawal, every 1-2 hours until patient is calm and mildly sedated.",
+      "contraindications": [
+        "Respiratory disease",
+        "acute pulmonary insufficiency",
+        "sleep apnoea",
+        "severe hepatic impairment",
+        "myasthenia gravis",
+        "acute angle closure glaucoma"
+      ],
+      "side_effects_or_warnings": [
+        "Sedation and other side-effects that appear similar to alcohol intoxication",
+        "Nausea/vomiting",
+        "diarrhoea",
+        "abdominal pain or cramps",
+        "respiratory depression (usually due to an excessive dose)",
+        "withdrawal syndrome",
+        "hypotension",
+        "bradycardia",
+        "dependence and abuse",
+        "drowsiness and light-headedness the next day",
+        "confusion and ataxia",
+        "paradoxical increase in aggression"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_phenytoin_01",
+      "primary_topic": "Phenytoin",
+      "adult_dosing": "Oral: Start at 150-200 mg daily, increase by increments of 25-30 mg to reach maintenance at 200-400 mg daily. Loading dose: IV (slowly over 60 min): 15 mg/kg in normal saline, at a rate of not more than 50 mg/minute.",
+      "contraindications": [
+        "Porphyria",
+        "Avoid parenteral use in sinus bradycardia, sinoatrial block, second- and third-degree heart block, Adams-Stokes syndrome."
+      ],
+      "side_effects_or_warnings": [
+        "Nausea, vomiting, constipation",
+        "insomnia, transient nervousness, tremor, paraesthesia, dizziness, headache",
+        "gingival hypertrophy and tenderness",
+        "rash (discontinue)",
+        "Hepatotoxicity",
+        "peripheral neuropathy",
+        "dyskinesia",
+        "lymphadenopathy",
+        "osteomalacia",
+        "blood disorders",
+        "severe allergic reaction (including toxic epidermal necrolysis, Stevens-Johnson syndrome)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_phenobarbital_01",
+      "primary_topic": "Phenobarbital",
+      "adult_dosing": "Status epilepticus Loading dose: IV: 5-15 mg/kg bolus over 1 hour. Epilepsy Oral: Initiate at 60 mg daily; then maintain at 60-180 mg daily.",
+      "contraindications": [
+        "Porphyria",
+        "absence seizures"
+      ],
+      "side_effects_or_warnings": [
+        "Drowsiness, incoordination",
+        "restlessness and confusion (in elderly)",
+        "impaired memory and cognition",
+        "hyperactivity",
+        "allergic skin reactions",
+        "paradoxical excitement",
+        "With IV: hypotension, respiratory depression, laryngospasm",
+        "Hepatitis, cholestasis",
+        "osteomalacia",
+        "megaloblastic anaemia"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_carbamazepine_01",
+      "primary_topic": "Carbamazepine",
+      "adult_dosing": "Generalized tonic-clonic seizures, partial seizures Oral: initially 100-200 mg 1-2 times daily (tablets) OR 50-100 mg every 6 hours as oral suspension THEN Increase gradually by ~200 mg every week as needed (usual maintenance dose is 400-1400 mg daily in divided doses).",
+      "contraindications": [
+        "Atrioventricular conduction abnormalities",
+        "history of bone marrow depression",
+        "porphyria",
+        "history of sensitivity to tricyclic antidepressants, oxcarbazepine, or other structurally related drugs",
+        "use of MAO-Is within past 2 weeks",
+        "on antiretrovirals for HIV (lowers levels)"
+      ],
+      "side_effects_or_warnings": [
+        "Drowsiness, dizziness, ataxia, headache, diplopia",
+        "dry mouth",
+        "mild transient generalized erythematous rash",
+        "leukopenia, thrombocytopenia",
+        "Antibody deficiency",
+        "exfoliative dermatitis, Stevens-Johnson syndrome",
+        "systemic lupus erythematosus",
+        "agranulocytosis; aplastic anaemia"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_haloperidol_01",
+      "primary_topic": "Haloperidol",
+      "adult_dosing": "Psychoses (including schizophrenia): Oral: Initially 1.5-3 mg once daily (typical effective dose is 3-20 mg daily). Short-term adjunctive management of agitation, violent behaviour, severe anxiety: IM/oral: 2 mg every hour up to 5 doses (maximum dose 10 mg).",
+      "contraindications": [
+        "CNS depression/impaired consciousness",
+        "bone marrow depression",
+        "phaeochromocytoma",
+        "porphyria",
+        "basal ganglia disease",
+        "parkinsonism"
+      ],
+      "side_effects_or_warnings": [
+        "Extrapyramidal side-effects: Acute dystonic reaction or severe muscle spasm, stiffness, tremor, motor restlessness, agitation, Parkinson's syndrome",
+        "potentially irreversible involuntary movements (tardive dyskinesia)",
+        "Drowsiness",
+        "orthostatic hypotension",
+        "dizziness",
+        "Neuroleptic malignant syndrome",
+        "hyperthermia, hyperpyrexia",
+        "arrhythmias",
+        "respiratory depression at high doses"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_naloxone_01",
+      "primary_topic": "Naloxone",
+      "adult_dosing": "IV: 100 mcg in a single dose OR IM: 400 mcg in a single dose OR SC: 800 mcg in a single dose. May repeat every 5 minutes up to 3 times (maximum 10 mg). If response (i.e. respiratory rate >10/minute), start IV infusion: 0.4 mg/hour for 12 hours.",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Hypotension",
+        "hypertension",
+        "ventricular tachycardia and fibrillation",
+        "cardiac arrest",
+        "hyperventilation",
+        "dyspnoea",
+        "pulmonary oedema",
+        "Agitation, excitement, paraesthesia"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,315 @@
+{
+  "medical_records": [
+    {
+      "record_type": "triage",
+      "id": "triage_resp_01",
+      "primary_topic": "Airway and Breathing Emergencies",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Appears obstructed",
+        "Central cyanosis",
+        "Severe respiratory distress",
+        "noisy breathing",
+        "wheezing",
+        "choking",
+        "not able to speak"
+      ],
+      "immediate_actions": [
+        "Manage airway",
+        "Give oxygen 5 litres",
+        "If inadequate breathing, assist ventilation with bag valve mask",
+        "Help patient assume position of comfort",
+        "If wheezing, give salbutamol",
+        "If foreign body aspiration, treat choking patient",
+        "If suspect anaphylaxis, give 1:1000 epinephrine (adrenaline) IM"
+      ]
+    },
+    {
+      "record_type": "triage",
+      "id": "triage_cv_01",
+      "primary_topic": "Circulation (Shock)",
+      "triage_level": "RED",
+      "clinical_signs": [
+        "Weak or fast pulse",
+        "Capillary refill longer than three seconds",
+        "SBP <90 mmHg or pulse >110 per minute",
+        "Heavy bleeding from any site"
+      ],
+      "immediate_actions": [
+        "Give oxygen 5 litres if respiratory distress or SpO2 <90",
+        "Insert IV, give 1 litre bolus crystalloid (LR or NS) then reassess",
+        "Keep warm (cover)",
+        "If in second half pregnancy, place on her side (preferably on the left), not on back",
+        "If anaphylaxis, give 1:1000 epinephrine (adrenaline) IM"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_cv_chest_pain_01",
+      "primary_topic": "Chest pain",
+      "clinical_signs": [
+        "Chest pain with exertion (crushing in nature, radiating to jaw or arm)",
+        "Associated with nausea and shortness of breath",
+        "Crushing chest pain (pressure, tightness) radiating to the jaw or arm at rest",
+        "Clammy, sweaty",
+        "Fever and cough",
+        "Pain exacerbated by breathing (pleuritic)",
+        "Respiratory distress, hypoxaemia",
+        "Crackles on auscultation, bronchial breath sounds",
+        "Tearing pain radiating to the back, abdomen or between shoulder blades",
+        "Asymmetrical pulses or BP"
+      ],
+      "suspected_conditions": [
+        "Stable angina",
+        "Acute coronary syndrome (unstable angina, non-ST elevation or ST elevation myocardial infarction)",
+        "Pneumonia",
+        "Pulmonary embolus",
+        "Oesophageal reflux (GERD)",
+        "Musculoskeletal",
+        "Pericarditis",
+        "Aortic dissection",
+        "Tension pneumothorax"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_resp_wheeze_01",
+      "primary_topic": "Acute wheeze",
+      "clinical_signs": [
+        "Diffuse wheezing or rhonchi",
+        "Productive cough",
+        "Localized wheezing",
+        "Episodic chest tightness, shortness of breath, and diffuse wheezing",
+        "Night-time symptoms and cough are common",
+        "Increase in baseline breathlessness, cough, sputum quantity or purulence",
+        "Atypical presentation with diffuse wheezing and crackles (rales)",
+        "Fluid overload (elevated JVP, lower extremity oedema)"
+      ],
+      "suspected_conditions": [
+        "Acute bronchitis",
+        "Bacterial or viral pneumonia",
+        "Foreign body aspiration",
+        "Asthma attack",
+        "COPD exacerbation",
+        "Inhalation of airway irritants",
+        "Acute pulmonary oedema"
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_resp_chest_tube_01",
+      "primary_topic": "Chest tube (intercostal chest drain)",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine with epinephrine (5–10 ml syringe, 23- to 25-gauge needle)",
+        "scalpel",
+        "curved forceps and clamp",
+        "chest tube and underwater seal drainage system (or one-way valve device and drainage bag)",
+        "suture material (0 or 1–0 sutures required to anchor tube)",
+        "needle driver, large curved artery forceps",
+        "dressing material"
+      ],
+      "step_by_step_guide": [
+        "Position the patient lying face up with arm of the involved side raised over the head. If the patient is unable to lie down due to respiratory distress, he or she may sit up in a bed or chair.",
+        "Choose the site, usually the 5th or 6th intercostal space at the midaxillary line.",
+        "Prepare the skin with antiseptic.",
+        "Using lidocaine, infiltrate the skin and muscle. Note the length of needle needed to enter the pleural cavity.",
+        "Aspirate fluid from the chest cavity to confirm position of the needle.",
+        "Make a 3–4 cm horizontal incision just above the rib to avoid damaging the vessels under the lower part of the rib.",
+        "Use more lidocaine to anaesthetize the intercostal tissues and pleura at the site of insertion.",
+        "Use blunt dissection to penetrate the intercostal tissue to the pleura. Insert the closed clamp over the top of the rib and, once past the rib, open and spread to dissect.",
+        "Insert a finger into the tunnel to confirm that it has penetrated through to the pleural space.",
+        "Use the same forceps to grasp the tube at its tip and introduce it into the chest. Never use a sharp instrument to introduce the tube.",
+        "Close the incision with interrupted skin sutures. Use 1 stitch to anchor the tube.",
+        "Connect the tube to the underwater seal drainage system and mark the initial level of fluid in the drainage bottle."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Re-expansion pulmonary oedema",
+        "Chest tube malposition",
+        "Recurrent pneumothorax",
+        "Empyaema"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_resp_thoracentesis_01",
+      "primary_topic": "Thoracentesis (chest tap)",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine (5–10 ml syringe, 23- to 25-gauge needle, 20-gauge needle)",
+        "16-gauge needle; obese patients may require longer needle – consider using a spinal needle",
+        "30 ml syringe – may need larger (50–100 ml) for large effusions",
+        "drip giving set",
+        "haemostat",
+        "microscope slides",
+        "specimen tubes and culture media"
+      ],
+      "step_by_step_guide": [
+        "The patient should be seated with arms and head supported (e.g. sitting backwards on a chair).",
+        "Localize the pleural effusion by determining the level where dullness to percussion begins when percussing the posterior chest from top to bottom.",
+        "Choose a site on the posterior chest in the mid-scapular line (approximately 5–10 cm lateral to the spine).",
+        "Clean the area with antiseptic; be sure to maintain strict aseptic technique.",
+        "The skin and subcutaneous tissue should be anaesthetized with lidocaine using a 25-gauge needle.",
+        "Using a longer, 20-gauge needle, anaesthetize the pleura, and gently aspirate until pleural fluid is noted in the syringe.",
+        "In the previous puncture site, insert a 16-gauge needle attached to a large syringe or to a drip giving set.",
+        "Advance the needle slowly, keeping it above the top of the rib. Aspirate gently while advancing the needle.",
+        "When pleural fluid is noted, place a haemostat on the needle to prevent it from accidentally advancing forward.",
+        "Remove the necessary amount of pleural fluid (usually 100 ml for diagnostic studies). Do not remove more than 1500 ml of fluid at once.",
+        "Gently remove the needle."
+      ],
+      "contraindications": [
+        "thrombocytopaenia",
+        "bleeding diathesis",
+        "pre-existing infection at the site of needle insertion"
+      ],
+      "side_effects_or_warnings": [
+        "pneumothorax",
+        "haemothorax",
+        "spleen or liver puncture",
+        "re-expansion pulmonary oedema",
+        "air embolism",
+        "infection",
+        "vasovagal episode"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_cv_pericardiocentesis_01",
+      "primary_topic": "Pericardiocentesis",
+      "equipment_needed": [
+        "sterile gloves and sterile towels or drapes",
+        "antiseptic",
+        "lidocaine, 5–10 ml syringe, 23- to 25-gauge needle",
+        "long 18-gauge needle",
+        "dressing material",
+        "microscope slides and culture media"
+      ],
+      "step_by_step_guide": [
+        "If possible, this procedure should be done by an experienced operator with guidance from fluoroscopy or echocardiography or ultrasound.",
+        "After the area has been sterilized and anaesthetized, the needle should be inserted 1 cm to the left of the xiphoid process, and directed towards the left shoulder.",
+        "Maintain a 30° angle to the skin to avoid the pleura and nearby arteries.",
+        "While the needle is being inserted, aspiration should be gently and intermittently attempted until fluid is withdrawn.",
+        "No more than 1 litre of fluid at a time should be aspirated in order to avoid acute right ventricular dilatation."
+      ],
+      "contraindications": [
+        "small pericardial effusion",
+        "traumatic haemopericardium, haemopericardium due to aortic dissection, and purulent pericarditis (surgical approach preferred)",
+        "bleeding diathesis"
+      ],
+      "side_effects_or_warnings": [
+        "Myocardial or coronary vessel laceration may present in a delayed fashion as hemopericardium or cardiac tamponade",
+        "Acute left or right ventricular failure with pulmonary oedema",
+        "Arrhythmia",
+        "Pneumothorax",
+        "Air embolism",
+        "Puncture of peritoneal cavity or abdominal organs"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_salbutamol_01",
+      "primary_topic": "Salbutamol",
+      "adult_dosing": "By nebulizer: 10–20 mg OR IV: 0.5 mg (500 mcg). Administration should be slow, over 15–20 minutes. If neither of these are available, give salbutamol 1200 mcg by metered-dose inhaler with spacer (12 puffs).",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Palpitations",
+        "fine tremor (usually hands)",
+        "headache",
+        "hyperglycaemia and hypokalaemia after high doses",
+        "muscle cramps",
+        "arrhythmias",
+        "tachycardia",
+        "insomnia",
+        "paradoxical bronchospasm",
+        "urticaria/angioedema"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_epinephrine_01",
+      "primary_topic": "Epinephrine (adrenaline)",
+      "adult_dosing": "IM (1:1000): 0.5 ml in a single dose if 50 kg (0.3 ml if 30 kg, 0.4 ml if 40 kg) THEN may repeat at 5-minute intervals. IV infusion: See vasopressor dosing table. IM: 0.5 mg (0.5 ml of 1:1000)",
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "anxiety",
+        "headache",
+        "fear",
+        "palpitations",
+        "tachycardia",
+        "tremor",
+        "dizziness",
+        "sweating",
+        "pallor",
+        "nausea",
+        "vomiting",
+        "hyperglycaemia",
+        "hypertension",
+        "arrhythmias",
+        "angina",
+        "pulmonary oedema",
+        "tissue necrosis (if injected IM or SC)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_dopamine_01",
+      "primary_topic": "Dopamine",
+      "adult_dosing": "Infusion, intravenous: 200 mg in 5 ml ampoule. IV: See vasopressor dosing table and instructions in Section 3.1.",
+      "contraindications": [
+        "Tachyarrhythmia",
+        "ventricular fibrillation",
+        "ischaemic heart disease",
+        "phaeochromocytoma",
+        "hyperthyroidism"
+      ],
+      "side_effects_or_warnings": [
+        "Nausea/vomiting",
+        "tachycardia",
+        "ectopic beats",
+        "palpitations",
+        "anginal pain",
+        "hypotension with dizziness",
+        "hypertension (in overdosage)",
+        "headache",
+        "dyspnoea",
+        "Allergic reaction including anaphylaxis",
+        "abnormal ventricular conduction",
+        "bradycardia",
+        "piloerction",
+        "uraemia",
+        "mydriasis",
+        "peripheral vasoconstriction",
+        "asthma exacerbation",
+        "necrosis/gangrene at injection site"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_furosemide_01",
+      "primary_topic": "Furosemide",
+      "adult_dosing": "Oral: Initially 20–80 mg daily in morning. Maintenance dose: 20–40 mg daily (may be increased to 80 mg daily or more in resistant oedema). IV (slow): 20–50 mg (if necessary, increase by 20 mg steps every 2 hours).",
+      "contraindications": [
+        "Anuria due to renal failure",
+        "precomatose states associated with liver cirrhosis",
+        "electrolyte depletion"
+      ],
+      "side_effects_or_warnings": [
+        "Electrolyte imbalance (hypokalaemia, hyponatraemia, hypomagnesaemia)",
+        "hyperuricaemia and gout",
+        "orthostatic hypotension",
+        "hypovolaemia",
+        "syncope",
+        "dizziness",
+        "Hypochloraemic alkalosis",
+        "hypocalcaemia",
+        "hyperglycaemia",
+        "deafness (with rapid administration of large parenteral doses and in renal impairment)"
+      ]
+    }
+  ]
+}
