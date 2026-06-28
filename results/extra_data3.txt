@@ -1,0 +1,331 @@
+{
+  "medical_records": [
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_fever_acute_01",
+      "primary_topic": "Acute Fever (7 days or less) without clear focus",
+      "clinical_signs": [
+        "Seriously ill with no obvious apparent cause",
+        "Hypotension or shock",
+        "Maculopapular haemorrhagic petechial rash",
+        "Positive malaria test (RDT or microscopy)",
+        "Constipation or diarrhoea, abdominal pain, rose spots",
+        "Headache, stupor, eschar, tick exposure",
+        "Pain behind the eyes, backache, arthralgia, petechiae"
+      ],
+      "suspected_conditions": [
+        "Bacteraemic sepsis",
+        "Meningococcal septicaemia",
+        "Malaria",
+        "Typhoid",
+        "Rickettsial disease",
+        "Dengue fever",
+        "Chikungunya",
+        "Primary HIV infection"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Fever does not improve or comes back after treatment",
+        "Accompanied by cough, severe pain, confusion, stiff neck, or change in consciousness"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_fever_chronic_01",
+      "primary_topic": "Prolonged Fever (More than 7 days) without clear focus",
+      "clinical_signs": [
+        "Loss of weight, night sweats, malaise",
+        "Cough greater than 2 weeks",
+        "Limb pain, local limb tenderness and swelling",
+        "Low grade fever, new or changing heart murmur, signs of embolic disease",
+        "Right upper quadrant pain or tenderness",
+        "Contact with farm animals, unpasteurized milk",
+        "Enlarged lymph nodes, hepatosplenomegaly"
+      ],
+      "suspected_conditions": [
+        "Tuberculosis",
+        "Typhoid",
+        "Malaria",
+        "Osteomyelitis",
+        "Endocarditis",
+        "Liver abscess",
+        "Brucellosis",
+        "Lymphoma",
+        "Mycobacterium avium complex (MAC)",
+        "Deep fungal infections (e.g. histoplasmosis)"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_limb_swelling_01",
+      "primary_topic": "Bilateral Limb Swelling or Generalized Swelling",
+      "clinical_signs": [
+        "Dyspnoea, orthopnoea, paroxysmal nocturnal dyspnoea",
+        "Pitting oedema of legs",
+        "Crackles in chest, elevated JVP",
+        "Hypertension, oliguria, macroscopic haematuria",
+        "Anasarca with periorbital oedema, heavy proteinuria",
+        "Jaundice, palmar erythema, spider angiomata, caput medusae, ascites",
+        "Wasted appearance, hair loss, hyperpigmentation, low serum albumin"
+      ],
+      "suspected_conditions": [
+        "Cardiac failure",
+        "Acute nephritic syndrome",
+        "Nephrotic syndrome",
+        "Chronic liver disease or cirrhosis",
+        "Severe malnutrition",
+        "Pretibial myxoedema (hyperthyroidism)"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_lymphadenopathy_01",
+      "primary_topic": "Localized or Regional Lymphadenopathy",
+      "clinical_signs": [
+        "Unilateral neck nodes, may be fluctuant or discharging, night sweats, weight loss",
+        "Painful, red, inflamed node with local source of infection",
+        "Tender inguinal lymphadenopathy, history of genital ulcers",
+        "Dark purple, painless lesions or nodules",
+        "Non-tender, enlarging nodes, systemic symptoms (fever, sweats, itch)",
+        "Petechiae, pallor, splenomegaly, extreme fatigue"
+      ],
+      "suspected_conditions": [
+        "TB lymphadenitis",
+        "Focal bacterial infection",
+        "Sexually transmitted infection (e.g. chancroid, LGV, syphilis)",
+        "Kaposi sarcoma",
+        "Lymphoma",
+        "Leukaemia",
+        "Immune reconstitution inflammatory syndrome (IRIS)"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_ost_01",
+      "primary_topic": "Opioid Substitution Treatment (OST)",
+      "step_by_step_guide": [
+        "Confirm the diagnosis of opioid dependence using history, physical examination, and urine analysis.",
+        "Initiate Methadone at a low dose (generally 20 mg, or 10 mg if tolerance is low) to avoid overdose.",
+        "Alternatively, initiate Buprenorphine at 4 mg only when objective signs of opioid withdrawal appear (at least 6-24 hours after last opioid use).",
+        "For Methadone, observe the patient daily in the first week. Maximum daily increase is 5-10 mg, with max dose of 40 mg by the end of week one.",
+        "Titrate to an optimal maintenance dose (60-120 mg for methadone, 12-24 mg for buprenorphine).",
+        "Provide psychosocial support, vocational training, and counseling during maintenance.",
+        "If reducing or ceasing OST, decrease gradually (e.g., methadone no faster than 5 mg/month) to avoid withdrawal and relapse."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_abacavir_abc_01",
+      "primary_topic": "Abacavir (ABC)",
+      "adult_dosing": "600 mg daily",
+      "side_effects_or_warnings": [
+        "Hypersensitivity reaction (2-5% of patients) presenting with fever, fatigue, rash, sore throat, or shortness of breath",
+        "Never reintroduce Abacavir after discontinuation due to hypersensitivity, as re-exposure may lead to severe and potentially fatal anaphylactic reaction"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_lopinavir_ritonavir_01",
+      "primary_topic": "Lopinavir/Ritonavir (LPV/r)",
+      "adult_dosing": "Standard dose is 400/100 mg twice daily. Take with a meal.",
+      "side_effects_or_warnings": [
+        "Diarrhoea",
+        "Headache",
+        "Lipodystrophy",
+        "Dyslipidaemia (monitor lipid profiles every 6 months)",
+        "Hyperglycaemia",
+        "Hepatitis"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_isoniazid_inh_01",
+      "primary_topic": "Isoniazid (INH)",
+      "adult_dosing": "5 mg/kg body weight daily (range 4-6 mg/kg); Maximum 300 mg daily. For intermittent 3 times per week dosing: 10 mg/kg (max 900 mg).",
+      "side_effects_or_warnings": [
+        "Peripheral neuropathy (burning, numbness or tingling sensation in hands or feet)",
+        "Hepatitis or jaundice",
+        "Drowsiness",
+        "Anorexia, nausea, abdominal pain",
+        "Skin rash"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_rifampicin_01",
+      "primary_topic": "Rifampicin",
+      "adult_dosing": "10 mg/kg body weight daily (range 8-12 mg/kg); Maximum 600 mg daily.",
+      "side_effects_or_warnings": [
+        "Orange/red discoloration of urine and secretions (harmless)",
+        "Hepatotoxicity (jaundice)",
+        "Shock, purpura, acute renal failure",
+        "Flu syndrome with intermittent dosing",
+        "Strong inducer of cytochrome P450; decreases efficacy of oral contraceptives and contraindicated with unadjusted boosted protease inhibitors"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_pyrazinamide_01",
+      "primary_topic": "Pyrazinamide",
+      "adult_dosing": "25 mg/kg body weight daily (range 20-30 mg/kg).",
+      "side_effects_or_warnings": [
+        "Joint pains (arthralgia)",
+        "Anorexia, nausea, abdominal pain",
+        "Hepatotoxicity"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_ethambutol_01",
+      "primary_topic": "Ethambutol",
+      "adult_dosing": "15 mg/kg body weight daily (range 15-20 mg/kg).",
+      "side_effects_or_warnings": [
+        "Visual impairment (optic neuritis)",
+        "Require dose adjustment in renal failure"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_delirium_01",
+      "primary_topic": "Delirium",
+      "clinical_signs": [
+        "Onset over hours to days",
+        "Fluctuating level of consciousness within the day (often worsening at night)",
+        "Prominent difficulties in focusing, shifting, or maintaining attention",
+        "Difficulty orienting to place, time, and sometimes person",
+        "Agitation or withdrawal",
+        "Evidence of underlying medical cause, infection, or drug/alcohol withdrawal"
+      ],
+      "suspected_conditions": [
+        "Severe infection (e.g. malaria, meningitis, sepsis)",
+        "Metabolic encephalopathy (e.g. uraemia, hypoxia, hypoglycaemia)",
+        "Intoxication or medication side effects",
+        "Alcohol or sedative withdrawal"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_polyneuropathy_01",
+      "primary_topic": "Peripheral Neuropathy (Distal Symmetrical Polyneuropathy)",
+      "clinical_signs": [
+        "Distal, symmetrical glove and stocking distribution of sensory changes",
+        "Painful tingling, burning, or numbness starting in toes or soles",
+        "Usually no motor weakness",
+        "Reduced or absent ankle jerk reflexes",
+        "Impaired vibration sensation and temperature perception"
+      ],
+      "suspected_conditions": [
+        "HIV-associated sensory polyneuropathy",
+        "Drug toxicity (d4T, ddI, INH)",
+        "Diabetes mellitus",
+        "Vitamin B12 deficiency",
+        "Alcoholism"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_polyneuropathy_management_01",
+      "primary_topic": "Management of Peripheral Neuropathy",
+      "step_by_step_guide": [
+        "Evaluate and treat or remove the underlying cause (e.g., substitute offending drugs like d4T or ddI with AZT or TDF).",
+        "Give thiamine if there is a known history of alcohol use.",
+        "Give pyridoxine 50 to 75 mg daily if the neuropathy is related to HIV infection or INH use.",
+        "Initiate Amitriptyline for neuropathic pain control: start at 25-75 mg at night, titrate up to 300 mg daily as tolerated.",
+        "If amitriptyline is poorly tolerated or ineffective, use Carbamazepine (start 100 mg twice daily, increase up to 1600 mg daily).",
+        "In HIV-positive patients on ART with poor response, consider Gabapentin starting at 300 mg daily, titrating up to 3600 mg daily."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_male_genital_ulcers_growths_01",
+      "primary_topic": "Male Genital Growths and Ulcers",
+      "clinical_signs": [
+        "Flat or raised fleshy growths anywhere in the anogenital area (HPV)",
+        "Flat, moist, malodorous, warty-like lesions (Condyloma lata)",
+        "Dome shaped papules with central depression (Molluscum contagiosum)",
+        "Non-healing penile lesion, indurated and ulcerating (Penile cancer)",
+        "Painless indurated clean ulcer (Primary syphilis)",
+        "Painful ulcers with ragged undermined borders and fluctuant bubo (Chancroid)",
+        "Painless progressive beefy red ulcer bleeding easily on contact (Donovanosis)"
+      ],
+      "suspected_conditions": [
+        "Human papillomavirus (warts)",
+        "Secondary syphilis",
+        "Molluscum contagiosum",
+        "Squamous cell carcinoma",
+        "Primary syphilis",
+        "Chancroid",
+        "Donovanosis (granuloma inguinale)"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_chancroid_01",
+      "primary_topic": "Chancroid Management",
+      "step_by_step_guide": [
+        "Use syndromic management protocols for genital ulcer disease.",
+        "Administer first-line therapy: ciprofloxacin 500 mg orally twice daily for 3 days; OR erythromycin 500 mg orally 4 times daily for 7 days; OR azithromycin 1 gram orally as a single dose.",
+        "If first-line fails or as an alternative, give ceftriaxone 250 mg IM single dose.",
+        "Review the patient in 3-7 days to assess healing. If healing is poor, treatment should be repeated or prolonged (especially in HIV-positive patients).",
+        "Ensure partner notification and treatment."
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_african_trypanosomiasis_01",
+      "primary_topic": "Human African Trypanosomiasis (Sleeping Sickness) Treatment",
+      "step_by_step_guide": [
+        "Stage the disease using CSF examination. First stage: CSF leukocytes up to 5/ul without parasites. Second stage: Trypanosomes in CSF or leukocytes >5/ul.",
+        "For First stage T. b. rhodesiense: Administer Suramin IV.",
+        "For Second stage T. b. rhodesiense: Administer Melarsoprol IV (2.2 mg/kg/day for 10 days). Monitor for reactive encephalopathy in an intensive care setting.",
+        "For First stage T. b. gambiense: Administer Pentamidine deep IM (4 mg/kg/day for 7 days).",
+        "For Second stage T. b. gambiense: Administer combined treatment of oral Nifurtimox and IV Eflornithine."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_schistosomiasis_01",
+      "primary_topic": "Schistosomiasis (Bilharziasis)",
+      "clinical_signs": [
+        "Itchy maculopapular rash after freshwater exposure (swimmers itch)",
+        "Acute fever, chills, cough, muscle aches, and eosinophilia (Katayama fever)",
+        "Chronic intestinal disease: abdominal pain, bloody diarrhoea, tender hepatomegaly",
+        "Chronic urogenital disease: supra-pubic pain, dysuria, terminal haematuria",
+        "Late stage: Portal hypertension, ascites, oesophageal varices, cor pulmonale"
+      ],
+      "suspected_conditions": [
+        "Schistosoma haematobium infection",
+        "Schistosoma mansoni infection",
+        "Schistosoma japonicum infection"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_schistosomiasis_01",
+      "primary_topic": "Schistosomiasis Treatment",
+      "step_by_step_guide": [
+        "Confirm diagnosis via urine dipstick (microscopic haematuria), direct microscopy of stool/urine for eggs, or serology.",
+        "Administer Praziquantel 40 mg/kg as a single dose.",
+        "Administer the dose between meals to minimize adverse events like abdominal pain, nausea, and headache.",
+        "Repeat the dose after 4 weeks if follow-up microscopy shows evidence of ongoing infection.",
+        "If central nervous system involvement is suspected, refer the patient to a tertiary level facility for further investigation and treatment."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_breast_care_hiv_01",
+      "primary_topic": "Breast Care and Infant Feeding for HIV-Positive Mothers",
+      "home_care_instructions": [
+        "Exclusively breastfeed your infant for the first 6 months if breastfeeding is the chosen infant feeding method.",
+        "Ensure you take your ARV prophylaxis or ART daily as prescribed to protect your infant from HIV transmission.",
+        "If replacement feeding is chosen, ensure you have safe water and sanitation at home, and exclusively give formula milk for the first 6 months.",
+        "Seek care promptly if you experience any breast problems, such as a breast abscess, mastitis, or nipple trauma, as these increase the risk of HIV transmission.",
+        "When you are ready to stop breastfeeding, transition gradually over about 1 month."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Redness, swelling, or extreme pain in the breasts",
+        "Cracked or bleeding nipples",
+        "Infant develops diarrhoea or oral thrush"
+      ]
+    }
+  ]
+}

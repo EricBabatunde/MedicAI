@@ -1,0 +1,181 @@
+{
+  "medical_records": [
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_fever_01",
+      "primary_topic": "Fever Management as an Outpatient",
+      "home_care_instructions": [
+        "Encourage frequent intake of oral fluids such as water, diluted tea, fruit juices.",
+        "Wipe the body with a damp cloth (tepid sponge) or give a lukewarm bath.",
+        "Encourage the patient to wear only light clothes.",
+        "Give paracetamol, aspirin, or ibuprofen to reduce the fever (no more than 4 g of paracetamol in 24 hours)."
+      ],
+      "return_to_clinic_warning_signs": [
+        "The fever does not improve or comes back after treatment.",
+        "The fever is accompanied by a cough, diarrhoea, severe pain, confusion, night sweats, rigors, stiff neck or change in consciousness.",
+        "A woman has fever in pregnancy, after birth, or after abortion (spontaneous or not)."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_scabies_01",
+      "primary_topic": "Scabies Treatment and Home Care",
+      "home_care_instructions": [
+        "The patient and all close contacts must be treated simultaneously, including the entire household and sexual partners, even if they are asymptomatic.",
+        "Clothing or bed linen used by the patient should be washed and dried well (or dry-cleaned).",
+        "Do not bathe before applying the treatment (this increases systemic absorption and does not help).",
+        "Apply the cream to the whole skin surface, giving particular attention to the flexures, genitalia, intergluteal cleft, between the fingers and under the fingernails. Include the face, neck and scalp, but avoid areas near the eyes and mouth.",
+        "The cream may irritate the skin a little, especially if there are excoriations.",
+        "Keep the cream on for the treatment period: overnight treatment for 3 days.",
+        "If any cream is washed off during the treatment period (e.g. hands), reapply immediately.",
+        "Wash the cream off at the end of the treatment period.",
+        "Itching should start to diminish within a few days, but may persist for a number of weeks. This does not mean that the treatment has failed."
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_itching_01",
+      "primary_topic": "Symptomatic Management of Itching (Pruritus)",
+      "home_care_instructions": [
+        "If the affected person has dry skin, moisturize with aqueous cream or petroleum jelly mixed with water.",
+        "Use 1 spoon of oil (bath or vegetable) in the bath water when washing.",
+        "Apply diluted chlorhexidine (0.05%) after a bath.",
+        "Rub the itchy skin with local remedies (examples: effective and safe herbs, cucumber, or wet tea bags or leaves put in a clean piece of cloth and soaked in hot water)."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Seek help from a trained health worker for painful blisters or extensive skin infection."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_bedsores_01",
+      "primary_topic": "Home Care for Bedsores (Pressure Ulcers)",
+      "home_care_instructions": [
+        "For small sores, clean gently with salty water and allow to dry.",
+        "If painful, use paracetamol or aspirin.",
+        "For deep or large sores, clean daily with diluted salt water and cover with a clean, light dressing to encourage healing.",
+        "Make sure that the patient does not lie on pressure sores.",
+        "Use foam pads or pillows or water beds to take pressure off the sore.",
+        "Use pillows to keep the knees and ankles apart.",
+        "Change the patient's position at least every 2 hours."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Thick yellow or green pus.",
+        "A bad smell from the sore.",
+        "Redness or warmth around the sore.",
+        "Swelling around the sore.",
+        "Tenderness around the sore.",
+        "Any discoloured skin, or bedsores that are getting worse."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_nausea_vomiting_01",
+      "primary_topic": "Home Care for Nausea or Vomiting",
+      "home_care_instructions": [
+        "Drink plenty of fluids.",
+        "Eat favourite, available foods that cause less nausea.",
+        "Eat frequent, small portions of food.",
+        "Use effective and safe local remedies, e.g. licking ash from wood."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Vomiting for more than 24 hours.",
+        "Having a dry tongue.",
+        "Passing little urine.",
+        "Having abdominal pain.",
+        "Blood in vomit, dehydration, headache or stiff neck, severe abdominal pain."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_diarrhoea_01",
+      "primary_topic": "Treatment of Diarrhoea at Home (Plan A)",
+      "home_care_instructions": [
+        "Drink extra fluid: as much as the patient will take.",
+        "Ensure safe water for the patient - boiled or disinfected.",
+        "Give the patient frequent drinks in small amounts, such as rice soup, porridge, water (with food), other soups or oral rehydration solution (ORS), but avoid sweet drinks.",
+        "Drink at least 200-300 ml after each loose stool and continue drinking extra fluid until the diarrhoea stops.",
+        "If ORS is provided: teach the patient how to mix and drink ORS and give 2 packets to take home.",
+        "If the patient is vomiting, they should continue to take small sips.",
+        "The patient should continue eating."
+      ],
+      "return_to_clinic_warning_signs": [
+        "The patient is vomiting and has fever.",
+        "There is blood in the stool.",
+        "The diarrhoea continues more than 5 days.",
+        "The patient becomes even weaker.",
+        "There is broken skin around the rectal area.",
+        "Diarrhoea becomes worse."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_rectal_tenderness_01",
+      "primary_topic": "Home Care for Rectal Tenderness",
+      "home_care_instructions": [
+        "After the sick person has passed a stool: clean with soft tissue paper.",
+        "Wash the rectal area when necessary with soap and water.",
+        "Apply petroleum jelly around the rectal area.",
+        "The person should then sit in basin of water with a pinch of salt. If this is comfortable, suggest doing it twice daily."
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_urinary_incontinence_01",
+      "primary_topic": "Home Care for Urinary Incontinence",
+      "home_care_instructions": [
+        "Provide adequate support and reassurance about the situation.",
+        "Pelvic floor muscle exercises - help strengthen urinary sphincter and pelvic floor muscles.",
+        "Scheduled toilet trips - going to the toilet according to the clock rather than waiting for the need to go, usually every 2-4 hours.",
+        "Use pads and protective garments (absorbent pads) to help manage urine loss.",
+        "Adult diapers are sometimes available in both disposable and reusable forms.",
+        "Consider wearing plastic underwear over regular underwear to help keep dry; others opt for washable underwear and briefs with waterproof panels."
+      ],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_headache_01",
+      "primary_topic": "Home Care for Headache",
+      "home_care_instructions": [
+        "The patient should rest.",
+        "The patient should try self-steaming, using a basin with hot water (but warn them to be careful of being burned by the water).",
+        "The patient should take an over-the-counter pain medicine, e.g. paracetamol."
+      ],
+      "return_to_clinic_warning_signs": [
+        "The headache is not responding to treatment."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_malnutrition_01",
+      "primary_topic": "Preventing Malnutrition and Promoting Weight Gain",
+      "home_care_instructions": [
+        "Encourage the sick person to eat, but do not use force as the body may not be able to accept it, and the patient may vomit.",
+        "Offer smaller, attractive meals of what the sick person likes more frequently.",
+        "Let the sick person choose the foods she or he desires to eat from what is available.",
+        "Encourage the patient to eat nutrient-dense foods that are locally available."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Rapid weight loss.",
+        "The sick person consistently refuses to eat any food or is not able to swallow."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_severe_malnutrition_01",
+      "primary_topic": "Criteria for Discharge in Severe Malnutrition",
+      "home_care_instructions": [
+        "Severely malnourished adolescents and adults can be discharged when they are eating well and gaining weight.",
+        "Ensure they have a reliable source of nutritious food outside the hospital.",
+        "Ensure any other health problems have been diagnosed and treatment has begun.",
+        "Adults should continue to receive a supplemented diet as outpatients until their BMI is >18.5; for adolescents, their diets should be supplemented until their BMI-for-age is >5th percentile."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Failure to respond to treatment or refusal to follow the treatment regimen."
+      ]
+    }
+  ]
+}

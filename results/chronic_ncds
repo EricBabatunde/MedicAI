@@ -1,0 +1,15 @@
+Task: Your objective is to map the clinical knowledge within these PDFs into a highly structured JSON database.
+
+Current Batch: For this prompt, scan the manuals and extract ALL relevant records but strictly limit your extraction to the Chronic Care & Non-Communicable Diseases (NCDs) sections. Do not extract data for trauma, obstetrics, or infectious diseases yet.
+
+Extraction Rules:
+
+    Identify and categorize every piece of knowledge into one of the following record_types: triage, procedure, drug_formulary, differential_diagnosis, chronic_care, or patient_discharge.
+
+    Read the description for each JSON key carefully. Only populate keys that are relevant to the specific record_type. If a key does not apply (e.g., adult_dosing for a triage record), omit it entirely.
+
+    Do not summarize or dilute the medical instructions. Copy dosages, warning signs, and physiological parameters exactly as they appear in the text.
+
+    Ensure every id is unique and descriptive (e.g., drug_salbutamol_01 or diag_chronic_cough_01).
+
+    Output strictly as JSON using the provided schema.

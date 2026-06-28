@@ -1,0 +1,281 @@
+{
+  "medical_records": [
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_severe_malnutrition_01",
+      "primary_topic": "Severe Malnutrition Hospital Care",
+      "step_by_step_guide": [
+        "Assess for co-existing medical conditions and provide appropriate treatment.",
+        "For initial treatment (stabilization), if the patient is able to consume food, give ready-to-use therapeutic foods (e.g., F75, F100) or fortified blended flours.",
+        "Do not combine therapeutic foods with additional vitamins and minerals, as they are already fortified to correct deficiencies.",
+        "Aim initially to prevent further tissue loss, using calculated dietary requirements based on age and weight (e.g., 40 Kcal/kg for ages 19-75).",
+        "Treat and prevent hypothermia, hypoglycaemia, and dehydration.",
+        "Do not stop antiretroviral medication during re-feeding in patients with HIV; if not yet on ART, defer initiation until the rehabilitation phase.",
+        "During rehabilitation, provide a diet based on traditional foods with added oil, mineral mix, and vitamin mix.",
+        "Discharge when the patient is eating well, gaining weight, and has a reliable source of nutritious food outside the hospital."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_dengue_fever_01",
+      "primary_topic": "Dengue Fever",
+      "clinical_signs": [
+        "Sudden onset of fever lasting 2 to 7 days",
+        "Anorexia, nausea, vomiting",
+        "Rash, petechiae",
+        "Muscle and joint pains (myalgia, arthralgia)",
+        "Pain behind the eyes",
+        "Tourniquet test positive",
+        "Leukopenia and thrombocytopenia",
+        "Warning signs: abdominal pain, persistent vomiting, mucosal bleed, clinical fluid accumulation, lethargy, liver enlargement >2cm"
+      ],
+      "suspected_conditions": [
+        "Dengue fever",
+        "Severe dengue (dengue shock syndrome)",
+        "Malaria",
+        "Typhoid fever",
+        "Viral haemorrhagic fever"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Severe plasma leakage with shock or fluid accumulation with respiratory distress",
+        "Severe bleeding",
+        "Severe organ impairment (AST or ALT >1000, impaired consciousness)"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_dengue_fever_01",
+      "primary_topic": "Dengue Fever Management",
+      "step_by_step_guide": [
+        "For patients without warning signs (Group A): send home, advise adequate bed rest, adequate fluid intake, and paracetamol (maximum 4 g daily in adults).",
+        "For patients with warning signs (Group B): refer for inpatient hospital care, encourage oral fluids, or start IV fluid therapy with Normal Saline (NS) or Lactated Ringer's (LR) at maintenance rate.",
+        "For severe dengue (Group C): start IV fluid resuscitation with NS or LR at 5-10 ml/kg/hour over 1 hour.",
+        "Reassess the patient's condition and haematocrit; if improving, reduce IV fluids gradually.",
+        "If hypotensive shock is present, initiate IV fluid resuscitation with NS or LR or colloid solution at 20 ml/kg as a bolus for 15 minutes.",
+        "Monitor for haemorrhagic complications and transfuse fresh packed red cells or fresh whole blood if severe bleeding is identified."
+      ],
+      "recommended_tests": [
+        "Rapid diagnostic test for NS1 antigen (day 1 to 6 of illness)",
+        "Detection of IgM/IgG by RDT or ELISA (day 5 onwards)",
+        "Haematocrit and platelet count",
+        "White cell count"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_malaria_01",
+      "primary_topic": "Malaria",
+      "clinical_signs": [
+        "Regular cyclic fever",
+        "Anaemia (pallor)",
+        "Hypoglycaemia",
+        "Jaundice",
+        "Tachypnea",
+        "Mental status changes (in severe malaria)",
+        "Splenomegaly"
+      ],
+      "suspected_conditions": [
+        "Uncomplicated Malaria",
+        "Severe Malaria",
+        "Typhoid fever",
+        "Meningitis",
+        "Sepsis"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Altered consciousness, convulsions, or coma",
+        "Respiratory distress or acidosis",
+        "Shock",
+        "Abnormal bleeding or haemoglobinuria",
+        "Oliguria or anuria"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_malaria_severe_01",
+      "primary_topic": "Severe Malaria Management",
+      "step_by_step_guide": [
+        "Treat as a medical emergency; assess airway, breathing, and circulation.",
+        "Check blood glucose; if less than 2.2 mmol/l (or 3 mmol/l in pregnant/comatose patients), give IV glucose immediately.",
+        "Treat convulsions with intravenous or rectal diazepam or intramuscular paraldehyde.",
+        "Give intravenous artesunate 2.4 mg/kg body weight on admission (time=0), then at 12 hours and 24 hours, then once daily.",
+        "If parenteral artesunate is unavailable, give rate-controlled IV infusion of quinine 20 mg salt/kg on admission, then 10 mg/kg every 8 hours.",
+        "As soon as the patient can tolerate oral medication, complete the treatment with a full course of an Artemisinin-based combination therapy (ACT)."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_cholera_01",
+      "primary_topic": "Cholera",
+      "clinical_signs": [
+        "Profuse watery stools (rice-water stools)",
+        "Large volumes of fluid vomited",
+        "Severe dehydration (sunken eyes, lethargy, poor skin pinch)",
+        "Abdominal pain usually not marked"
+      ],
+      "suspected_conditions": [
+        "Cholera",
+        "Viral gastroenteritis",
+        "Bacterial dysentery"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Lethargy or unconsciousness",
+        "Inability to drink",
+        "Skin pinch goes back very slowly"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_cholera_01",
+      "primary_topic": "Cholera Management",
+      "step_by_step_guide": [
+        "Classify dehydration severity (severe, some, or none).",
+        "Rehydration is the mainstay of treatment; use ORS for 80% of cases or IV Ringer's lactate for severe dehydration.",
+        "Provide antibiotics for patients with severe disease (e.g., single dose doxycycline 300 mg, or tetracycline 500 mg 4 times daily for 3 days, or ciprofloxacin 1 g single dose).",
+        "Isolate patients in a separate ward.",
+        "Ensure strict hand hygiene and safe water supply to prevent transmission."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_rabies_01",
+      "primary_topic": "Rabies",
+      "clinical_signs": [
+        "History of wild animal or unimmunized domestic animal bite (especially dogs, cats, bats)",
+        "Paresthesias (pins and needles) around the bite area",
+        "Hydrophobia (fear of water) and aerophobia (fear of air)",
+        "Confusion, delirium, hallucinations, agitation",
+        "Excessive salivation, sweating, and tears",
+        "Phobic spasms or muscle rigidity"
+      ],
+      "suspected_conditions": [
+        "Rabies",
+        "Tetanus",
+        "Viral encephalitis"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_rabies_pep_01",
+      "primary_topic": "Rabies Post-Exposure Prophylaxis (PEP)",
+      "step_by_step_guide": [
+        "Immediately scrub the wound with alkaline soap and water, and flush with water for 15 minutes.",
+        "Apply povidone-iodine or benzalkonium chloride 1-4% to the wound.",
+        "Categorize the contact: Category I (touching/feeding), Category II (nibbling, minor scratches without bleeding), Category III (transdermal bites, licks on broken skin, bat exposure).",
+        "For Category I, no treatment is required.",
+        "For Category II, initiate immediate vaccination using tissue-culture or purified duck-embryo vaccines.",
+        "For Category III, administer immediate vaccination PLUS rabies immunoglobulin.",
+        "Inject human rabies immune globulin 20 IU/kg or equine rabies immunoglobulin 40 IU/kg mostly at the site of the bite.",
+        "Administer vaccine using standard intramuscular schedule (days 0, 3, 7, 14, and 30) in the deltoid, or an approved intradermal schedule."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_tuberculosis_01",
+      "primary_topic": "Tuberculosis (TB)",
+      "clinical_signs": [
+        "Productive cough lasting more than 2 weeks",
+        "Unintentional weight loss",
+        "Night sweats",
+        "Fever",
+        "Haemoptysis",
+        "Chest pain or shortness of breath",
+        "Enlarged, painless, matted lymph nodes (in extrapulmonary TB)",
+        "Pleural effusion or abdominal distension/ascites"
+      ],
+      "suspected_conditions": [
+        "Pulmonary Tuberculosis",
+        "Extrapulmonary Tuberculosis",
+        "Mycobacterium avium complex (MAC)",
+        "Pneumocystis jirovecii pneumonia",
+        "Lung malignancy"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Respiratory rate >30 per minute",
+        "Fever >39 C",
+        "Pulse rate >120 per minute",
+        "Inability to walk unaided"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_tuberculosis_01",
+      "primary_topic": "Tuberculosis Treatment",
+      "step_by_step_guide": [
+        "Diagnose using sputum microscopy for AFB or Xpert MTB/RIF test; consider chest X-ray and clinical algorithms for smear-negative cases.",
+        "Initiate a standardized TB treatment regimen based on national guidelines (e.g., 2 months of HRZE intensive phase, followed by 4 months of HR continuation phase).",
+        "Provide daily treatment with fixed-dose combinations (FDCs) where possible.",
+        "In HIV-positive patients, start TB treatment first, followed by ART as soon as possible (usually within 8 weeks).",
+        "Monitor clinical response, patient's weight, and sputum smear microscopy after 2 months.",
+        "Manage minor side effects symptomatically and major side effects (like jaundice, deafness, shock) by stopping the responsible drugs.",
+        "For suspected MDR-TB, obtain culture and drug-susceptibility testing (DST) and refer to national guidelines for second-line regimens."
+      ],
+      "recommended_tests": [
+        "Sputum microscopy for acid-fast bacilli (AFB)",
+        "Xpert MTB/RIF test",
+        "Chest X-ray",
+        "HIV test"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_visceral_leishmaniasis_01",
+      "primary_topic": "Visceral Leishmaniasis (Kala-azar)",
+      "clinical_signs": [
+        "Irregular and prolonged fever (more than 2 weeks)",
+        "Severe weight loss and wasting (cachexia)",
+        "Massive splenomegaly and hepatomegaly",
+        "Generalized lymphadenopathy",
+        "Pallor due to anaemia",
+        "Pancytopenia (low platelets, leukocytes, and erythrocytes)"
+      ],
+      "suspected_conditions": [
+        "Visceral leishmaniasis",
+        "Malaria",
+        "HIV/AIDS",
+        "Disseminated tuberculosis",
+        "Lymphoma"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_syphilis_01",
+      "primary_topic": "Syphilis",
+      "clinical_signs": [
+        "Primary: Single, painless, indurated, clean ulcer (chancre) on genitals, anal canal, or mouth",
+        "Primary: Regional lymphadenopathy",
+        "Secondary: Papulosquamous rash involving palms and soles",
+        "Secondary: Mucous patches and condylomata lata",
+        "Secondary: Fever, malaise, sore throat, generalized lymphadenopathy",
+        "Tertiary: Cutaneous gummas, aortitis, neurological deficits (general paresis, tabes dorsalis)"
+      ],
+      "suspected_conditions": [
+        "Primary syphilis",
+        "Secondary syphilis",
+        "Tertiary syphilis",
+        "Neurosyphilis",
+        "Chancroid",
+        "Herpes simplex virus"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_syphilis_01",
+      "primary_topic": "Syphilis Treatment",
+      "step_by_step_guide": [
+        "Confirm diagnosis with non-treponemal tests (RPR, VDRL) and treponemal confirmatory tests.",
+        "For primary, secondary, and early latent syphilis (<2 years), give a single dose of benzathine benzylpenicillin G, 2.4 million U IM (12 ml total, 6 ml in each buttock).",
+        "For non-pregnant, penicillin-allergic patients, give doxycycline 100 mg orally twice daily or tetracycline 500 mg orally 4 times daily for 14 days.",
+        "For late latent syphilis (>2 years) or undetermined duration, give benzathine benzylpenicillin G, 2.4 million U IM once weekly for 3 consecutive weeks.",
+        "For neurosyphilis, give aqueous benzyl penicillin G 2-4 million U IV every 4 hours for 14 days.",
+        "Monitor VDRL/RPR titres; they should decline fourfold over the 6-12 months after treatment.",
+        "Ensure partner notification and treatment."
+      ],
+      "recommended_tests": [
+        "RPR or VDRL",
+        "TPHA or FTA-ABS",
+        "Dark field microscopy",
+        "CSF VDRL (if neurological signs present)"
+      ]
+    }
+  ]
+}

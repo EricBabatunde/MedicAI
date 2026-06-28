@@ -1,0 +1,302 @@
+{
+  "medical_records": [
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_suicide_risk_01",
+      "primary_topic": "Suicide Risk Assessment",
+      "clinical_signs": [
+        "Current suicidal thoughts and plans",
+        "Characteristics of any attempt, past or present",
+        "Presence of a severe mental disorder",
+        "Presence of substance intoxication or disorder",
+        "Psychiatric disorders (generally depression, alcoholism, and personality disorders)",
+        "Physical illness (terminal, painful or debilitating illness, AIDS)",
+        "Previous suicide attempts",
+        "Family history of suicide, alcoholism, or other psychiatric disorders",
+        "Signs of emotional distress, hopelessness, agitation, uncommunicative behaviour, social isolation"
+      ],
+      "suspected_conditions": [
+        "Imminent risk of self-harm or suicide",
+        "Severe mental disorder",
+        "Substance use disorder"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_suicide_management_01",
+      "primary_topic": "Management of the Suicidal Patient",
+      "step_by_step_guide": [
+        "If a suicide attempt has been made, observe for signs of self-injury and urgently treat associated medical complications.",
+        "Remove means of self-harm.",
+        "If a suicide attempt has been made or a plan or threat exists for imminent suicide: do not leave patient alone; talk gently with the patient; keep the patient in a secure and supportive environment in the facility.",
+        "Assign a named staff member or family member for continued monitoring to ensure patient safety.",
+        "Assess for underlying mental disorders and start appropriate treatment.",
+        "In situations where there is imminent risk of serious self-harm, urgent referral to a mental health service is recommended. If not available, activate psychosocial support.",
+        "Assess for and begin treatment of co-morbid problems: physical (including chronic pain, epilepsy), mental disorders and substance use.",
+        "Work to understand and lessen suicidal feelings; explore reasons to stay alive.",
+        "Provide information about community-based services and patient support or self-help groups and facilitate access to these services.",
+        "The individual, family, and relevant others should be advised to restrict access to the means for self-harm (e.g. pesticides and other toxic substances, medication, firearms) as long as the individual has thoughts or plans of self-harm."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_abnormal_behaviour_01",
+      "primary_topic": "Abnormal Behaviour or Thinking",
+      "clinical_signs": [
+        "Agitation, frightening or unusually impulsive behaviour",
+        "Unkempt appearance and odd ways of relating to others, or odd mannerisms",
+        "Disorganized or strange speech, thoughts, or behaviour",
+        "Distortions of thinking and perceptions",
+        "Reporting or responding to hallucinations (e.g. reacting to false or imagined perceptions, such as talking to imaginary people)",
+        "Reporting or responding to delusions (e.g. fixed false beliefs)",
+        "Severe self-neglect; inability or disinterest in caring for self",
+        "Inappropriate or narrowed range of emotions",
+        "Impairment in cognition, memory, and attention"
+      ],
+      "suspected_conditions": [
+        "Delirium",
+        "Delirium due to alcohol or sedative withdrawal",
+        "Intoxication from alcohol or other substance",
+        "Intellectual disability (developmental disability, mental retardation)",
+        "Dementia",
+        "Dementia due to HIV infection (HIV-associated dementia)",
+        "HSV encephalitis",
+        "Schizophrenia and other psychotic conditions",
+        "Bipolar disorder: Manic phase"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_psychosis_01",
+      "primary_topic": "Clinical Management of Psychosis",
+      "step_by_step_guide": [
+        "Assessment for the safety of the patient and others should be performed as soon as possible.",
+        "Initial hospitalization often is required for acute stabilization, especially for patients who are at imminent risk of violence or self-harm.",
+        "Assessment for an underlying medical etiology and the initiation of appropriate medical treatment are essential.",
+        "Provide psycho-education that supports the patient's recovery. Instil realistic hope and emphasize the importance of continuing regular activities.",
+        "Support the family and provide guidance in their interactions with the patient.",
+        "Antipsychotic medication is the mainstay of the acute management of psychotic symptoms. Haloperidol or chlorpromazine should be routinely considered.",
+        "The minimal effective dose of antipsychotics should be used, paying attention to minimizing adverse effects.",
+        "Trial medication at optimum dose for 4-6 weeks before considering it ineffective. Always check for treatment adherence.",
+        "Patients on long-term antipsychotic treatment should be monitored regularly for symptom relief, functioning, and any adverse effects."
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_bipolar_01",
+      "primary_topic": "Management of Bipolar Disorder",
+      "step_by_step_guide": [
+        "Ensure patient safety and manage concurrent medical conditions.",
+        "Provide psycho-education. Patients and families need to understand the phases of mood disturbance and how to self-monitor for extreme mood states.",
+        "Encourage a regular sleep cycle and encourage patient to avoid alcohol and psychoactive substances.",
+        "For acute mania, if the patient is on an antidepressant, it should quickly be tapered and discontinued, balancing the risks of withdrawal syndrome against the impact of the antidepressant worsening the mania.",
+        "Lithium or sodium valproate should be considered in individuals with acute mania for mood stabilization.",
+        "In women planning a pregnancy, pregnant or breastfeeding, lithium and sodium valproate should be avoided. Low dose haloperidol should be considered with caution.",
+        "For acute depression in bipolar disorder, the treatment of choice is a mood stabilizer agent (sodium valproate, lithium).",
+        "Once the patient is adequately treated with a mood stabilizer, an antidepressant agent can be added to help further alleviate depressive symptoms.",
+        "Maintenance treatment with a mood stabilizer should continue for at least 2 years after the last episode of bipolar disorder."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_depression_mh_01",
+      "primary_topic": "Sad or Low Mood including Depression",
+      "clinical_signs": [
+        "Sad or low mood",
+        "Fatigue or loss of energy or tiredness",
+        "Loss of interest or pleasure",
+        "Guilt or loss of self confidence",
+        "Hopelessness and feelings of worthlessness",
+        "Suicidal thoughts or acts or thoughts of death",
+        "Disturbed sleep",
+        "Loss of libido",
+        "Disturbed appetite (weight loss or gain)",
+        "Feeling tense, anxious, excessively worried, or frightened",
+        "Unexplained somatic symptoms (tingling, numbness, shortness of breath, gastrointestinal distress, palpitations, aches and pains)"
+      ],
+      "suspected_conditions": [
+        "Depressive episode",
+        "Dysthymia",
+        "Bipolar disorder - depressive episode or depressive phase",
+        "Depressive episode with psychotic features",
+        "Depressive symptoms due to general medical condition",
+        "Depressive symptoms due to dementia",
+        "Uncomplicated bereavement",
+        "Adjustment disorder"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_depression_mh_01",
+      "primary_topic": "Acute Management of Depression",
+      "step_by_step_guide": [
+        "Assess for suicide risk and ensure safety.",
+        "Provide counselling. Counselling and psychotherapy often are sufficient for the treatment of a depressive episode of mild intensity.",
+        "Initiate management of any co-morbid conditions (e.g. treat substance use disorders, medical conditions, and pain).",
+        "Fluoxetine or tricyclic antidepressants (TCAs) should be considered as treatment in individuals with moderate to severe depressive disorder.",
+        "In adolescents with depressive episodes, do not consider antidepressant medication as first-line treatment. Psychosocial treatments, including psychotherapy, are preferable.",
+        "When starting antidepressants, monitor patient for risk of harm to self or others at every contact.",
+        "Dosage adjustment of medication should be based on symptom response and tolerability.",
+        "If the patient has a poor symptom response by week 12 despite good adherence to the maximum tolerated dose of a medication, switch to another antidepressant.",
+        "In adult individuals with depressive disorders who have benefited from initial antidepressant treatment, do not consider ending the antidepressant treatment before 9-12 months after recovery."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_anxiety_01",
+      "primary_topic": "Anxiety Disorders",
+      "clinical_signs": [
+        "Feeling tense, anxious, apprehensive or frightened",
+        "Being excessively worried",
+        "Palpitations",
+        "Suffocation sensations",
+        "Dizziness",
+        "Trembling",
+        "Shaking",
+        "Pins and needles sensations"
+      ],
+      "suspected_conditions": [
+        "Generalized anxiety disorder (GAD)",
+        "Post-traumatic stress disorder (PTSD)",
+        "Obsessive-compulsive disorder (OCD)",
+        "Panic disorder",
+        "Phobias",
+        "Somatoform disorder"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_anxiety_01",
+      "primary_topic": "Management of Anxiety",
+      "step_by_step_guide": [
+        "Address underlying medical conditions that could cause the anxiety symptoms, including possible modification of prescribed medication.",
+        "Discuss health behaviours that may reduce anxiety, including eliminating caffeine, regulating sleep hygiene, and decreasing the use of alcohol and substances.",
+        "Benzodiazepines can be used for the short-term treatment of an acute episode of severe anxiety caused by a stressful life event. Longer-term treatment (beyond 2 weeks) with benzodiazepines is not indicated.",
+        "SSRI medications are useful for the longer-term treatment of most anxiety disorders.",
+        "Amitriptyline and clomipramine can be useful for selected anxiety disorders.",
+        "In non-specialized care, relaxation training should be considered as treatment for anxiety symptoms of at least 2 weeks duration.",
+        "Cognitive behaviour therapy is an excellent treatment for anxiety disorders."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_fluoxetine_mh_01",
+      "primary_topic": "Fluoxetine for Depression",
+      "adult_dosing": "Initiate treatment with 20 mg of fluoxetine daily. May start at 10 mg daily to reduce the risk of side-effects that undermine adherence, and then increase to 20 mg as tolerated. Dose may be gradually increased up to 60 mg as necessary and tolerable.",
+      "side_effects_or_warnings": [
+        "Increased risk for agitation and suicidal ideation and behaviour",
+        "Severe insomnia",
+        "Precipitation of mania in patients with a history of mania or bipolar disorder"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_amitriptyline_mh_01",
+      "primary_topic": "Amitriptyline for Depression",
+      "adult_dosing": "Initiate treatment with 50 mg of amitriptyline at bedtime. Increase by 25-50 mg every 1-2 weeks, aiming for 100-150 mg by 4-6 weeks. Maximum dose of 200 mg given in divided doses or a single dose at night.",
+      "side_effects_or_warnings": [
+        "Increased risk for agitation and suicidal ideation and behaviour",
+        "Precipitation of mania in patients with a history of mania or bipolar disorder",
+        "Do not give if there is a history of arrhythmia or recent heart attack",
+        "Orthostatic hypotension",
+        "Highly lethal in overdose"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_haloperidol_mh_01",
+      "primary_topic": "Haloperidol as Antipsychotic",
+      "adult_dosing": "Initiate treatment with 1.5-3 mg once daily. Depending on symptom severity, symptom response, and tolerability, can be titrated up to 20 mg daily. Typical effective dose: 3-20 mg daily. Use lowest effective dose.",
+      "side_effects_or_warnings": [
+        "Acute dystonic reaction or severe muscle spasm",
+        "Neuroleptic malignant syndrome",
+        "Involuntary muscular movements that may not be reversible (tardive dyskinesia)",
+        "Increased risk of death in elderly patients with dementia",
+        "Increased risk for seizures"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_chlorpromazine_mh_01",
+      "primary_topic": "Chlorpromazine as Antipsychotic",
+      "adult_dosing": "Initiate treatment with 75 mg at night. Depending on symptom severity, symptom response, and tolerability, can be titrated up to 300 mg daily. Typical effective dose is 75-300 mg daily, but up to 1000 mg may be necessary in severe cases.",
+      "side_effects_or_warnings": [
+        "Severe hypotension resulting in falls (especially in elderly or medically ill patients)",
+        "Acute dystonic reaction or severe muscle spasm",
+        "Neuroleptic malignant syndrome",
+        "Involuntary muscular movements that may not be reversible (tardive dyskinesia)"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_fluphenazine_mh_01",
+      "primary_topic": "Fluphenazine as Antipsychotic (Long-acting, injectable)",
+      "adult_dosing": "Start with 12.5 mg deep intramuscular injection in the gluteal region. Typical effective dose is 12.5-100 mg IM every 2 to 5 weeks.",
+      "side_effects_or_warnings": [
+        "Neuromuscular side-effects can take a long time to clear after drug discontinuation",
+        "Avoid for acute treatment because it is difficult to titrate the dose in accordance with symptom response and tolerability"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_diazepam_mh_01",
+      "primary_topic": "Diazepam (for short-term treatment only for acute anxiety)",
+      "adult_dosing": "Initiate treatment with 2 mg of diazepam 1 to 3 times daily. May increase gradually if needed to 5-10 mg twice daily. Maximum dose is 20 mg during a 24-hour period.",
+      "side_effects_or_warnings": [
+        "Can be abused",
+        "Substance dependence with long-term treatment",
+        "Withdrawal syndrome upon sudden discontinuation",
+        "Should not be given to patients using alcohol"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_clomipramine_mh_01",
+      "primary_topic": "Clomipramine (for OCD, depression, and anxiety)",
+      "adult_dosing": "Initiate a dose of 10-25 mg daily at bedtime. Increase in divided doses by 25 mg every 4-7 days to a therapeutic dose of 150-200 mg in divided doses or a single dose at night.",
+      "side_effects_or_warnings": [
+        "Hypotension",
+        "Side-effects, contraindications, and cautions similar to amitriptyline"
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_dementia_01",
+      "primary_topic": "Home Care and Psycho-education for Dementia",
+      "home_care_instructions": [
+        "Ensure the patient's safety with appropriate environment and level of supervision.",
+        "Ensure that the patient is taking medications as prescribed.",
+        "Protect wandering patients, and supervise any cigarette smoking that occurs.",
+        "Use strategies to prevent falls (e.g. reduce clutter on floors, re-evaluate medications that lead to orthostatic hypotension, encourage tailored physical activity to maintain mobility).",
+        "Reorient the patient and encourage the presence of familiar objects and people.",
+        "Emphasize routines and provide lighting that corresponds with day and night.",
+        "Provide a clock and calendar in the room to help keep patients oriented to time and to the day of the week.",
+        "Ensure that individuals who require eyeglasses or hearing aids wear these to help lessen confusion and disorientation."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Behavioural symptoms persist or there is a clear and imminent risk of harm to the patient with severe and distressing symptoms."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_somatoform_01",
+      "primary_topic": "Somatoform Disorder",
+      "clinical_signs": [
+        "Multiple physical complaints that cannot be explained by either a known medical disorder after appropriate clinical investigations or by another mental disorder",
+        "Persistent headache",
+        "Dizziness",
+        "Chronic fatigue or tiredness",
+        "Nausea",
+        "Chronic pain",
+        "Urinary or gynaecological complaints",
+        "Gastrointestinal complaints (e.g. flatulence)"
+      ],
+      "suspected_conditions": [
+        "Somatoform disorder",
+        "Depressive disorder",
+        "Anxiety disorder",
+        "Underlying un-diagnosed medical condition"
+      ]
+    }
+  ]
+}

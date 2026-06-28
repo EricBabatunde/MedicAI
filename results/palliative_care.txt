@@ -1,0 +1,114 @@
+{
+  "medical_records": [
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_palliative_pain_ladder_01",
+      "primary_topic": "WHO Analgesic Ladder for Chronic Pain",
+      "step_by_step_guide": [
+        "Give analgesics by mouth if possible, as it is the easiest route.",
+        "Give pain killers at fixed time intervals (by the clock) to prevent pain from returning; do not give analgesics for chronic pain on a PRN basis.",
+        "For breakthrough pain, give an extra rescue dose in addition to the regular schedule.",
+        "Follow the 3-step analgesic ladder: Step 1 (Non-opioid like paracetamol or ibuprofen), Step 2 (Opioid for mild/moderate pain like codeine plus non-opioid), Step 3 (Opioid for moderate/severe pain like oral morphine plus non-opioid).",
+        "If pain is not controlled by a step 2 analgesic, do not change to another stage 2 analgesic but instead move up to a step 3 analgesic.",
+        "Do not use Step 2 and Step 3 opioids at the same time.",
+        "Reduce or cease chronic opioid treatment gradually (not more than 10% per week) if the underlying condition improves, to avoid withdrawal symptoms."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_codeine_palliative_01",
+      "primary_topic": "Codeine Phosphate",
+      "adult_dosing": "30-60 mg every 4 hours. Maximum daily dose for pain 240 mg. Consider switch to morphine when a dose of 180 mg is reached.",
+      "side_effects_or_warnings": [
+        "Constipation",
+        "Unless diarrhoea is present, always give a laxative to avoid constipation."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_dexamethasone_palliative_01",
+      "primary_topic": "Dexamethasone (Adjuvant Analgesic)",
+      "adult_dosing": "2-4 mg per day for all situations apart from raised intracranial pressure. For raised intracranial pressure, start at 24 mg daily and reduce by 2 mg daily to lowest effective maintenance dose.",
+      "side_effects_or_warnings": [
+        "Caution in TB and HIV."
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_morphine_iv_infusion_01",
+      "primary_topic": "Morphine IV Infusion for Refractory Severe Acute Pain",
+      "step_by_step_guide": [
+        "Administer a bolus dose of 2 mg initially.",
+        "Follow with a continuous IV infusion at 1 mg/hour using a strictly controlled rate (e.g., metal gate-clamp or closely monitored pump).",
+        "Titrate the infusion hourly as needed for pain control, usually between 5-35 mg/hour.",
+        "Monitor responsiveness, airway, respiratory rate, BP, and pulse every 15 minutes.",
+        "Slow the infusion if the patient begins to show signs of somnolence.",
+        "Stop the infusion immediately if there is respiratory depression (RR <16) or hypotension (SBP <90).",
+        "If systolic BP <100, SpO2 <90, or respiratory rate <10/minute, determine if patient needs more fluids and administer naloxone."
+      ],
+      "side_effects_or_warnings": [
+        "Respiratory depression",
+        "Hypotension",
+        "Over-sedation and somnolence"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_palliative_dyspnoea_01",
+      "primary_topic": "Palliative Management of Cough and Dyspnoea",
+      "step_by_step_guide": [
+        "Control bronchospasm by giving bronchodilators via metered-dose inhaler with spacer. Stop bronchodilators in terminal care if the patient cannot use them or has very shallow/laboured breathing.",
+        "Relieve excessive sputum with steam inhalations; if sputum is >30 ml/day, use forced expiratory technique (huffing) with postural drainage.",
+        "For a bothersome dry cough, give codeine tablets 5-10 mg 4 times daily.",
+        "For terminal dyspnoea not responding to codeine, give oral morphine 2.5-5 mg.",
+        "Titrate the dose of morphine to its effect in relieving dyspnoea. For a patient not on morphine for pain, start with 2.5 mg 4-6 hourly.",
+        "If there is heart failure or excess fluid with pitting oedema, give furosemide 40-80 mg orally.",
+        "For anxiety or terminal agitation, consider giving small doses of diazepam 2.5-5 mg."
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_palliative_hiccups_01",
+      "primary_topic": "Palliative Management of Hiccups",
+      "step_by_step_guide": [
+        "Assess the patient for possible causes of hiccups, such as extensive oro-esophageal candidiasis, ascites, organomegaly, or metabolic disorders.",
+        "Prescribe metoclopramide 10 mg every 8 hours in combination with an antacid and antiflatulant (e.g. aluminium hydroxide).",
+        "If hiccups do not respond, administer haloperidol 2.5-5 mg.",
+        "If the patient has ascites, carry out therapeutic abdominal paracentesis."
+      ],
+      "suspected_conditions": [
+        "Oesophageal candidiasis",
+        "Ascites",
+        "Organomegaly"
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_bedridden_care_01",
+      "primary_topic": "Preventive Home Care for Bedridden Patients",
+      "home_care_instructions": [
+        "Use a soft toothbrush to gently brush the patient's teeth, tongue, palate, and gums to remove debris.",
+        "Rinse the mouth with diluted salt water after eating and at bedtime (usually 3-4 times daily).",
+        "Use petroleum jelly to moisten the lips when dry.",
+        "Change the patient's position on the bed often, ideally every 1 or 2 hours, and use pillows or cushions to maintain the position.",
+        "Keep the bedding clean and dry, and look for damaged skin (change of colour) on the back, shoulders, and hips every day.",
+        "Perform simple range-of-motion exercises on limbs and joints on both sides at least twice daily.",
+        "Protect the joint by holding the limb above and below it, and bend, straighten, and move joints slowly without causing pain."
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_end_of_life_01",
+      "primary_topic": "End-of-Life Care",
+      "step_by_step_guide": [
+        "Respect the wishes of the patient and family regarding whether the patient wants to die at home or in the hospital.",
+        "Offer hospice-like care and continued support from the clinical team to families who want to keep the patient at home.",
+        "Manage pain and other symptoms, including cough or difficult breathing, using morphine to provide significant relief from respiratory insufficiency.",
+        "Provide nutritional support with small and frequent meals. Do not force feeding tubes if they would not add to the overall quality of the patient's life.",
+        "Treat fever only if the patient is uncomfortable, as fever treatment is not always necessary at the end of life.",
+        "Continue preventive measures such as oral care, prevention of bedsores, bathing, and scheduled movement of the bedridden patient.",
+        "Provide bereavement care and support to the family, including practical help with planning for the care of their children and funeral rites."
+      ]
+    }
+  ]
+}

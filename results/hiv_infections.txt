@@ -1,0 +1,322 @@
+{
+  "medical_records": [
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_art_initiation_01",
+      "primary_topic": "Antiretroviral Therapy (ART) Initiation",
+      "step_by_step_guide": [
+        "Determine ART eligibility based on CD4 count and WHO clinical stage.",
+        "Start ART in all patients with CD4 count 350 cells/mm3 or below, irrespective of clinical stage.",
+        "Start ART in all patients in WHO clinical stage 3 or 4, irrespective of CD4 count.",
+        "Start ART in all patients with HIV/TB coinfection or HIV/HBV coinfection with chronic active hepatitis B, irrespective of CD4 count.",
+        "Determine the appropriate first-line ARV regimen (typically 2 NRTIs plus 1 NNRTI). Preferred regimens include AZT or TDF + 3TC or FTC + EFV or NVP.",
+        "Prepare the patient for adherence to the lifelong treatment.",
+        "Monitor the response to ART clinically, immunologically (CD4 count), and virologically (viral load) if available.",
+        "Monitor carefully for immune reconstitution inflammatory syndrome (IRIS) and drug toxicities."
+      ],
+      "suspected_conditions": [
+        "HIV Infection"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_zidovudine_azt_01",
+      "primary_topic": "Zidovudine (AZT)",
+      "adult_dosing": "300 mg twice daily",
+      "side_effects_or_warnings": [
+        "Headache, nausea, fatigue, muscle pain",
+        "Bone marrow suppression resulting in rapid onset of life-threatening anaemia or neutropaenia",
+        "Lactic acidosis",
+        "Myopathy",
+        "Severe gastrointestinal intolerance"
+      ],
+      "suspected_conditions": [
+        "HIV Infection"
+      ],
+      "triage_level": "GREEN"
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_efavirenz_efv_01",
+      "primary_topic": "Efavirenz (EFV)",
+      "adult_dosing": "600 mg once daily",
+      "side_effects_or_warnings": [
+        "Rash, usually mild and self-limiting",
+        "CNS symptoms in the first 2-4 weeks such as drowsiness, dizziness, vivid dreams, or persistent hallucinations",
+        "Potential teratogenicity if taken during the first trimester of pregnancy"
+      ],
+      "suspected_conditions": [
+        "HIV Infection"
+      ],
+      "triage_level": "GREEN"
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_lactic_acidosis_hiv_01",
+      "primary_topic": "Hyperlactataemia or Lactic Acidosis",
+      "clinical_signs": [
+        "Loss of weight, fatigue, malaise",
+        "Nausea or vomiting",
+        "Abdominal pain",
+        "Fast, deep breathing (late stage)",
+        "Dehydration",
+        "Low serum pH (<7.3)",
+        "Low bicarbonate and high anion gap (>13)",
+        "Serum lactate >5 mmol/l",
+        "Elevated ALT/AST, LDH, and amylase"
+      ],
+      "suspected_conditions": [
+        "Lactic acidosis due to NRTI toxicity (e.g. d4T, ddI, or AZT)",
+        "Sepsis",
+        "Severe dehydration",
+        "Diabetic ketoacidosis",
+        "Renal or liver disease"
+      ],
+      "triage_level": "RED"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_cryptococcal_meningitis_01",
+      "primary_topic": "Cryptococcal Meningitis Treatment",
+      "step_by_step_guide": [
+        "Perform a lumbar puncture and CSF examination; diagnose via India ink stain or Cryptococcal antigen (CrAg) test.",
+        "Monitor and treat raised intracranial pressure with frequent (daily) lumbar punctures to relieve pressure and avoid blindness.",
+        "Administer Option 1 (if available): amphotericin B 0.7 to 1 mg/kg PLUS flucytosine 100 mg/kg for 14 days, followed by oral fluconazole 400 mg daily for 8 weeks.",
+        "If flucytosine is unavailable, use Option 2: amphotericin B PLUS oral fluconazole 800 mg for 14 days, followed by fluconazole 400 mg for 8 weeks.",
+        "Ensure pre-hydration and electrolyte monitoring when using amphotericin B to prevent life-threatening hypokalaemia and renal impairment.",
+        "Defer ART initiation until 2-4 weeks of induction and consolidation treatment have been completed to minimize risk of CNS IRIS.",
+        "Provide secondary prophylaxis with fluconazole 200 mg daily until the patient is successfully on ART and the CD4 count is maintained above 200 cells/mm3 for at least 6 months."
+      ],
+      "suspected_conditions": [
+        "Cryptococcal Meningitis",
+        "HIV Infection"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_oesophageal_candidiasis_01",
+      "primary_topic": "Painful or Difficult Swallowing (Oesophagitis)",
+      "clinical_signs": [
+        "Painful swallowing (odynophagia)",
+        "Difficulty swallowing (dysphagia)",
+        "Pain in the chest behind the sternum (retrosternal pain)",
+        "Oral thrush (Candida) often present",
+        "Weight loss"
+      ],
+      "suspected_conditions": [
+        "Candida oesophagitis",
+        "CMV oesophagitis",
+        "HSV oesophagitis",
+        "Kaposi sarcoma in the oral cavity",
+        "Gastric reflux"
+      ],
+      "triage_level": "YELLOW"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_oesophageal_candidiasis_01",
+      "primary_topic": "Oesophageal Candidiasis Management",
+      "step_by_step_guide": [
+        "Initiate empirical treatment with fluconazole tablet 100 mg or 200 mg daily for 14 to 21 days.",
+        "Alternatively, prescribe itraconazole 200 mg daily (up to 400 mg) for 10-14 days.",
+        "If neither fluconazole nor itraconazole is available, use ketoconazole 200 to 400 mg daily until remission (avoid co-administration with nevirapine).",
+        "If symptoms do not improve after 7 days, consider treating for CMV, HSV, or reflux disease.",
+        "Initiate ART as soon as the patient can swallow comfortably, as oesophageal candidiasis is a WHO clinical stage 4 condition.",
+        "Provide a soft diet and avoid extremely hot, cold, or spicy foods."
+      ],
+      "suspected_conditions": [
+        "Oesophageal Candidiasis",
+        "HIV Infection"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_kaposi_sarcoma_01",
+      "primary_topic": "Kaposi Sarcoma",
+      "clinical_signs": [
+        "Macular and papular purple lesions or nodular tumours on skin",
+        "Dark, patchy, painless swellings or non-pruritic nodules",
+        "Lesions located mainly on lower limbs, face, oral mucosa, and genitalia",
+        "Lymphoedema of the face, lower limbs, or genitalia",
+        "Haematemesis or melena (if gastrointestinal involvement)",
+        "Dyspnoea or haemoptysis (if pulmonary involvement)",
+        "Lesions tend to follow lines of skin cleavage"
+      ],
+      "suspected_conditions": [
+        "Kaposi Sarcoma",
+        "Bacillary angiomatosis",
+        "Cutaneous leishmaniasis",
+        "Subconjunctival haemorrhage (if on eye)"
+      ],
+      "triage_level": "YELLOW"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_pmtct_maternal_01",
+      "primary_topic": "PMTCT - Maternal ARV Prophylaxis",
+      "step_by_step_guide": [
+        "Recommend HIV testing and counselling to all pregnant women at their first antenatal care visit.",
+        "Assess WHO clinical stage and CD4 count to determine ART eligibility for the mother's own health.",
+        "Start lifelong ART if CD4 is 350 or below, or if the woman is in WHO stage 3 or 4.",
+        "If not eligible for ART, initiate Maternal triple ARV prophylaxis (Option B) or Maternal AZT prophylaxis (Option A) starting as early as 14 weeks gestation.",
+        "Continue Maternal triple ARV prophylaxis until delivery, or if breastfeeding, continue until 1 week after all infant exposure to breast milk has ended.",
+        "For Option A, give AZT 300 mg twice daily during pregnancy, single-dose NVP at the onset of labour plus AZT and 3TC twice daily for 7 days postpartum.",
+        "Ensure the infant receives the recommended daily NVP or AZT prophylaxis for 4-6 weeks after birth."
+      ],
+      "suspected_conditions": [
+        "HIV in Pregnancy"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_tb_hiv_comanagement_01",
+      "primary_topic": "TB and HIV Co-management",
+      "step_by_step_guide": [
+        "Provide cotrimoxazole prophylaxis for all HIV-positive TB patients throughout the course of anti-TB treatment.",
+        "Start TB treatment first.",
+        "Initiate ART in all HIV-positive individuals with active TB irrespective of their CD4 cell count.",
+        "Start ART as soon as clinically possible after starting TB treatment, usually within 8 weeks.",
+        "Use an Efavirenz (EFV)-based ART regimen (e.g. TDF + 3TC + EFV) for patients starting ART while on TB treatment, as the interaction with rifampicin is easier to manage.",
+        "Monitor for TB immune reconstitution inflammatory syndrome (TB-IRIS), which typically presents within 3 months of ART initiation as worsening of symptoms.",
+        "Provide pyridoxine 10 mg daily to prevent peripheral neuropathy in all HIV-positive patients receiving an anti-TB drug regimen containing isoniazid."
+      ],
+      "suspected_conditions": [
+        "Tuberculosis",
+        "HIV Infection"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_ctx_desensitization_01",
+      "primary_topic": "Cotrimoxazole Desensitization",
+      "step_by_step_guide": [
+        "Ensure the patient does not have a history of a grade 4 toxicity (e.g., Stevens-Johnson syndrome or toxic epidermal necrolysis) to cotrimoxazole.",
+        "Wait 2 weeks after a non-severe (grade 3 or less) cotrimoxazole toxicity has resolved before attempting desensitization.",
+        "Initiate an antihistamine drug the day before desensitization, and continue daily until completing the dose escalation.",
+        "Day 1: Give 80 mg sulfamethoxazole + 16 mg trimethoprim (2 ml of oral suspension).",
+        "Day 2: Give 160 mg sulfamethoxazole + 32 mg trimethoprim (4 ml of oral suspension).",
+        "Day 3: Give 240 mg sulfamethoxazole + 48 mg trimethoprim (6 ml of oral suspension).",
+        "Day 4: Give 320 mg sulfamethoxazole + 64 mg trimethoprim (8 ml of oral suspension).",
+        "Day 5: Give 1 single-strength tablet (400 mg sulfamethoxazole + 80 mg trimethoprim).",
+        "Day 6 onward: Give 2 single-strength tablets or 1 double-strength tablet (800 mg sulfamethoxazole + 160 mg trimethoprim) daily.",
+        "If a severe reaction occurs during escalation, stop the desensitization."
+      ],
+      "suspected_conditions": [
+        "Cotrimoxazole Hypersensitivity",
+        "HIV Infection"
+      ],
+      "triage_level": "GREEN"
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_nevirapine_nvp_01",
+      "primary_topic": "Nevirapine (NVP)",
+      "adult_dosing": "Lead-in dose of 200 mg daily for the first 2 weeks, then escalate to full dose of 200 mg twice daily.",
+      "side_effects_or_warnings": [
+        "Nausea",
+        "Rash (20% of patients)",
+        "Stevens-Johnson syndrome",
+        "Severe hepatitis",
+        "Hypersensitivity reactions"
+      ],
+      "suspected_conditions": [
+        "HIV Infection"
+      ],
+      "triage_level": "GREEN"
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_cerebral_toxoplasmosis_01",
+      "primary_topic": "Cerebral Toxoplasmosis",
+      "clinical_signs": [
+        "Subacute onset over days to weeks",
+        "Dull affect, altered level of consciousness",
+        "Focal neurological signs (cranial nerve deficits, motor deficits, visual field loss, aphasia)",
+        "Seizures",
+        "Headaches",
+        "Fever",
+        "CD4 count typically less than 100 cells/mm3"
+      ],
+      "suspected_conditions": [
+        "Cerebral toxoplasmosis",
+        "Tuberculoma or TB meningitis",
+        "Cryptococcoma",
+        "Primary CNS lymphoma",
+        "Bacterial brain abscess",
+        "Progressive multifocal leucoencephalopathy (PML)"
+      ],
+      "triage_level": "YELLOW"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_toxoplasmosis_01",
+      "primary_topic": "Toxoplasmosis Management",
+      "step_by_step_guide": [
+        "Initiate Option 1 (first choice in resource-limited settings): cotrimoxazole 2 double-strength tablets 3 times daily for 6 weeks.",
+        "If unable to take oral medication and severely ill, use IV cotrimoxazole.",
+        "Option 2: Pyrimethamine 100-200 mg loading dose once, then 50 mg once daily for 6 weeks, PLUS sulfadiazine 4 to 6 grams 4 times daily for 6 weeks, PLUS folinic acid 10-25 mg daily.",
+        "If intracranial pressure is elevated, administer prednisolone (40 mg 4 times daily) or dexamethasone (4 mg 4 times daily) to manage cerebral oedema if TB is excluded.",
+        "Expect clinical response after 7 to 14 days; if no improvement occurs, reconsider the diagnosis.",
+        "Provide secondary prophylaxis with cotrimoxazole 1 double-strength tablet daily until CD4 is greater than 200 for at least 6 months on ART."
+      ],
+      "suspected_conditions": [
+        "Cerebral Toxoplasmosis",
+        "HIV Infection"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_vaginal_discharge_hiv_01",
+      "primary_topic": "Abnormal Vaginal Discharge in HIV",
+      "clinical_signs": [
+        "White, thick, curd-like discharge",
+        "Vulvovaginal redness, oedema, and swelling",
+        "Excoriations",
+        "Itching and external dysuria",
+        "Homogenous, thin white or greyish discharge with fishy odour (Bacterial Vaginosis)",
+        "Purulent or mucopurulent discharge with cervical friability (Gonorrhoea/Chlamydia)"
+      ],
+      "suspected_conditions": [
+        "Vulvovaginal candidiasis",
+        "Bacterial vaginosis",
+        "Trichomoniasis",
+        "Gonorrhoea",
+        "Chlamydia cervicitis",
+        "Pelvic inflammatory disease"
+      ],
+      "triage_level": "GREEN"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_ipt_01",
+      "primary_topic": "Isoniazid Preventive Therapy (IPT) in PLHIV",
+      "step_by_step_guide": [
+        "Screen all persons living with HIV, including pregnant women, for active TB at each facility visit by asking about current cough, fever, weight loss, or night sweats.",
+        "If the patient has no symptoms of active TB, offer IPT as part of a comprehensive package of HIV care.",
+        "Prescribe Isoniazid 300 mg daily for at least 6 months, and up to 36 months in settings with high TB prevalence.",
+        "Administer pyridoxine 10 mg daily concurrently to prevent peripheral neuropathy.",
+        "Defer IPT in the presence of active hepatitis (acute or chronic), regular and heavy alcohol consumption, and symptoms of peripheral neuropathy.",
+        "Monitor for signs of hepatitis (e.g., jaundice, anorexia, nausea) and instruct the patient to discontinue INH and seek care if these occur."
+      ],
+      "suspected_conditions": [
+        "Latent Tuberculosis Infection",
+        "HIV Infection"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_tenofovir_tdf_01",
+      "primary_topic": "Tenofovir (TDF)",
+      "adult_dosing": "300 mg daily",
+      "side_effects_or_warnings": [
+        "Renal failure",
+        "Diarrhoea, nausea",
+        "Decreased bone mineral density"
+      ],
+      "suspected_conditions": [
+        "HIV Infection"
+      ],
+      "triage_level": "GREEN"
+    }
+  ]
+}

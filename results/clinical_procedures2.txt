@@ -1,0 +1,253 @@
+{
+  "medical_records": [
+    {
+      "record_type": "procedure",
+      "id": "proc_measure_muac_01",
+      "primary_topic": "Measuring Mid-Upper Arm Circumference (MUAC)",
+      "step_by_step_guide": [
+        "Have the patient bend her or his left arm to a 90 degree angle. Locate the top of the shoulder and the elbow bone.",
+        "Using a string between the top of the shoulder and elbow, find the mid of the upper arm and mark with a pen.",
+        "With the patient's arm relaxed and resting at her or his side, wrap MUAC tape around the arm at the pen mark.",
+        "There should not be any space between the patient's skin and the tape, but avoid wrapping the tape too tight.",
+        "Read the MUAC in mm from middle window exactly where the arrows point inward. Record the MUAC to the nearest 1 mm (0.1 cm)."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [],
+      "recommended_tests": [],
+      "suspected_conditions": [],
+      "home_care_instructions": [],
+      "return_to_clinic_warning_signs": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_fluorescein_staining_01",
+      "primary_topic": "Fluorescein Staining of the Cornea",
+      "equipment_needed": [
+        "Fluorescein-impregnated strip",
+        "Saline or artificial tears",
+        "Ophthalmoscope with a blue filter or strong white light"
+      ],
+      "step_by_step_guide": [
+        "Moisten a fluorescein-impregnated strip with a drop of saline or artificial tears.",
+        "Touch the strip to the inside of the lower lid.",
+        "Illuminate the cornea with an ophthalmoscope with a blue filter if available (if not available, a strong white light may also reveal defects).",
+        "Look for epithelial defects that stain bright green."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_fundoscopy_01",
+      "primary_topic": "Fundoscopy (Examination of the posterior segment of the eye)",
+      "equipment_needed": [
+        "Direct ophthalmoscope"
+      ],
+      "step_by_step_guide": [
+        "Perform the examination in a suitably darkened room.",
+        "The patient's right eye should be examined with the examiner's right eye, and vice versa.",
+        "Ask the patient to focus on an object in the distance, and keep the examiner's head vertical to permit this.",
+        "Turn to the +10DS lens in the lens wheel and observe the eye from 10 cm.",
+        "Slowly move closer to the patient and at the same time gradually reduce the power of the lens in the wheel and focus on the crystalline lens, the vitreous, and finally the fundus.",
+        "Once a blood vessel on the fundus has been located, move along it and locate the optic disc. Consider its colour, its margins, and the cup if there is one.",
+        "Examine the retinal background in each quadrant.",
+        "To examine the macula and the fovea, instruct the patient to look into the ophthalmoscope light."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_paraphimosis_reduction_01",
+      "primary_topic": "Reduction of Acute Paraphimosis",
+      "equipment_needed": [
+        "Gauze"
+      ],
+      "step_by_step_guide": [
+        "Treat promptly as it can lead to serious complication, such as skin loss, infection, and in extreme cases loss of the penis.",
+        "Reduce oedema by wrapping the swollen area in gauze and applying increasing pressure on the gauze to squeeze the tissue fluid out. This may take 10-15 minutes.",
+        "Once fluid is out, it is usually possible to replace the foreskin over the glans.",
+        "If the above is unsuccessful, surgical intervention is indicated (dorsal slit or circumcision)."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Skin loss",
+        "Infection",
+        "Loss of the penis",
+        "If ischaemia of the glans is present, proceed to surgical interventions or involve an urologist for urgent management."
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_workplace_hiv_exposure_01",
+      "primary_topic": "First Aid for Workplace HIV Exposure",
+      "equipment_needed": [
+        "Soap and water",
+        "Mild disinfectant solution (e.g. chlorhexidine)",
+        "Normal saline or water"
+      ],
+      "step_by_step_guide": [
+        "For a needle-stick or laceration: Attend to the injury immediately. Wash site immediately using soap and water or a mild disinfectant solution.",
+        "If running water is not available, clean site with a gel or hand-rub solution.",
+        "For a splash that contacts unbroken skin: Wash the area immediately.",
+        "For a splash that contacts the eye: Sit in a chair, tilt the head back, and have a colleague gently pour water or NS over the eye, pulling eyelids up and down to make sure the eye is cleaned thoroughly.",
+        "If contact lenses are worn, leave them in place while irrigating the eye. Once the eye has been cleaned, remove the contact lenses and clean them in the normal manner.",
+        "For a splash that contacts the mouth: Spit the fluid out immediately. Rinse the mouth thoroughly, using water or saline, and spit again. Repeat this process several times.",
+        "Contact the health centre contact person designated for workplace HIV exposure to determine if PEP is needed."
+      ],
+      "contraindications": [
+        "Do not squeeze the injury site.",
+        "Do not use any strong solutions, such as bleach or iodine, as these may irritate the wound or skin.",
+        "Do not use soap or disinfectant on the eye or in the mouth."
+      ],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_morphine_iv_infusion_01",
+      "primary_topic": "Morphine IV Infusion for Refractory Severe Acute Pain",
+      "equipment_needed": [
+        "IV line with a metal gate-clamp",
+        "Morphine",
+        "Naloxone"
+      ],
+      "step_by_step_guide": [
+        "Ensure a strictly controlled rate, using a metal gate-clamp in the IV rather than a roller device (which can become loose), and monitor closely.",
+        "Give a bolus dose of 2 mg initially.",
+        "Follow with a continuous infusion at 1 mg/hour.",
+        "Titrate the infusion hourly as needed for pain control, usually between 5-35 mg/hour.",
+        "Slow the infusion if the patient begins to show signs of somnolence.",
+        "Stop the infusion if there is respiratory depression (RR <16) or hypotension (SBP <90).",
+        "If systolic BP <90 or falls more than 20 mm Hg, SpO2 <90, or respiratory rate <10/minute, determine if patient needs more fluids and give naloxone."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Somnolence",
+        "Respiratory depression",
+        "Hypotension",
+        "Opioid overdose"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_hyperthermia_cooling_01",
+      "primary_topic": "Rapid Cooling for Hyperthermia (>40.5 C)",
+      "step_by_step_guide": [
+        "Assess volume status and hydrate appropriately.",
+        "Perform rapid cooling by spraying naked patient with a mist of lukewarm water while a fan or cool breeze is used to blow air over the moist skin (evaporative cooling).",
+        "Give IV diazepam (5 mg IV) to suppress shivering induced by cooling.",
+        "Give an antipyretic for infectious causes.",
+        "Continuously monitor core temperature with a rectal probe to monitor for response to cooling therapy. If a rectal probe is unavailable, frequently monitor oral temperature.",
+        "Stop cooling therapy once the temperature is 38 to 39 C to avoid excessively low body temperatures."
+      ],
+      "contraindications": [
+        "Do not use antipyretic agents for heat stroke, intracranial injury, or drug-induced hyperthermia."
+      ],
+      "side_effects_or_warnings": [
+        "Shivering induced by cooling",
+        "Excessively low body temperatures if cooling is not stopped in time",
+        "Hypotension",
+        "Seizures",
+        "Disseminated intravascular coagulation",
+        "Hypoglycaemia"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_rabies_wound_care_01",
+      "primary_topic": "Rabies Post-Exposure Wound Care",
+      "equipment_needed": [
+        "Alkaline soap and water",
+        "Povidone-iodine or benzalkonium chloride 1-4%"
+      ],
+      "step_by_step_guide": [
+        "Immediately scrub with alkaline soap and water, and flush with water for 15 minutes.",
+        "Apply povidone-iodine or benzalkonium chloride 1-4% on the wound, if available.",
+        "Categorize the type of contact with the rabid animal (Category I, II, or III) to determine post-exposure vaccination and immunoglobulin needs."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_paracentesis_ascites_01",
+      "primary_topic": "Therapeutic Paracentesis in Portal Hypertension",
+      "step_by_step_guide": [
+        "Verify if the patient has ascites WITH or WITHOUT peripheral oedema.",
+        "For patients WITH peripheral oedema, mobilize a high fluid volume (2 litres/day) by paracentesis without developing intravascular depletion and azotaemia.",
+        "For patients WITHOUT peripheral oedema, restrict fluid removal to a rate that does not exceed 500 ml/day.",
+        "For patients with diuretic-resistant ascites, perform serial large volume therapeutic paracenteses, not exceeding 4-5 litres.",
+        "In exceptional cases where massive ascites cause severe shortness of breath, a large volume (4-5 litres) therapeutic paracentesis may be done for control of symptoms."
+      ],
+      "contraindications": [
+        "Do not exceed a rate of fluid removal of 500 ml/day in patients with ascites but without oedema."
+      ],
+      "side_effects_or_warnings": [
+        "Hypovolaemia",
+        "Acute renal failure",
+        "Intravascular volume depletion",
+        "Azotaemia"
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_nerve_blocks_01",
+      "primary_topic": "Nerve Blocks for Specific Severe Pains",
+      "equipment_needed": [
+        "Anaesthetic"
+      ],
+      "step_by_step_guide": [
+        "Inject anaesthetic around a nerve to alleviate pain in the distribution of that nerve.",
+        "For shoulder surgeries and procedures: Use a brachial plexus - interscalene block.",
+        "For procedures below the knee: Use a sciatic nerve block.",
+        "For femoral shaft fractures and knee procedures: Use a femoral nerve block.",
+        "For refractory neuropathic pain resulting from herpes zoster: Treat with a block of the relevant thoracic (or other affected) nerve."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Nerve blocks can be technically difficult procedures that should be done by experienced clinicians."
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_uterine_evacuation_septic_abortion_01",
+      "primary_topic": "Evacuation of the Uterus for Septic Abortion",
+      "equipment_needed": [
+        "Vacuum aspirator",
+        "Foley catheter with a 50 ml balloon (if standard means unavailable)",
+        "Orthopaedic weight (1 kg)"
+      ],
+      "step_by_step_guide": [
+        "Stabilize the patient and start antibiotics prior to the procedure.",
+        "Perform prompt evacuation of the uterus using vacuum aspiration (recommended for up to 12-14 weeks) under local anaesthesia with minimal sedation.",
+        "Vacuum aspiration should not be routinely completed by sharp curettage.",
+        "If gestational age is after 12-14 weeks, refer to an experienced provider for dilatation and evacuation. If unavailable, use misoprostol.",
+        "If none of these means are available, place a Foley catheter with a 50 ml balloon attached in the lower uterus.",
+        "Apply one kilogram of traction from an orthopaedic weight at the foot of the bed to the catheter, which dilates the cervix and stimulates contractions."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": [
+        "Uterine perforation",
+        "Injury to the bowel",
+        "Pelvic abscess formation",
+        "Uncontrolled infection (ongoing sepsis, severe infection with gas-producing clostridium species) which may require a total hysterectomy."
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_pressure_bandage_venous_ulcers_01",
+      "primary_topic": "Applying a Pressure Bandage for Venous Ulcers",
+      "equipment_needed": [
+        "Elastocrepe bandage"
+      ],
+      "step_by_step_guide": [
+        "Elevate the legs as often as possible to promote venous return.",
+        "Apply an elastocrepe bandage starting from the ankle to the knee.",
+        "Apply higher compression to the foot.",
+        "Decrease compression as the bandage approaches the knee."
+      ],
+      "contraindications": [],
+      "side_effects_or_warnings": []
+    }
+  ]
+}

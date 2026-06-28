@@ -1,0 +1,292 @@
+{
+  "medical_records": [
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_cellulitis_erysipelas_01",
+      "primary_topic": "Skin and Soft Tissue Infections",
+      "clinical_signs": [
+        "Fever and systemically ill",
+        "Ill-defined diffuse swelling of the skin and subcutaneous tissues",
+        "Redness, tenderness, and warmth",
+        "May ooze serous fluid",
+        "Spreads to involve significant body surface area (Cellulitis)",
+        "Well-defined, raised margin, more superficial (Erysipelas)",
+        "Intense pain out of proportion to visible skin lesions, blistering, greyish necrotic tissue (Necrotizing fasciitis)"
+      ],
+      "suspected_conditions": [
+        "Cellulitis",
+        "Erysipelas",
+        "Necrotizing fasciitis",
+        "Deep vein thrombosis",
+        "Gout"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_soft_tissue_infection_01",
+      "primary_topic": "Management of Skin and Soft Tissue Infections",
+      "step_by_step_guide": [
+        "Assess for signs of severity or risk factors (severe disease, immunosuppression, very young/old age, lack of response to incision/drainage).",
+        "If abscess is present, incision and drainage is the mainstay of treatment.",
+        "In the absence of severe signs and risk factors, prescribe oral cloxacillin 500 mg 4 times daily for 7-10 days.",
+        "If the patient is allergic to penicillin or MRSA is highly suspected, use cotrimoxazole 1-2 DS tablets twice daily, doxycycline 100 mg twice daily, or clindamycin 300-450 mg 3 times daily.",
+        "Give parenteral therapy such as IV ceftriaxone or cloxacillin + clindamycin if systemic illness or severe signs are present. Switch to oral options after significant improvement.",
+        "If necrotizing fasciitis is suspected, urgent surgical intervention with debridement is mandatory."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_pneumonia_01",
+      "primary_topic": "Pneumonia",
+      "clinical_signs": [
+        "Shortness of breath mild to severe",
+        "Productive cough (bacterial) or non-productive cough (non-bacterial)",
+        "Acute onset from hours to a few days",
+        "Focal chest pain with deep breaths or coughing",
+        "Fever and chills",
+        "Fast breathing (>30 breaths/min)",
+        "Focal signs such as bronchial breath sounds, crackles, or rales on auscultation",
+        "Dullness to percussion and decreased breath sounds if pleural effusion present"
+      ],
+      "suspected_conditions": [
+        "Bacterial pneumonia",
+        "Viral pneumonia (e.g. Influenza)",
+        "Pneumocystis jirovecii pneumonia (PCP)",
+        "Pulmonary tuberculosis",
+        "Asthma exacerbation"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Respiratory rate >30 breaths/minute",
+        "High fever or lethargy",
+        "Inability to walk unaided",
+        "Severe chest pain",
+        "Cyanosis"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_pneumonia_01",
+      "primary_topic": "Pneumonia Management",
+      "step_by_step_guide": [
+        "Evaluate severity using clinical signs or CURB-65 criteria to determine the need for hospitalization.",
+        "For non-severe pneumonia managed as an outpatient, prescribe empirical antibiotics: amoxicillin 500-1000 mg 3 times daily, OR erythromycin 500 mg 4 times daily, OR doxycycline 100 mg 2 times daily for 5-7 days.",
+        "Advise the patient to return for evaluation if there is no improvement or a worsening of symptoms.",
+        "If not improving after 3 days and adherent to oral regimen, consider switching to an IV regimen (e.g. ceftriaxone 1-2 g once daily PLUS erythromycin).",
+        "Consider other infections, including TB and, if HIV-positive, consider PCP.",
+        "For severe pneumonia, admit to hospital, provide oxygen, and administer parenteral antibiotics immediately."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_tetanus_01",
+      "primary_topic": "Tetanus",
+      "clinical_signs": [
+        "Recent open wound",
+        "Irritability",
+        "Increased tone in muscles, often starting in the jaw (lockjaw)",
+        "Difficulty swallowing, stiffness and pain in the neck, shoulder, back, or abdominal muscles",
+        "Painful muscle spasms or arched back (opisthotonus)",
+        "Brisk reflexes",
+        "Autonomic dysfunction: hypertension, tachycardia, high temperature, sweating",
+        "Alert mental state (normal level of consciousness)"
+      ],
+      "suspected_conditions": [
+        "Generalized tetanus",
+        "Local tetanus",
+        "Cephalic tetanus"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_tetanus_01",
+      "primary_topic": "Tetanus Management",
+      "step_by_step_guide": [
+        "Administer antibiotics to reduce bacteria and stop toxin production: metronidazole 500 mg 4 times daily OR benzylpenicillin 2-4 million units every 6 hours for 10 days.",
+        "Give human tetanus immunoglobulin (TIG) 500 units IM to bind circulating toxin.",
+        "Manage muscle spasms with diazepam titrated to control spasms (up to 500 mg per day), OR phenobarbital up to 1000-1500 mg, OR chlorpromazine.",
+        "For severe autonomic dysfunction, try labetalol, clonidine, or magnesium sulfate.",
+        "Provide intensive care with ventilatory support as respiratory failure can occur during severe spasms.",
+        "Administer tetanus toxoid vaccine for prevention and ensure appropriate wound care."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_red_eye_01",
+      "primary_topic": "Red Eye",
+      "clinical_signs": [
+        "Painless red eye with mucopurulent discharge and matting of eyelids (Bacterial conjunctivitis)",
+        "Watery, itchy, bilateral discharge with chemosis (Allergic conjunctivitis)",
+        "Painful red eye with sudden loss of vision, severe headache, halos around light, mid-dilated non-reactive pupil, and very high intraocular pressure (Acute angle-closure glaucoma)",
+        "Severe eye pain, decreased visual acuity, haziness or opacification of the cornea with fluorescein uptake, hypopyon (Corneal ulcer or keratitis)",
+        "Unilateral painful red eye, blurred vision, photophobia, ciliary injection (Acute anterior uveitis)"
+      ],
+      "suspected_conditions": [
+        "Acute viral conjunctivitis",
+        "Bacterial conjunctivitis",
+        "Allergic conjunctivitis",
+        "Acute angle-closure glaucoma",
+        "Corneal ulcer (infective keratitis)",
+        "Uveitis"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Sudden loss of vision",
+        "Severe eye pain",
+        "Eye feels stony hard"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_acute_glaucoma_01",
+      "primary_topic": "Acute Angle-Closure Glaucoma Management",
+      "step_by_step_guide": [
+        "Recognize the condition as an emergency to prevent irreversible visual loss and refer urgently to a specialist facility.",
+        "Start pilocarpine 1 drop (2% solution) every 10 minutes for 30-60 minutes.",
+        "Then administer 1 drop every 1-3 hours until intraocular pressure subsides, then 1 drop 4 times daily.",
+        "Administer acetazolamide 250 mg orally stat (or IV if the patient is vomiting).",
+        "Continue oral acetazolamide 500-750 mg per day until specialist evaluation."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_viral_hepatitis_01",
+      "primary_topic": "Acute Viral Hepatitis",
+      "clinical_signs": [
+        "Nausea, anorexia, vomiting, fatigue, malaise, headaches, muscle aches",
+        "Mild fever",
+        "Clinical jaundice developing 1-2 weeks later (yellow skin and eyes, dark urine)",
+        "Enlarged, tender liver with right upper quadrant pain",
+        "AST and ALT elevated (at least 3 times higher than normal)",
+        "Elevated bilirubin levels",
+        "Low WBC at first, followed by an increase in lymphocytes"
+      ],
+      "suspected_conditions": [
+        "Hepatitis A",
+        "Hepatitis B",
+        "Hepatitis C",
+        "Hepatitis E",
+        "Drug-induced liver injury",
+        "Alcoholic liver disease"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_viral_hepatitis_01",
+      "primary_topic": "Viral Hepatitis Management",
+      "step_by_step_guide": [
+        "For acute hepatitis A, B, or C, provide supportive care including fluid management.",
+        "Treat encephalopathy and coagulopathy if severe acute illness is present.",
+        "Avoid prescribing hepatotoxic drugs (e.g., specific ARVs or TB medications) during acute liver injury.",
+        "For chronic active hepatitis B (especially in HIV coinfection), initiate ART using tenofovir plus lamivudine (or emtricitabine) to avoid HBV resistance.",
+        "Monitor for hepatic flares, especially during the first weeks of treatment or if treatment is interrupted.",
+        "Provide hepatitis A and B vaccination for primary prevention in at-risk groups."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_sickle_cell_disease_01",
+      "primary_topic": "Sickle-Cell Disease",
+      "clinical_signs": [
+        "Signs and symptoms of anaemia (pallor, shortness of breath on exertion, fatigue, dizziness)",
+        "Jaundice",
+        "Discoloured urine",
+        "Acute bone pain and joint swelling (vaso-occlusive crisis)",
+        "Family history",
+        "Lower leg ulcers",
+        "Skeletal deformities",
+        "Haemoglobin usually 5-11 g/dl with sickle cells and target cells on blood film"
+      ],
+      "suspected_conditions": [
+        "Sickle-cell disease",
+        "Thalassaemia",
+        "Haemolytic anaemia",
+        "Severe malaria"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_sickle_cell_01",
+      "primary_topic": "Sickle-Cell Disease Management",
+      "step_by_step_guide": [
+        "Prevent sickle crisis by avoiding precipitating factors including dehydration, hypoxaemia, infection, cold, and slowed circulation.",
+        "Give long-term prophylaxis with folic acid 1 mg daily orally.",
+        "Vaccinate with pneumococcal polysaccharide vaccine and hepatitis B.",
+        "Recognize and treat malaria promptly.",
+        "For acute crisis: Rehydrate with oral fluids and IV normal saline if necessary.",
+        "Give oxygen if SpO2 is low.",
+        "Give effective pain relief using strong analgesics, including opiates (e.g. morphine).",
+        "Give blood transfusion for crises and severe acute anaemia (Hb <5 g/dl or >2 g/dl below baseline), aiming for a haemoglobin level of 7-8 g/dl only."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_septic_arthritis_01",
+      "primary_topic": "Septic Arthritis",
+      "clinical_signs": [
+        "Acute onset",
+        "Large joint involvement (knee most common, hip, shoulder, wrist, ankle)",
+        "Systemically ill with fever",
+        "Hot, tender, swollen joint with decreased mobility",
+        "High WBC and ESR",
+        "Joint fluid WBC >50,000 (>90% neutrophils), purulent or turbid",
+        "History of diabetes, IV drug use, or sickle-cell disease"
+      ],
+      "suspected_conditions": [
+        "Septic arthritis (Staphylococcus aureus or streptococcal)",
+        "Gonococcal arthritis",
+        "Gout",
+        "Pseudo-gout",
+        "Rheumatoid arthritis"
+      ],
+      "return_to_clinic_warning_signs": [
+        "High fever",
+        "Severe joint pain out of proportion to injury",
+        "Inability to bear weight"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_septic_arthritis_01",
+      "primary_topic": "Septic Arthritis Management",
+      "step_by_step_guide": [
+        "Provide adequate pain control.",
+        "Give IV antibiotics for 2-4 weeks, depending on clinical response and host factors.",
+        "Start ceftriaxone 1-2 g once daily.",
+        "If Gram-positive cocci are seen or S. aureus grows, switch to cloxacillin 2 g every 6 hours.",
+        "If MRSA is prevalent, administer vancomycin 15 mg/kg every 12 hours or cotrimoxazole.",
+        "Perform joint aspiration and washout to dryness to remove purulent fluid."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_strep_pharyngitis_01",
+      "primary_topic": "Acute Streptococcal Pharyngitis",
+      "clinical_signs": [
+        "High fever",
+        "Very inflamed throat with many exudates",
+        "Large, tender cervical lymph nodes",
+        "Absence of cough",
+        "Pain on swallowing",
+        "Other features of common cold (runny nose, sneezing) are usually absent"
+      ],
+      "suspected_conditions": [
+        "Acute streptococcal pharyngitis",
+        "Viral pharyngitis",
+        "Infectious mononucleosis (EBV)",
+        "Peritonsillar abscess"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_strep_pharyngitis_01",
+      "primary_topic": "Acute Streptococcal Pharyngitis Management",
+      "step_by_step_guide": [
+        "Assess clinical score (points for absence of cough, tender nodes, fever >38 C, tonsillar exudate, age <15) to justify empirical antibiotics.",
+        "Use rapid antigen detection test or culture if available to confirm.",
+        "Prescribe antibiotics to reduce the risk of rheumatic fever: benzathine benzylpenicillin G 1.2 million units IM single dose.",
+        "Alternatively, give phenoxymethyl penicillin 500 mg orally twice daily for 10 days.",
+        "If allergic to penicillin, give erythromycin 250 mg 4 times daily for 10 days.",
+        "Provide supportive management with fever reducing agents (e.g. paracetamol)."
+      ]
+    }
+  ]
+}

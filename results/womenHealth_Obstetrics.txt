@@ -1,0 +1,209 @@
+{
+  "medical_records": [
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_vaginal_bleeding_pregnant_01",
+      "primary_topic": "Abnormal Vaginal Bleeding or Pelvic Pain (Positive Pregnancy Test)",
+      "clinical_signs": [
+        "Missed period and abnormal bleeding or spotting",
+        "Unilateral or generalized abdominal pain with rebound tenderness",
+        "Palpable adnexal mass",
+        "Uterus normal size or slightly enlarged, cervix closed",
+        "History of recent spontaneous or induced termination of pregnancy or recent delivery",
+        "Fever",
+        "Elevated WBC",
+        "Uterine tenderness, possible foul odour, or purulent discharge",
+        "Abdominal distension and abnormal uterine contour",
+        "Palpable fetal parts",
+        "Shock, rapid pulse, or hypotension"
+      ],
+      "suspected_conditions": [
+        "Ectopic pregnancy",
+        "Septic abortion or postpartum sepsis",
+        "Spontaneous miscarriage or abortion",
+        "Ruptured uterus",
+        "Placenta previa"
+      ],
+      "return_to_clinic_warning_signs": [
+        "Signs of shock",
+        "Excessive bleeding",
+        "Severe abdominal pain"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_septic_abortion_01",
+      "primary_topic": "Septic Abortion Management",
+      "step_by_step_guide": [
+        "Stabilize the patient prior to the procedure. Start IV antibiotics prior to procedure.",
+        "Treat with benzyl penicillin 5 million units IV every 6 hours OR ampicillin 2-3 g IV every 6 hours, combined with gentamicin 4-6 mg/kg IV daily and clindamycin 900 mg IV every 8 hours.",
+        "If clindamycin is not available, use metronidazole 500 mg IV every 8 hours. If gentamicin is contraindicated, use ceftriaxone 1 gram IV daily.",
+        "Perform prompt evacuation of the uterus. Vacuum aspiration is the recommended technique for surgical abortion up to 12-14 weeks.",
+        "After 12-14 weeks, refer to an experienced provider for dilatation and evacuation. If not available, use misoprostol (400 mcg sublingually or 600 mcg orally).",
+        "Change to oral antibiotics for discharge: doxycycline 100 mg orally every 12 hours plus amoxicillin-clavulanic acid 500 + 125 mg orally every 12 hours for a total of 14 days of treatment.",
+        "Review outpatient cases after 48 hours of treatment and hospitalize if fever and pain persist."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_vaginal_bleeding_nonpregnant_01",
+      "primary_topic": "Abnormal Vaginal Bleeding or Pelvic Pain (Negative Pregnancy Test)",
+      "clinical_signs": [
+        "Unilateral tenderness, possible palpable adnexal mass",
+        "Sudden onset pain often preceded by strenuous activity or sex",
+        "Clinical presentation similar to bacterial PID but with past history of or contact with TB",
+        "Ascites with abdominal distension and fluid thrill",
+        "Enlarged, irregular uterus, usually firm",
+        "Frequent history of abnormal foul-smelling discharge",
+        "Cervical mass or ulcer",
+        "Postmenopausal spotting or light bleeding"
+      ],
+      "suspected_conditions": [
+        "Ovarian torsion",
+        "Ruptured ovarian cyst",
+        "Tuberculosis",
+        "Uterine fibroids",
+        "Cervical cancer",
+        "Uterine cancer",
+        "Endometriosis"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_pelvic_mass_01",
+      "primary_topic": "Pelvic Mass",
+      "clinical_signs": [
+        "Adnexal mass (tender, cystic, solid, or mixed)",
+        "Missed menstrual period and abnormal bleeding",
+        "Fever, generalized and rebound tenderness",
+        "Heavy or prolonged menses, urinary frequency",
+        "Enlarged, irregular uterus",
+        "Loss of weight, presence of ascites",
+        "Mass with solid consistency, irregular, and fixed (suggests cancer)"
+      ],
+      "suspected_conditions": [
+        "Ectopic pregnancy",
+        "Tubo-ovarian abscess or pyosalpinx",
+        "Hydrosalpinx",
+        "Fibroids",
+        "Endometrioma or endometrial cyst",
+        "Benign or malignant ovarian tumour"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_pid_01",
+      "primary_topic": "Pelvic Inflammatory Disease (PID)",
+      "step_by_step_guide": [
+        "Maintain a high index of suspicion in women with lower abdominal pain and uterine, adnexal, or cervical motion tenderness.",
+        "Perform a pregnancy test to rule out ectopic pregnancy.",
+        "Administer Ceftriaxone 250 mg IM single dose (or Ciprofloxacin 500 mg orally single dose, if sensitivities support it).",
+        "Add Doxycycline 100 mg orally twice daily for 14 days (or Tetracycline).",
+        "Add Metronidazole 400-500 mg orally twice daily for 14 days.",
+        "Advise the patient and her partner(s) to abstain from sexual intercourse until the treatment has been completed.",
+        "Offer counseling and testing for HIV, and test for syphilis.",
+        "Evaluate and treat partner(s) presumptively for gonorrhoea and Chlamydia.",
+        "Follow up outpatients no later than 72 hours (24 hours if fever is present) and admit to the hospital if the condition fails to improve."
+      ]
+    },
+    {
+      "record_type": "procedure",
+      "id": "proc_via_cryotherapy_01",
+      "primary_topic": "Cervical Cancer Screening (VIA) and Cryotherapy",
+      "step_by_step_guide": [
+        "Wash the cervix with a diluted solution (3-5%) of acetic acid.",
+        "View the cervix with the naked eye to look for abnormalities (pre-cancerous or cancerous lesions turn white).",
+        "If VIA is positive, assess eligibility for cryotherapy: lesion must be covered by cryoprobe with no more than 2 mm beyond its edges, fully visible with no extension into endocervix or vagina.",
+        "Exclude cryotherapy if there is suspicion of invasive cancer, glandular dysplasia, pregnancy, untreated PID, or menses.",
+        "Perform cryotherapy (takes approximately 15 minutes for double-freeze method).",
+        "Advise the patient that abstinence is advisable for 4 weeks after the procedure until complete healing has occurred. Provide condoms if abstinence is not possible.",
+        "Schedule follow-up within 6 weeks to ensure good healing.",
+        "If VIA is positive and the lesion is not suitable for cryotherapy, refer for colposcopy or LEEP/conization."
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_pmtct_option_a_01",
+      "primary_topic": "PMTCT: Maternal AZT + Infant ARV Prophylaxis (Option A)",
+      "step_by_step_guide": [
+        "Assess mother for ART eligibility. If not eligible for lifelong ART, start maternal AZT 300 mg twice daily from as early as 14 weeks of gestation.",
+        "At onset of labour, provide single-dose NVP (sd-NVP) 200 mg + AZT 300 mg twice daily + 3TC 150 mg twice daily.",
+        "Continue maternal AZT 300 mg twice daily + 3TC 150 mg twice daily for 7 days postpartum.",
+        "(If maternal AZT was provided for more than 4 weeks during pregnancy, omission of the sd-NVP and AZT+3TC tail can be considered; continue maternal AZT during labour until delivery).",
+        "For breastfeeding infants: Give daily NVP from birth (within 6-12 hours) until 1 week after all exposure to breast milk has ended.",
+        "For infants receiving replacement feeding only: Give daily NVP or sd-NVP + twice daily AZT from birth until 4-6 weeks of age."
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_pmtct_option_b_01",
+      "primary_topic": "PMTCT: Maternal Triple ARV Prophylaxis (Option B)",
+      "step_by_step_guide": [
+        "Assess mother for ART eligibility. If not eligible for lifelong ART, initiate maternal triple ARV prophylaxis from as early as 14 weeks gestation.",
+        "Select an appropriate triple ARV regimen (e.g., AZT+3TC+LPV/r, AZT+3TC+ABC, AZT+3TC+EFV, or TDF+3TC+EFV). Avoid EFV during the first trimester.",
+        "Continue the maternal triple ARV prophylaxis until delivery, or if breastfeeding, continue until 1 week after all infant exposure to breast milk has ended.",
+        "For all infants (breastfeeding or replacement feeding): Give daily NVP or twice daily AZT from birth until 4-6 weeks of age."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_nvp_infant_01",
+      "primary_topic": "Nevirapine (NVP) Liquid Formulation 10 mg/ml (Infant Prophylaxis)",
+      "pediatric_dosing": "Birth to 6 weeks: Birth weight 2000-2500 g: 10 mg (1 ml) once daily. Birth weight >2500 g: 15 mg (1.5 ml) once daily. >6 weeks to 6 months: 20 mg (2 ml) once daily. >6 months to 9 months: 30 mg (3 ml) once daily. >9 months to 1 week after end of breastfeeding: 40 mg (4 ml) once daily.",
+      "side_effects_or_warnings": [
+        "Low birth weight infants should receive NVP 2 mg/kg once daily as a starting dose.",
+        "A bottle of liquid should be used within 6 months of opening."
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_azt_infant_01",
+      "primary_topic": "Zidovudine (AZT) Liquid Formulation 10 mg/ml (Infant Prophylaxis)",
+      "pediatric_dosing": "Birth to 6 weeks: Birth weight 2000-2500 g: 10 mg (1 ml) twice daily. Birth weight >2500 g: 15 mg (1.5 ml) twice daily.",
+      "side_effects_or_warnings": [
+        "Low birth weight infants should receive mg/kg dosing.",
+        "Stable at room temperature, but needs storage in a glass jar and is light sensitive."
+      ]
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_nausea_pregnancy_01",
+      "primary_topic": "Nausea and Vomiting in Pregnancy",
+      "home_care_instructions": [
+        "Eat smaller portions of food more frequently.",
+        "Drink lots of fluids.",
+        "Eat bland and low fat food, as fatty foods may delay gastric emptying.",
+        "Serve cold food if the smell of hot food is noxious.",
+        "Use ginger drinks and pyridoxine (vitamin B6) to help reduce nausea.",
+        "Continue taking ARV drugs, and repeat the dose if you vomit whole tablets."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Unable to tolerate oral fluids",
+        "Severe dehydration"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_urinary_incontinence_01",
+      "primary_topic": "Urinary Incontinence in Women",
+      "clinical_signs": [
+        "Total incontinence (continuous leakage)",
+        "Dysuria, frequency, urgency, haematuria",
+        "Leakage associated with cough, sneeze, laugh",
+        "Frequent bladder emptying or urgency",
+        "Bladder never feels empty, post-void dribbling",
+        "Frequent urination with large amounts of urine (polyuria)",
+        "Complaints of vaginal dryness"
+      ],
+      "suspected_conditions": [
+        "Fistula",
+        "Urinary tract infection",
+        "Stress urinary incontinence",
+        "Overactive bladder",
+        "Overflow incontinence",
+        "Atrophic urethritis/vaginitis",
+        "Pharmacologic agents (diuretics, sedatives, alcohol, anticholinergics)"
+      ]
+    }
+  ]
+}
