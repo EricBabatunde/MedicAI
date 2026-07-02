@@ -1,0 +1,340 @@
+{
+  "medical_records": [
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_asthma_01",
+      "primary_topic": "Asthma",
+      "clinical_signs": [
+        "Shortness of breath (mild to severe)",
+        "History of previous wheezing episodes associated with chest tightness",
+        "Identifiable triggers (upper respiratory infection, allergen exposure, exercise, cold air, extreme emotion)",
+        "Breathing or cough commonly worse at night",
+        "Non-productive cough",
+        "Wheezing or prolonged expiration",
+        "Absent breath sounds and use of neck muscles in severe attacks"
+      ],
+      "suspected_conditions": [
+        "Asthma",
+        "COPD",
+        "Heart failure",
+        "Pneumothorax",
+        "Pneumonia"
+      ],
+      "triage_level": "YELLOW"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_asthma_01",
+      "primary_topic": "Asthma Management",
+      "step_by_step_guide": [
+        "Classify asthma severity based on frequency of symptoms and peak flow or FEV1 (Intermittent, Mild persistent, Moderate persistent, Severe persistent).",
+        "For intermittent asthma, prescribe inhaled salbutamol as needed.",
+        "For mild persistent asthma, prescribe inhaled salbutamol as needed and add low-dose inhaled corticosteroids (e.g., Beclometasone 100-250 mcg twice daily).",
+        "For moderate persistent asthma, increase inhaled corticosteroids and consider adding a long-acting beta-agonist.",
+        "For severe persistent asthma, maximize inhaled therapies, consider oral prednisolone, and refer to specialist care.",
+        "Counsel patients to stop smoking and avoid known triggers."
+      ],
+      "suspected_conditions": [
+        "Asthma"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_copd_01",
+      "primary_topic": "Chronic Obstructive Pulmonary Disease (COPD)",
+      "clinical_signs": [
+        "Symptoms of chronic cough and progressive shortness of breath",
+        "Sputum production",
+        "History of tobacco smoking, occupational exposures, or exposure to biomass fuel smoke",
+        "Fast respiratory rate and reduced breath sounds throughout all lung fields",
+        "Prolonged expiratory phase and wheezing",
+        "Use of accessory muscles to breathe (advanced stages)",
+        "Clinical signs of right heart failure such as engorged jugular veins and bilateral leg oedema"
+      ],
+      "suspected_conditions": [
+        "Chronic Obstructive Pulmonary Disease (COPD)",
+        "Asthma",
+        "Heart failure",
+        "Lung malignancy",
+        "Tuberculosis"
+      ],
+      "triage_level": "YELLOW"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_copd_01",
+      "primary_topic": "Chronic Obstructive Pulmonary Disease (COPD) Management",
+      "step_by_step_guide": [
+        "Classify COPD severity based on FEV1 (% predicted) and symptoms (Mild, Moderate, Severe, Very severe).",
+        "Counsel all patients to stop smoking and avoid indoor air pollution.",
+        "Administer pneumococcal and annual influenza vaccinations.",
+        "For mild COPD, prescribe short-acting bronchodilator (salbutamol or ipratropium) as needed.",
+        "For moderate COPD, use short-acting bronchodilator as needed plus long-acting beta-agonist (LABA) or long-acting muscarinic antagonist (LAMA).",
+        "For severe COPD, add inhaled corticosteroids (beclometasone) to the LABA/LAMA regimen.",
+        "Refer for specialist care for severe or very severe COPD to consider long-term home oxygen therapy."
+      ],
+      "suspected_conditions": [
+        "COPD"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_ckd_01",
+      "primary_topic": "Chronic Kidney Disease (CKD)",
+      "clinical_signs": [
+        "Hypertension",
+        "Oedema (facial, upper extremity, or generalized anasarca)",
+        "Shortness of breath or pulmonary oedema",
+        "Nausea, vomiting, decreased appetite, or weight loss",
+        "Weakness due to anaemia",
+        "Signs of uraemia: pericarditis, altered consciousness, neuropathy, bleeding, uraemic frost, uraemic foetor, uraemic flap",
+        "Oliguria (less than 400 ml urine output in 24 hours)"
+      ],
+      "suspected_conditions": [
+        "Diabetic nephropathy",
+        "Hypertensive nephropathy",
+        "HIV-associated nephropathy (HIVAN)",
+        "Glomerulonephritis",
+        "Obstructive nephropathy",
+        "Polycystic kidney disease"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_ckd_01",
+      "primary_topic": "Chronic Kidney Disease (CKD) Management",
+      "step_by_step_guide": [
+        "Estimate the patient's Glomerular Filtration Rate (GFR) using the Cockcroft-Gault formula to stage the CKD.",
+        "Look for and treat reversible causes such as infectious and autoimmune conditions, hypovolaemia, and urinary tract obstructions.",
+        "Stop the administration of potentially nephrotoxic drugs including NSAIDs, aminoglycoside antibiotics, and IV contrast media.",
+        "Reduce sodium intake to <2.4 g/day or <100 mmol/day.",
+        "Ensure careful blood sugar control; treat diabetics with ACE inhibitors to slow progression.",
+        "Maintain aggressive blood pressure control (lower than 130/80), preferring ACE inhibitors especially in patients with proteinuria.",
+        "Treat hyperlipidaemia with a statin.",
+        "Encourage smoking cessation.",
+        "Manage volume overload using furosemide, adjusting doses based on the degree of renal impairment.",
+        "Refer end-stage patients for peritoneal dialysis or haemodialysis to higher centres."
+      ],
+      "suspected_conditions": [
+        "Chronic Kidney Disease"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_dementia_01",
+      "primary_topic": "Dementia",
+      "clinical_signs": [
+        "Gradual onset over months to years",
+        "Deficits in intellectual domains in the absence of an alteration in consciousness",
+        "Forgetfulness and misplacing things",
+        "Difficulty in performing automatic tasks (e.g. daily routines)",
+        "Impaired speech or word-finding difficulty",
+        "Change in personality or behaviour",
+        "Unsteady gait, loss of balance, or impaired hand-eye coordination",
+        "Incontinence (in later stages)"
+      ],
+      "suspected_conditions": [
+        "Alzheimer disease",
+        "Vascular dementia (multi-infarct dementia)",
+        "HIV-associated dementia",
+        "Delirium (if acute fluctuations)",
+        "Depression (pseudodementia)"
+      ],
+      "triage_level": "GREEN"
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_dementia_01",
+      "primary_topic": "Dementia Management",
+      "step_by_step_guide": [
+        "Ensure the patient's safety with an appropriate environment and adequate level of supervision.",
+        "Ensure that the patient is taking medications as prescribed.",
+        "Protect wandering patients and supervise any cigarette smoking.",
+        "Implement strategies to prevent falls (e.g. reduce floor clutter, re-evaluate orthostatic medications, encourage tailored physical activity).",
+        "Apply principles of reality orientation, cognitive stimulation, and reminiscence therapy.",
+        "Maintain familiar objects and people, emphasize routines, and provide proper day/night lighting.",
+        "Provide a clock and calendar in the room to orient the patient.",
+        "Perform regular medical reviews at least every 3-6 months to assess underlying precipitants of behavioural symptoms.",
+        "Avoid unnecessary antipsychotics; if required for severe agitation or hallucinations, use the lowest possible dose of haloperidol (e.g. 0.5 mg) and titrate slowly.",
+        "Avoid benzodiazepines (like diazepam) as they increase confusion."
+      ],
+      "suspected_conditions": [
+        "Dementia"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_depression_01",
+      "primary_topic": "Sad or Low Mood including Depression",
+      "clinical_signs": [
+        "Sad or low mood persisting for at least 2 weeks",
+        "Fatigue, loss of energy, or tiredness",
+        "Loss of interest or pleasure in daily activities",
+        "Guilt or loss of self-confidence",
+        "Hopelessness and feelings of worthlessness",
+        "Suicidal thoughts, acts, or recurrent thoughts of death",
+        "Disturbed sleep (insomnia or hypersomnia)",
+        "Loss of libido",
+        "Disturbed appetite (weight loss or gain)",
+        "Unexplained somatic symptoms (aches, pains, tingling, shortness of breath, GI distress)"
+      ],
+      "suspected_conditions": [
+        "Major depressive episode",
+        "Dysthymia",
+        "Bipolar disorder (depressive phase)",
+        "Adjustment disorder",
+        "Uncomplicated bereavement",
+        "Depression secondary to medical conditions (e.g. hypothyroidism) or medications"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_depression_01",
+      "primary_topic": "Depression Management",
+      "step_by_step_guide": [
+        "Perform a comprehensive assessment including suicide risk; ensure patient safety.",
+        "Identify and manage any underlying medical conditions contributing to the mood state.",
+        "For mild depression, provide psychotherapy and counselling; do not offer antidepressants initially.",
+        "For moderate to severe depression, prescribe Fluoxetine or a tricyclic antidepressant (TCA) such as Amitriptyline.",
+        "Start antidepressants at a low dose and gradually increase; monitor closely for agitation and suicidal ideation, especially during the early phase of treatment.",
+        "Encourage physical activity and behavioural activation.",
+        "Provide psycho-education and support for the patient and their family.",
+        "Do not consider ending antidepressant treatment before 9-12 months after recovery; when terminating, taper the dose slowly to avoid withdrawal symptoms."
+      ],
+      "suspected_conditions": [
+        "Depression"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_fluoxetine_01",
+      "primary_topic": "Fluoxetine",
+      "adult_dosing": "Initiate treatment with 20 mg daily. May start at 10 mg daily (or 20 mg every other day) to reduce side-effects, then increase to 20 mg as tolerated. Max dose 60 mg daily.",
+      "side_effects_or_warnings": [
+        "Increased risk for agitation and suicidal ideation and behaviour",
+        "Severe insomnia",
+        "Can precipitate mania in patients with bipolar disorder"
+      ]
+    },
+    {
+      "record_type": "drug_formulary",
+      "id": "drug_amitriptyline_01",
+      "primary_topic": "Amitriptyline",
+      "adult_dosing": "Initiate treatment with 50 mg at bedtime (25 mg in elderly or medically ill). Increase by 25-50 mg every 1-2 weeks, aiming for 100-150 mg by 4-6 weeks. Maximum dose 200 mg daily.",
+      "side_effects_or_warnings": [
+        "Highly lethal in overdose (dispense small supplies if suicide risk is high)",
+        "Orthostatic hypotension",
+        "Cardiac arrhythmias (do not use in patients with recent myocardial infarction)",
+        "Anticholinergic side effects"
+      ],
+      "triage_level": "GREEN"
+    },
+    {
+      "record_type": "patient_discharge",
+      "id": "discharge_alcohol_use_01",
+      "primary_topic": "Hazardous or Harmful Alcohol Use",
+      "home_care_instructions": [
+        "Set clear goals for reduced drinking, such as no more than 2 standard drinks a day with at least 2 alcohol-free days per week.",
+        "Maintain a drink diary to monitor alcohol consumption.",
+        "Use local community-based organizations, self-help groups, and peer support for ongoing motivation.",
+        "Recognize and avoid environments or social situations that trigger the urge to drink heavily.",
+        "Improve nutrition and take multivitamin supplements, specifically thiamine, to protect brain function."
+      ],
+      "return_to_clinic_warning_signs": [
+        "Experiencing signs of severe alcohol withdrawal such as anxiety, severe nausea, hand tremors, sweating, confusion, or seizures.",
+        "Inability to control drinking despite intention to stop.",
+        "Developing jaundice or severe abdominal pain."
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_osteoarthritis_01",
+      "primary_topic": "Osteoarthritis (Degenerative Joint Disease)",
+      "clinical_signs": [
+        "Gradual onset of joint pain",
+        "Usual age of onset over 40",
+        "Pain on weight-bearing or activity that is eased by rest",
+        "Joint stiffness",
+        "Crepitus on movement",
+        "Bony enlargement",
+        "Tenderness to palpation",
+        "Decreased range of motion",
+        "Fixed deformities"
+      ],
+      "suspected_conditions": [
+        "Osteoarthritis",
+        "Rheumatoid arthritis",
+        "Gout",
+        "Septic arthritis",
+        "Tuberculous arthritis"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_osteoarthritis_01",
+      "primary_topic": "Osteoarthritis Management",
+      "step_by_step_guide": [
+        "Advise weight loss if the patient is overweight to reduce load on joints.",
+        "Prescribe physical therapy and regular gentle exercise.",
+        "Provide pain control starting with paracetamol.",
+        "If paracetamol is insufficient, prescribe NSAIDs (e.g. ibuprofen), monitoring for gastrointestinal side-effects."
+      ],
+      "suspected_conditions": [
+        "Osteoarthritis"
+      ]
+    },
+    {
+      "record_type": "differential_diagnosis",
+      "id": "diag_gout_01",
+      "primary_topic": "Gout and Crystal Deposition Disease",
+      "clinical_signs": [
+        "Sudden, unexplained swelling and severe pain at the base of the big toe (podagra)",
+        "Redness, hot, tender, and swollen joint",
+        "Previous similar acute attacks",
+        "Presence of gouty tophi",
+        "Dietary and alcohol overindulgence",
+        "Current use of diuretic medications"
+      ],
+      "suspected_conditions": [
+        "Gout",
+        "Pseudo-gout",
+        "Septic arthritis",
+        "Rheumatoid arthritis"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_gout_01",
+      "primary_topic": "Gout Management",
+      "step_by_step_guide": [
+        "Treat acute flares with NSAIDs and colchicine.",
+        "Consider corticosteroids if renal insufficiency prevents the use of NSAIDs/colchicine.",
+        "For chronic management, prescribe urate-lowering agents and low-dose colchicine.",
+        "Provide preventative advice: decrease meat and fish intake, encourage weight loss, and advise absolute avoidance of alcohol."
+      ],
+      "suspected_conditions": [
+        "Gout"
+      ]
+    },
+    {
+      "record_type": "chronic_care",
+      "id": "chronic_palliative_pain_01",
+      "primary_topic": "Chronic Pain Management in Palliative Care",
+      "step_by_step_guide": [
+        "Assess pain regularly using body diagrams and numeric pain intensity or FACES scales.",
+        "Administer analgesics by mouth whenever possible.",
+        "Give pain medications 'by the clock' (at fixed time intervals) rather than purely PRN, to prevent pain from returning.",
+        "Follow the WHO 3-step analgesic ladder: Step 1 (Non-opioids like paracetamol/ibuprofen), Step 2 (Weak opioids like codeine added to non-opioids), Step 3 (Strong opioids like oral morphine).",
+        "Titrate morphine doses carefully against the patient's pain; there is no ceiling dose for morphine.",
+        "Always prescribe a laxative alongside opioids to prevent severe constipation.",
+        "Integrate non-pharmacological therapies such as psychosocial support, relaxation, massage, heat/cold packs, and spiritual counseling.",
+        "Use adjuvant medications for neuropathic pain, such as low-dose amitriptyline or carbamazepine."
+      ],
+      "suspected_conditions": [
+        "Advanced Cancer",
+        "End-stage HIV/AIDS",
+        "Severe Neuropathy"
+      ]
+    }
+  ]
+}
