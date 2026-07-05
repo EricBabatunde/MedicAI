@@ -1,0 +1,15 @@
+{
+    "chunk_id": (generate a unique hash),
+    "domain_spoke": (medical domain that chunk is classified under e.g. minor_surgery),
+    "source_text": (the name of the medical textbook source),
+    "hierarchical_context": {
+        "chapter": (from #),
+        "primary_topic": (from ##),
+        "sub_topic": (from ###)
+    },
+    "clinical_category": (assign 'treatment', 'diagnosis', or 'procedure' based on basic keyword matching in the text),
+    "text_content": (the full chunked narrative text),
+    "extracted_tables": (any arrays pulled by pdfplumber for this section),
+    "page_reference": [page numbers
+    ]
+}

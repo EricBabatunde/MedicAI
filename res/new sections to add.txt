@@ -1,0 +1,49 @@
+Obstetrics Spoke:
+WHO Managing Complications in preganancy and childbirth (MCPC)
+ACOG Practice Bulletins and Consensus Documents.
+Williams Obstetrics
+
+Pediatrics Spoke:
+WHO Pocket Book of Hospital Care for Children
+
+Emergency and Surgical Spoke
+WHO INteragency Emergency Health Kit
+Advanced Trauma Life SUpport Student Course Manual
+
+ 		  ┌──────────────────────────────┐
+                  │      FOUNDATION (HUB)        │
+                  │  WHO IMAI / MSF Guidelines   │
+                  └──────────────┬───────────────┘
+                                 │
+         ┌───────────────────────┼───────────────────────┐
+             ▼           	             ▼  	                         ▼
+┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
+│   SPECIALTY 1   │     │   SPECIALTY 2   │     │   SPECIALTY 3   │
+│   Obstetrics    │     │   Pediatrics    │     │     Trauma      │
+│  (WHO MCPC /    │     │  (WHO Pocket    │     │  (ATLS Manual / │
+│     ACOG)       │     │  Book / IMCI)   │     │   WHO Emergency)│
+└─────────────────┘     └─────────────────┘     └─────────────────┘
+
+
+
+General Sources:
+The MSD/Merck Manual
+The MSF (Doctors without Borders) Clinical Guidelines
+
+
+
+
+ALl the sources i have are:
+1. the WHO IMAI Vol 1 and VOl 2
+2. the WHO Pocket book of Hospital care for children
+3. the WHO mhGAP intervention guide
+4. the WHO Managing Complications in preganancy and childbirth (MCPC)
+5. the Advanced Trauma Life SUpport Student Course Manual
+6. the WHO Consolidated Guidelines on HIV, Viral Hepatitis, and STI prevention
+7. the MSF Minor Surgical Procedures in Remote Areas
+8. the MSF Clinical Gudielines
+9. The Merck Manual of Diagnosis and Therapy - 19th Edition
+10. the WHO Guidelines for the treatment of Malaria
+11. the WHO PEN (Package of Essential Non-communicable diseases interventions)
+12. Williams Obstetrics
+

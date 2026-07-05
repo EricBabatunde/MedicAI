@@ -26,12 +26,16 @@ async function ensureDbEmbeddings() {
     const startTime = Date.now();
 
     cachedDbEmbeddings = await Promise.all(records.map(async (record) => {
+        // Build a comprehensive searchable string from ALL clinically relevant fields
+        // so cross-field matches (e.g. 'pre-eclampsia' inside adult_dosing) are captured
         const searchableText = [
             record.primary_topic,
             ...(record.clinical_signs || []),
             ...(record.indications || []),
             ...(record.step_by_step_guide || []),
-        ].join(' ');
+            record.adult_dosing || '',
+            record.referral_note || '',
+        ].filter(Boolean).join(' ');
 
         const embedding = await getEmbedding(searchableText);
         return { ...record, embedding };
@@ -41,9 +45,13 @@ async function ensureDbEmbeddings() {
     return cachedDbEmbeddings;
 }
 
+// Minimum cosine similarity threshold — records below this are discarded as noise
+const SCORE_THRESHOLD = 0.45;
+
 /**
  * Performs a vector similarity search against the embedded database.
  * Optionally filters by record_type before ranking.
+ * Records scoring below SCORE_THRESHOLD (45%) are discarded entirely.
  *
  * @param {number[]} queryEmbedding - The embedded query vector.
  * @param {number} topK - Number of top results to return.
@@ -62,12 +70,24 @@ function vectorSearch(queryEmbedding, topK, allowedTypes = null) {
         score: cosineSimilarity(queryEmbedding, record.embedding),
     })).sort((a, b) => b.score - a.score);
 
+    // Apply strict score threshold — discard anything below 45%
+    const qualified = scored.filter(r => r.score >= SCORE_THRESHOLD);
+    const discarded = scored.slice(0, topK).length - qualified.slice(0, topK).length;
+    if (discarded > 0) {
+        console.log(`🚫 [THRESHOLD] Discarded ${discarded} record(s) scoring below ${(SCORE_THRESHOLD * 100).toFixed(0)}%`);
+    }
+
     // Strip raw embedding vectors before returning
-    return scored.slice(0, topK).map(({ embedding, ...rest }) => rest);
+    return qualified.slice(0, topK).map(({ embedding, ...rest }) => rest);
 }
+
+// Hard timeout for llama.cpp fetch requests (ms)
+const LLAMA_TIMEOUT_MS = 240_000;
 
 /**
  * Sends a chat completion request to the local llama.cpp server.
+ * Includes an AbortController that kills the request after 60 seconds
+ * to prevent infinite generation hangs.
  *
  * @param {string} systemPrompt - The system message guiding model behaviour.
  * @param {string} userPrompt - The user message / query context.
@@ -81,27 +101,44 @@ async function llamaChat(systemPrompt, userPrompt, temperature = 0.7) {
             { role: 'user', content: userPrompt },
         ],
         temperature,
-        // Prevent the model from generating excessively long outputs
-        max_tokens: 1024,
+        // Hard cap on generated tokens to physically stop repetitive output
+        max_tokens: 500,
     };
 
-    console.log(`🦙 [LLAMA] Sending request to ${LLAMA_ENDPOINT} (temp=${temperature})...`);
+    console.log(`🦙 [LLAMA] Sending request to ${LLAMA_ENDPOINT} (temp=${temperature}, max_tokens=500, timeout=${LLAMA_TIMEOUT_MS / 1000}s)...`);
 
-    const response = await fetch(LLAMA_ENDPOINT, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
-    });
+    // Abort the fetch if the server hangs beyond the timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => {
+        console.error(`⏱️ [LLAMA] Request timed out after ${LLAMA_TIMEOUT_MS / 1000}s — aborting`);
+        controller.abort();
+    }, LLAMA_TIMEOUT_MS);
 
-    if (!response.ok) {
-        const errText = await response.text();
-        throw new Error(`llama.cpp server error (${response.status}): ${errText}`);
+    try {
+        const response = await fetch(LLAMA_ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload),
+            signal: controller.signal,
+        });
+
+        if (!response.ok) {
+            const errText = await response.text();
+            throw new Error(`llama.cpp server error (${response.status}): ${errText}`);
+        }
+
+        const data = await response.json();
+        const content = data.choices?.[0]?.message?.content ?? '';
+        console.log(`🦙 [LLAMA] Response received (${content.length} chars)`);
+        return content;
+    } catch (err) {
+        if (err.name === 'AbortError') {
+            throw new Error(`llama.cpp request aborted: server did not respond within ${LLAMA_TIMEOUT_MS / 1000} seconds.`);
+        }
+        throw err;
+    } finally {
+        clearTimeout(timeoutId);
     }
-
-    const data = await response.json();
-    const content = data.choices?.[0]?.message?.content ?? '';
-    console.log(`🦙 [LLAMA] Response received (${content.length} chars)`);
-    return content;
 }
 
 
