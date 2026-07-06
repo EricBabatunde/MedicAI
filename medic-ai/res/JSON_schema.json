@@ -13,3 +13,22 @@
     "page_reference": [page numbers
     ]
 }
+
+
+{
+    "chunk_id": "msf_surg_abscess_001",
+    "domain_spoke": "minor_surgery",
+    "source_text": "MSF Minor Surgical Procedures in Remote Areas",
+    "hierarchical_context": {
+        "chapter": "Skin and Subcutaneous Tissues",
+        "primary_topic": "Abscess",
+        "sub_topic": "Incision and Drainage"
+    },
+    "clinical_category": "procedure",
+    "text_content": "Clean the skin with 10% povidone iodine. Make an incision parallel to the skin tension lines...",
+    "extracted_tables": [],
+    "page_reference": [
+        12,
+        13
+    ]
+}

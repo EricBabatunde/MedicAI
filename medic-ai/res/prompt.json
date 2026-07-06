@@ -1,0 +1,14 @@
+Task: Write a Python script to extract, clean, and chunk the provided medical PDF into a highly structured JSON array.
+
+Architecture Requirements:
+
+    Dynamic Library Switching: Use PyMuPDF (fitz) as the primary engine to extract standard text blocks. Implement a check: if PyMuPDF detects a table object on the page, dynamically hand that specific bounding box over to pdfplumber to extract the table data cleanly. If there is any other part of a PDF where one library excels over the other, the library should be used for the extraction of that part.
+
+    Regex Cleaning: Before chunking, run the extracted text through regex filters to strip out page numbers, header/footer titles, and any URLs.
+
+    Semantic Chunking: Convert the cleaned text to Markdown formatting. Then, use LangChain's MarkdownHeaderTextSplitter to chunk the document based on header sizes (#, ##, ###, ####).
+
+Output Formatting:
+Map the output of the splitter into a JSON file following the exact schema for every chunk as seen in res/JSON_schema.json (an example is at the end of the same file).
+
+Constraints: Ensure the script processes the PDF page-by-page to keep RAM usage low. Add detailed print() statements so the extraction flow can be monitored in the terminal.
