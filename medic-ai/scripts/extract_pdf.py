@@ -28,53 +28,59 @@ from langchain_text_splitters import MarkdownHeaderTextSplitter
 # ─────────────────────────────────────────────────────────────────────────
 
 # Domain spoke keyword map — maps keywords found in text to a domain tag
+# Keywords marked with True require word-boundary matching to avoid
+# substring false-positives (e.g. 'labor' in 'collaborate', 'ear' in 'clear')
 DOMAIN_KEYWORDS = {
-    "surgery": "minor_surgery",
-    "surgical": "minor_surgery",
-    "incision": "minor_surgery",
-    "suture": "minor_surgery",
-    "obstetric": "obstetrics",
-    "pregnancy": "obstetrics",
-    "labour": "obstetrics",
-    "labor": "obstetrics",
-    "delivery": "obstetrics",
-    "newborn": "neonatology",
-    "neonatal": "neonatology",
-    "malaria": "infectious_disease",
-    "tuberculosis": "infectious_disease",
-    "hiv": "infectious_disease",
-    "hepatitis": "infectious_disease",
-    "antibiotic": "pharmacology",
-    "dosing": "pharmacology",
-    "drug": "pharmacology",
-    "formulary": "pharmacology",
-    "trauma": "emergency_medicine",
-    "shock": "emergency_medicine",
-    "resuscitation": "emergency_medicine",
-    "burn": "emergency_medicine",
-    "fracture": "orthopaedics",
-    "splint": "orthopaedics",
-    "cast": "orthopaedics",
-    "diabetes": "chronic_care",
-    "hypertension": "chronic_care",
-    "asthma": "chronic_care",
-    "copd": "chronic_care",
-    "heart failure": "chronic_care",
-    "epilepsy": "chronic_care",
-    "mental": "mental_health",
-    "depression": "mental_health",
-    "psychosis": "mental_health",
-    "dermatology": "dermatology",
-    "skin": "dermatology",
-    "nutrition": "nutrition",
-    "malnutrition": "nutrition",
-    "anaesthesia": "anaesthesia",
-    "anesthesia": "anaesthesia",
-    "eye": "ophthalmology",
-    "dental": "dental",
-    "ear": "ent",
-    "nose": "ent",
-    "throat": "ent",
+    "surgery": ("minor_surgery", False),
+    "surgical": ("minor_surgery", False),
+    "incision": ("minor_surgery", False),
+    "suture": ("minor_surgery", False),
+    "obstetric": ("obstetrics", False),
+    "pregnancy": ("obstetrics", False),
+    "pregnant": ("obstetrics", False),
+    "labour": ("obstetrics", True),
+    "labor": ("obstetrics", True),
+    "delivery": ("obstetrics", True),
+    "newborn": ("neonatology", False),
+    "neonatal": ("neonatology", False),
+    "malaria": ("infectious_disease", False),
+    "tuberculosis": ("infectious_disease", False),
+    "hiv": ("infectious_disease", True),
+    "hepatitis": ("infectious_disease", False),
+    "antibiotic": ("pharmacology", False),
+    "dosing": ("pharmacology", False),
+    "drug": ("pharmacology", True),
+    "formulary": ("pharmacology", False),
+    "trauma": ("emergency_medicine", False),
+    "shock": ("emergency_medicine", True),
+    "resuscitation": ("emergency_medicine", False),
+    "burn": ("emergency_medicine", True),
+    "fracture": ("orthopaedics", False),
+    "splint": ("orthopaedics", False),
+    "cast": ("orthopaedics", True),
+    "diabetes": ("chronic_care", False),
+    "hypertension": ("chronic_care", False),
+    "asthma": ("chronic_care", False),
+    "copd": ("chronic_care", True),
+    "heart failure": ("chronic_care", False),
+    "epilepsy": ("chronic_care", False),
+    "epilepticus": ("chronic_care", False),
+    "seizure": ("chronic_care", False),
+    "convulsion": ("chronic_care", False),
+    "mental": ("mental_health", True),
+    "depression": ("mental_health", False),
+    "psychosis": ("mental_health", False),
+    "dermatology": ("dermatology", False),
+    "skin": ("dermatology", True),
+    "nutrition": ("nutrition", False),
+    "malnutrition": ("nutrition", False),
+    "anaesthesia": ("anaesthesia", False),
+    "anesthesia": ("anaesthesia", False),
+    "eye": ("ophthalmology", True),
+    "dental": ("dental", False),
+    "ear": ("ent", True),
+    "nose": ("ent", True),
+    "throat": ("ent", True),
 }
 
 # Clinical category keyword map
@@ -180,11 +186,18 @@ def clean_text(raw_text):
 #  Table Extraction (pdfplumber handoff)
 # ─────────────────────────────────────────────────────────────────────────
 
-def extract_tables_plumber(pdf_path, page_num, table_bboxes):
+def extract_tables_plumber(pdf_path, page_num, table_bboxes, anchor_headings):
     """
     Use pdfplumber to extract table data for specific bounding boxes
     detected by PyMuPDF on a given page.
-    Returns a list of tables, each table being a list of row-lists.
+
+    Each extracted table is stored as a dict with:
+      - "anchor_heading": the nearest preceding markdown heading (semantic anchor)
+      - "rows": the cleaned list-of-lists table data
+
+    Args:
+        anchor_headings: list of heading strings, one per bbox (matched by index).
+    Returns a list of anchored table dicts.
     """
     tables = []
     with pdfplumber.open(pdf_path) as pdf:
@@ -192,8 +205,8 @@ def extract_tables_plumber(pdf_path, page_num, table_bboxes):
             return tables
         plumber_page = pdf.pages[page_num]
 
-        for bbox in table_bboxes:
-            # pdfplumber uses (x0, top, x1, bottom) — same as fitz bbox
+        for idx, bbox in enumerate(table_bboxes):
+            anchor = anchor_headings[idx] if idx < len(anchor_headings) else ""
             try:
                 cropped = plumber_page.crop(bbox)
                 table = cropped.extract_table()
@@ -203,7 +216,11 @@ def extract_tables_plumber(pdf_path, page_num, table_bboxes):
                         [(cell or "").strip() for cell in row]
                         for row in table
                     ]
-                    tables.append(cleaned)
+                    tables.append({
+                        "anchor_heading": anchor,
+                        "rows": cleaned,
+                    })
+                    print(f"      🔗 Table anchored to: \"{anchor or '(page start)'}\"")
             except Exception as e:
                 print(f"    ⚠️  pdfplumber table extraction failed for bbox {bbox}: {e}")
 
@@ -218,24 +235,25 @@ def extract_page(doc, page_num, pdf_path, font_size_map):
     """
     Extract text and tables from a single page.
     Returns (markdown_text: str, tables: list, had_tables: bool)
+
+    Tables are extracted with semantic anchoring: each table carries
+    the nearest preceding markdown heading from the same page.
     """
     page = doc[page_num]
     body_size = font_size_map.get("body", 10.0)
+
+    # ── First pass: extract ALL text blocks to build heading + y-position map ──
+    blocks = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)["blocks"]
+
+    # Collect headings with their vertical position for table anchoring
+    heading_positions = []  # [(y_position, heading_text), ...]
 
     # ── Detect tables via PyMuPDF ────────────────────────────────────
     fitz_tables = page.find_tables()
     table_bboxes = [t.bbox for t in fitz_tables.tables] if fitz_tables.tables else []
     table_rects = [fitz.Rect(b) for b in table_bboxes]
 
-    # ── Hand table regions to pdfplumber ─────────────────────────────
-    extracted_tables = []
-    if table_bboxes:
-        print(f"    🔀 Handing {len(table_bboxes)} table region(s) to pdfplumber...")
-        extracted_tables = extract_tables_plumber(pdf_path, page_num, table_bboxes)
-        print(f"    ✅ pdfplumber extracted {len(extracted_tables)} table(s)")
-
     # ── Extract text blocks via PyMuPDF (skip table regions) ─────────
-    blocks = page.get_text("dict", flags=fitz.TEXT_PRESERVE_WHITESPACE)["blocks"]
     md_lines = []
 
     for block in blocks:
@@ -257,6 +275,7 @@ def extract_page(doc, page_num, pdf_path, font_size_map):
             line_text_parts = []
             line_max_size = 0
             line_is_bold = False
+            line_y = line["bbox"][1]  # top-y position of the line
 
             for span in line["spans"]:
                 text = span["text"]
@@ -283,41 +302,115 @@ def extract_page(doc, page_num, pdf_path, font_size_map):
 
             if heading_prefix:
                 md_lines.append(f"\n{heading_prefix} {line_text}\n")
+                heading_positions.append((line_y, line_text))
             elif line_is_bold and line_max_size > body_size:
                 # Bold text slightly above body = sub-heading (####)
                 md_lines.append(f"\n#### {line_text}\n")
+                heading_positions.append((line_y, line_text))
             else:
                 md_lines.append(line_text)
+
+    # ── Anchor each table to its nearest preceding heading ───────────
+    anchor_headings = []
+    for bbox in table_bboxes:
+        table_top_y = bbox[1]  # top edge of the table
+        # Find the closest heading that appears ABOVE this table
+        best_heading = ""
+        best_distance = float("inf")
+        for h_y, h_text in heading_positions:
+            if h_y <= table_top_y:
+                distance = table_top_y - h_y
+                if distance < best_distance:
+                    best_distance = distance
+                    best_heading = h_text
+        anchor_headings.append(best_heading)
+
+    # ── Hand table regions to pdfplumber with anchors ────────────────
+    extracted_tables = []
+    if table_bboxes:
+        print(f"    🔀 Handing {len(table_bboxes)} table region(s) to pdfplumber...")
+        extracted_tables = extract_tables_plumber(
+            pdf_path, page_num, table_bboxes, anchor_headings
+        )
+        print(f"    ✅ pdfplumber extracted {len(extracted_tables)} table(s)")
 
     markdown_text = "\n".join(md_lines)
     return markdown_text, extracted_tables, bool(table_bboxes)
 
 
 # ─────────────────────────────────────────────────────────────────────────
-#  Classification Helpers
+#  Classification Helpers (Proportional Density + Header Weighting)
 # ─────────────────────────────────────────────────────────────────────────
 
-def classify_domain(text):
-    """Assign a domain spoke based on keyword frequency in the text."""
+# Weight multiplier for keywords found in hierarchical headers vs body text
+HEADER_WEIGHT = 5.0
+
+
+def _count_keyword_density(text, keyword, use_word_boundary=False):
+    """
+    Count occurrences of `keyword` in `text`, normalised by word count.
+    When use_word_boundary is True, uses regex \\b anchors to prevent
+    substring false-positives (e.g. 'labor' in 'collaborate').
+    Returns a density float (occurrences / total_words).
+    """
     text_lower = text.lower()
+    if use_word_boundary:
+        count = len(re.findall(r'\b' + re.escape(keyword.lower()) + r'\b', text_lower))
+    else:
+        count = text_lower.count(keyword.lower())
+    word_count = max(len(text_lower.split()), 1)
+    return count / word_count
+
+
+def classify_domain(text_content, hierarchical_context):
+    """
+    Assign a domain spoke using proportional keyword density.
+    Keywords in hierarchical_context headers are weighted 5x higher
+    to ensure the heading drives classification over incidental
+    cross-references in the body text.
+    """
+    # Build the header text from chapter + primary_topic + sub_topic
+    header_text = " ".join([
+        hierarchical_context.get("chapter", ""),
+        hierarchical_context.get("primary_topic", ""),
+        hierarchical_context.get("sub_topic", ""),
+    ]).strip()
+
     scores = {}
-    for keyword, domain in DOMAIN_KEYWORDS.items():
-        count = text_lower.count(keyword)
-        if count > 0:
-            scores[domain] = scores.get(domain, 0) + count
+    for keyword, (domain, needs_boundary) in DOMAIN_KEYWORDS.items():
+        # Body density (normalised)
+        body_density = _count_keyword_density(text_content, keyword, needs_boundary)
+        # Header density (normalised, weighted 5x)
+        header_density = _count_keyword_density(header_text, keyword, needs_boundary) * HEADER_WEIGHT if header_text else 0.0
+
+        combined = body_density + header_density
+        if combined > 0:
+            scores[domain] = scores.get(domain, 0) + combined
 
     if not scores:
         return "general_medicine"
     return max(scores, key=scores.get)
 
 
-def classify_category(text):
-    """Assign 'treatment', 'diagnosis', or 'procedure' via keyword matching."""
-    text_lower = text.lower()
+def classify_category(text_content, hierarchical_context):
+    """
+    Assign 'treatment', 'diagnosis', or 'procedure' using proportional
+    keyword density with 5x header weighting.
+    """
+    header_text = " ".join([
+        hierarchical_context.get("chapter", ""),
+        hierarchical_context.get("primary_topic", ""),
+        hierarchical_context.get("sub_topic", ""),
+    ]).strip()
+
     scores = {}
     for category, keywords in CATEGORY_KEYWORDS.items():
-        score = sum(text_lower.count(kw) for kw in keywords)
-        scores[category] = score
+        total = 0.0
+        for kw in keywords:
+            total += _count_keyword_density(text_content, kw)
+            if header_text:
+                total += _count_keyword_density(header_text, kw) * HEADER_WEIGHT
+        scores[category] = total
 
     if not any(scores.values()):
         return "diagnosis"  # default
@@ -404,6 +497,13 @@ def process_pdf(pdf_path, output_path):
 
     # ── Map chunks to output schema ──────────────────────────────────
     print(f"\n  🏗️  Building structured JSON records...")
+    print(f"  🧬 Header inheritance + density classification enabled")
+
+    # Active header state for contextual inheritance
+    active_chapter = ""
+    active_primary_topic = ""
+    active_sub_topic = ""
+    inherited_count = 0
 
     output_records = []
     for i, chunk in enumerate(chunks):
@@ -430,25 +530,63 @@ def process_pdf(pdf_path, output_path):
             if pg in all_tables:
                 chunk_tables.extend(all_tables[pg])
 
-        # Build hierarchical context
+        # ── Build hierarchical context with inheritance ──────────
         chapter = metadata.get("chapter", "")
         primary_topic = metadata.get("primary_topic", "")
         sub_topic = metadata.get("sub_topic", "")
 
-        # Classification
-        domain = classify_domain(clean_content)
-        category = classify_category(clean_content)
+        # Update active state when we encounter real headers
+        if chapter:
+            active_chapter = chapter
+            # A new chapter resets downstream topics
+            if not primary_topic:
+                active_primary_topic = ""
+            if not sub_topic:
+                active_sub_topic = ""
+        if primary_topic:
+            active_primary_topic = primary_topic
+            if not sub_topic:
+                active_sub_topic = ""
+        if sub_topic:
+            active_sub_topic = sub_topic
+
+        # Inherit from predecessor if fields are blank
+        was_orphan = False
+        if not chapter and active_chapter:
+            chapter = active_chapter
+            was_orphan = True
+        if not primary_topic and active_primary_topic:
+            primary_topic = active_primary_topic
+            was_orphan = True
+        if not sub_topic and active_sub_topic:
+            sub_topic = active_sub_topic
+            # sub_topic inheritance is common and expected, don't flag
+
+        # Fallback: if primary_topic is STILL blank, promote chapter name
+        # This handles PDFs where major clinical topics (e.g. 'Fever', 'Pain')
+        # are rendered as # headings with no ## sub-sections
+        if not primary_topic and chapter:
+            primary_topic = chapter
+
+        if was_orphan:
+            inherited_count += 1
+
+        hierarchical_context = {
+            "chapter": chapter,
+            "primary_topic": primary_topic,
+            "sub_topic": sub_topic,
+        }
+
+        # ── Classification with density + header weighting ───────
+        domain = classify_domain(clean_content, hierarchical_context)
+        category = classify_category(clean_content, hierarchical_context)
         chunk_id = generate_chunk_id(source_name, chapter, primary_topic, i)
 
         record = {
             "chunk_id": chunk_id,
             "domain_spoke": domain,
             "source_text": source_name.replace("_", " "),
-            "hierarchical_context": {
-                "chapter": chapter,
-                "primary_topic": primary_topic,
-                "sub_topic": sub_topic,
-            },
+            "hierarchical_context": hierarchical_context,
             "clinical_category": category,
             "text_content": clean_content,
             "extracted_tables": chunk_tables,
@@ -458,6 +596,8 @@ def process_pdf(pdf_path, output_path):
 
         if (i + 1) % 50 == 0:
             print(f"    📦 Mapped {i + 1}/{len(chunks)} chunks...")
+
+    print(f"  🔗 Inherited headers for {inherited_count} orphaned chunk(s)")
 
     print(f"  ✅ Final record count: {len(output_records)} (dropped {len(chunks) - len(output_records)} tiny fragments)")
 
