@@ -11,12 +11,12 @@ import nlp from 'wink-nlp-utils';
 // ──────────────────────────────────────────────────────────────────────
 
 const LLAMA_ENDPOINT = 'http://127.0.0.1:8080/v1/chat/completions';
-const LLAMA_TIMEOUT_MS = 30_000;
+const LLAMA_TIMEOUT_MS = 90_000; // 90s to allow cold-start model weight loading
 
 // Hybrid score weighting: 40% BM25 + 60% Vector
 const BM25_WEIGHT = 0.4;
 const VECTOR_WEIGHT = 0.6;
-const BM25_TOP_K = 50;
+const BM25_TOP_K = 75;
 const FINAL_TOP_K = 5;
 
 // ─────────────────────────────────────────────────────────────────────
@@ -210,14 +210,22 @@ function bm25Search(chunks, query, topK = BM25_TOP_K) {
 
     engine.consolidate();
 
-    // Search and map results back to chunks
-    const rawResults = engine.search(query);
+    // Search — pass topK as second arg to override wink-bm25's internal default of 10
+    const rawResults = engine.search(query, topK);
+
+    // Diagnostic: log raw library output BEFORE any slicing or mapping
+    console.log(`[DEBUG] Raw BM25 output array length: ${rawResults.length}`);
 
     // rawResults is [[id, score], ...] — already sorted by score desc
     const mapped = rawResults.slice(0, topK).map(([idStr, score]) => ({
         chunk: chunks[parseInt(idStr, 10)],
         bm25Score: score,
     }));
+
+    // Safety: warn if very few results (pipeline still continues)
+    if (mapped.length < 5) {
+        console.warn(`⚠️  [BM25] Only ${mapped.length} result(s) returned — query may be too specific or domain slice too small`);
+    }
 
     return mapped;
 }
