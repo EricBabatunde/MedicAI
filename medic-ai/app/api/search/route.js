@@ -1,116 +1,122 @@
 import { NextResponse } from 'next/server';
-import { getEmbedding, cosineSimilarity } from '@/lib/embedding';
-import medicalData from '@/data/medic_database.json';
+import { readFile } from 'fs/promises';
+import path from 'path';
 
 // ──────────────────────────────────────────────────────────────────────
-//  Multi-Pass Relational RAG Pipeline
-//  Pass 1: Semantic Search → LLM Filter → Pass 2: Treatment Lookup → Final Generation
+//  Clinical RAG Pipeline — Pass 0: Query Router
+//  Classifies patient query into a domain_spoke via llama.cpp,
+//  then filters the chunk database to that domain slice.
 // ──────────────────────────────────────────────────────────────────────
 
 const LLAMA_ENDPOINT = 'http://127.0.0.1:8080/v1/chat/completions';
-const TREATMENT_TYPES = new Set(['drug_formulary', 'procedure', 'chronic_care']);
+const LLAMA_TIMEOUT_MS = 30_000; // 30s timeout for the fast router call
+const CHUNK_DB_PATH = path.join(process.cwd(), 'data', 'all_extracted_chunks.json');
 
-// In-memory cache for pre-computed database embeddings (computed once on first request)
-let cachedDbEmbeddings = null;
+// All valid domain_spoke keys in our database
+const VALID_DOMAINS = new Set([
+    'general_medicine',
+    'minor_surgery',
+    'obstetrics',
+    'neonatology',
+    'infectious_disease',
+    'pharmacology',
+    'emergency_medicine',
+    'orthopaedics',
+    'chronic_care',
+    'mental_health',
+    'dermatology',
+    'nutrition',
+    'anaesthesia',
+    'ophthalmology',
+    'dental',
+    'ent',
+]);
 
-/**
- * Pre-computes vector embeddings for every record in the database.
- * Combines primary_topic, clinical_signs, and indications into a single
- * searchable text string per record.
- */
-async function ensureDbEmbeddings() {
-    if (cachedDbEmbeddings) return cachedDbEmbeddings;
+const DEFAULT_DOMAIN = 'general_medicine';
 
-    const records = medicalData.medical_records;
-    console.log(`\n📦 [INIT] Embedding ${records.length} database records into memory...`);
+// ─────────────────────────────────────────────────────────────────────
+//  In-memory cache for the chunk database (loaded once)
+// ─────────────────────────────────────────────────────────────────────
+let cachedChunks = null;
+
+async function loadChunkDatabase() {
+    if (cachedChunks) {
+        console.log(`📦 [DB] Using cached chunk database (${cachedChunks.length} chunks)`);
+        return cachedChunks;
+    }
+
+    console.log(`📦 [DB] Loading chunk database from ${CHUNK_DB_PATH}...`);
     const startTime = Date.now();
 
-    cachedDbEmbeddings = await Promise.all(records.map(async (record) => {
-        // Build a comprehensive searchable string from ALL clinically relevant fields
-        // so cross-field matches (e.g. 'pre-eclampsia' inside adult_dosing) are captured
-        const searchableText = [
-            record.primary_topic,
-            ...(record.clinical_signs || []),
-            ...(record.indications || []),
-            ...(record.step_by_step_guide || []),
-            record.adult_dosing || '',
-            record.referral_note || '',
-        ].filter(Boolean).join(' ');
+    const raw = await readFile(CHUNK_DB_PATH, 'utf-8');
+    cachedChunks = JSON.parse(raw);
 
-        const embedding = await getEmbedding(searchableText);
-        return { ...record, embedding };
-    }));
+    console.log(`✅ [DB] Loaded ${cachedChunks.length} chunks in ${Date.now() - startTime}ms`);
 
-    console.log(`✅ [INIT] Database embedded in ${Date.now() - startTime}ms\n`);
-    return cachedDbEmbeddings;
-}
-
-// Minimum cosine similarity threshold — records below this are discarded as noise
-const SCORE_THRESHOLD = 0.45;
-
-/**
- * Performs a vector similarity search against the embedded database.
- * Optionally filters by record_type before ranking.
- * Records scoring below SCORE_THRESHOLD (45%) are discarded entirely.
- *
- * @param {number[]} queryEmbedding - The embedded query vector.
- * @param {number} topK - Number of top results to return.
- * @param {Set<string>|null} allowedTypes - If provided, only records with matching record_type are considered.
- * @returns {object[]} The top-K scored records (without the raw embedding vectors).
- */
-function vectorSearch(queryEmbedding, topK, allowedTypes = null) {
-    let pool = cachedDbEmbeddings;
-
-    if (allowedTypes) {
-        pool = pool.filter(r => allowedTypes.has(r.record_type));
+    // Log domain distribution for tracing
+    const domainCounts = {};
+    for (const chunk of cachedChunks) {
+        const d = chunk.domain_spoke || '(unknown)';
+        domainCounts[d] = (domainCounts[d] || 0) + 1;
+    }
+    console.log(`📊 [DB] Domain distribution:`);
+    for (const [domain, count] of Object.entries(domainCounts).sort((a, b) => b[1] - a[1])) {
+        console.log(`     ${domain}: ${count}`);
     }
 
-    const scored = pool.map(record => ({
-        ...record,
-        score: cosineSimilarity(queryEmbedding, record.embedding),
-    })).sort((a, b) => b.score - a.score);
-
-    // Apply strict score threshold — discard anything below 45%
-    const qualified = scored.filter(r => r.score >= SCORE_THRESHOLD);
-    const discarded = scored.slice(0, topK).length - qualified.slice(0, topK).length;
-    if (discarded > 0) {
-        console.log(`🚫 [THRESHOLD] Discarded ${discarded} record(s) scoring below ${(SCORE_THRESHOLD * 100).toFixed(0)}%`);
-    }
-
-    // Strip raw embedding vectors before returning
-    return qualified.slice(0, topK).map(({ embedding, ...rest }) => rest);
+    return cachedChunks;
 }
 
-// Hard timeout for llama.cpp fetch requests (ms)
-const LLAMA_TIMEOUT_MS = 240_000;
+// ─────────────────────────────────────────────────────────────────────
+//  Pass 0: LLM Domain Router
+// ─────────────────────────────────────────────────────────────────────
+
+const ROUTER_SYSTEM_PROMPT = `You are a high-speed clinical routing matrix. Your ONLY job is to read a patient's symptoms and classify the case into exactly ONE clinical domain.
+
+Valid domain keys (choose EXACTLY one):
+general_medicine, minor_surgery, obstetrics, neonatology, infectious_disease, pharmacology, emergency_medicine, orthopaedics, chronic_care, mental_health, dermatology, nutrition, anaesthesia, ophthalmology, dental, ent
+
+Rules:
+- Trauma, burns, shock, poisoning, cardiac arrest → emergency_medicine
+- Pregnancy, labour, delivery, eclampsia → obstetrics
+- Newborn/neonatal care → neonatology
+- Fractures, sprains, joint injuries → orthopaedics
+- Surgical wounds, abscess drainage, suturing → minor_surgery
+- Malaria, TB, HIV, hepatitis, STIs → infectious_disease
+- Diabetes, hypertension, asthma, epilepsy, COPD → chronic_care
+- Depression, psychosis, anxiety, substance abuse → mental_health
+- Rashes, skin infections, wounds → dermatology
+- Eye conditions → ophthalmology
+- Ear, nose, throat → ent
+- Dental/oral → dental
+- Malnutrition, feeding → nutrition
+- Anaesthesia/sedation → anaesthesia
+- Drug dosing, formulary → pharmacology
+- Everything else → general_medicine
+
+Respond with ONLY raw JSON, no other text:
+{"domain_spoke": "selected_key_here"}`;
 
 /**
- * Sends a chat completion request to the local llama.cpp server.
- * Includes an AbortController that kills the request after 60 seconds
- * to prevent infinite generation hangs.
- *
- * @param {string} systemPrompt - The system message guiding model behaviour.
- * @param {string} userPrompt - The user message / query context.
- * @param {number} temperature - Sampling temperature (lower = more deterministic).
- * @returns {string} The model's response text content.
+ * Dispatches a fast, low-token classification request to llama.cpp.
+ * Returns the parsed domain_spoke string, or the default on failure.
  */
-async function llamaChat(systemPrompt, userPrompt, temperature = 0.7) {
+async function routeQueryToDomain(query) {
     const payload = {
         messages: [
-            { role: 'system', content: systemPrompt },
-            { role: 'user', content: userPrompt },
+            { role: 'system', content: ROUTER_SYSTEM_PROMPT },
+            { role: 'user', content: query },
         ],
-        temperature,
-        // Hard cap on generated tokens to physically stop repetitive output
-        max_tokens: 500,
+        temperature: 0.1,
+        max_tokens: 30,
     };
 
-    console.log(`🦙 [LLAMA] Sending request to ${LLAMA_ENDPOINT} (temp=${temperature}, max_tokens=500, timeout=${LLAMA_TIMEOUT_MS / 1000}s)...`);
+    console.log(`\n🧭 [PASS 0] Dispatching domain classification (temp=0.1, max_tokens=30)...`);
+    const routerStart = Date.now();
 
-    // Abort the fetch if the server hangs beyond the timeout
     const controller = new AbortController();
     const timeoutId = setTimeout(() => {
-        console.error(`⏱️ [LLAMA] Request timed out after ${LLAMA_TIMEOUT_MS / 1000}s — aborting`);
+        console.error(`⏱️ [PASS 0] Router timed out after ${LLAMA_TIMEOUT_MS / 1000}s — aborting`);
         controller.abort();
     }, LLAMA_TIMEOUT_MS);
 
@@ -124,18 +130,47 @@ async function llamaChat(systemPrompt, userPrompt, temperature = 0.7) {
 
         if (!response.ok) {
             const errText = await response.text();
-            throw new Error(`llama.cpp server error (${response.status}): ${errText}`);
+            console.error(`❌ [PASS 0] llama.cpp error (${response.status}): ${errText}`);
+            console.log(`⚠️  [PASS 0] Falling back to "${DEFAULT_DOMAIN}"`);
+            return DEFAULT_DOMAIN;
         }
 
         const data = await response.json();
-        const content = data.choices?.[0]?.message?.content ?? '';
-        console.log(`🦙 [LLAMA] Response received (${content.length} chars)`);
-        return content;
+        const rawContent = data.choices?.[0]?.message?.content ?? '';
+        const routerMs = Date.now() - routerStart;
+        console.log(`🦙 [PASS 0] Raw LLM response (${routerMs}ms): ${rawContent}`);
+
+        // ── Parse the JSON response ─────────────────────────────────
+        let parsed;
+        try {
+            // Strip markdown fences if the LLM wraps its output
+            const cleaned = rawContent.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
+            parsed = JSON.parse(cleaned);
+        } catch (parseErr) {
+            console.error(`❌ [PASS 0] JSON parse failed: ${parseErr.message}`);
+            console.log(`⚠️  [PASS 0] Falling back to "${DEFAULT_DOMAIN}"`);
+            return DEFAULT_DOMAIN;
+        }
+
+        const selectedDomain = parsed?.domain_spoke?.toLowerCase?.()?.trim?.() || '';
+
+        // ── Validate against known domain keys ──────────────────────
+        if (VALID_DOMAINS.has(selectedDomain)) {
+            console.log(`✅ [PASS 0] Domain classified: "${selectedDomain}" (${routerMs}ms)`);
+            return selectedDomain;
+        } else {
+            console.warn(`⚠️  [PASS 0] Invalid domain "${selectedDomain}" — not in VALID_DOMAINS set`);
+            console.log(`⚠️  [PASS 0] Falling back to "${DEFAULT_DOMAIN}"`);
+            return DEFAULT_DOMAIN;
+        }
     } catch (err) {
         if (err.name === 'AbortError') {
-            throw new Error(`llama.cpp request aborted: server did not respond within ${LLAMA_TIMEOUT_MS / 1000} seconds.`);
+            console.error(`⏱️ [PASS 0] Request aborted (timeout)`);
+        } else {
+            console.error(`❌ [PASS 0] Fetch error: ${err.message}`);
         }
-        throw err;
+        console.log(`⚠️  [PASS 0] Falling back to "${DEFAULT_DOMAIN}"`);
+        return DEFAULT_DOMAIN;
     } finally {
         clearTimeout(timeoutId);
     }
@@ -143,134 +178,83 @@ async function llamaChat(systemPrompt, userPrompt, temperature = 0.7) {
 
 
 // ══════════════════════════════════════════════════════════════════════
-//  POST /api/search — Multi-Pass Relational RAG Pipeline
+//  POST /api/search — Clinical RAG Pipeline (Pass 0 Build Phase)
 // ══════════════════════════════════════════════════════════════════════
 export async function POST(req) {
     const pipelineStart = Date.now();
     console.log('\n══════════════════════════════════════════════════════════════');
-    console.log('  🚀 RAG PIPELINE STARTED');
+    console.log('  🚀 RAG PIPELINE — PASS 0 QUERY ROUTER');
     console.log('══════════════════════════════════════════════════════════════');
 
     try {
         // ── Parse incoming request ──────────────────────────────────
         const { query } = await req.json();
         if (!query || typeof query !== 'string' || !query.trim()) {
-            return NextResponse.json({ error: 'A non-empty query string is required.' }, { status: 400 });
+            return NextResponse.json(
+                { error: 'A non-empty query string is required.' },
+                { status: 400 }
+            );
         }
         console.log(`📝 [INPUT] Query: "${query}"`);
 
-        // ── Ensure database is embedded ─────────────────────────────
-        await ensureDbEmbeddings();
+        // ── Load chunk database ─────────────────────────────────────
+        const allChunks = await loadChunkDatabase();
 
         // ────────────────────────────────────────────────────────────
-        // PASS 1: Initial Semantic Search — Top 3 matches
+        // PASS 0: Domain Classification via LLM Router
         // ────────────────────────────────────────────────────────────
-        console.log('\n── PASS 1: Initial Semantic Search ────────────────────────');
-        const queryEmbedding = await getEmbedding(query);
-        const pass1Results = vectorSearch(queryEmbedding, 3);
+        const selectedDomain = await routeQueryToDomain(query);
 
-        pass1Results.forEach((r, i) => {
-            console.log(`   #${i + 1} [${r.record_type}] ${r.primary_topic} (score: ${(r.score * 100).toFixed(1)}%) id=${r.id}`);
-        });
+        // ── Filter database to the selected domain slice ────────────
+        console.log(`\n🔬 [FILTER] Slicing database to domain_spoke="${selectedDomain}"...`);
+        const domainSlice = allChunks.filter(
+            chunk => chunk.domain_spoke === selectedDomain
+        );
+        console.log(`📊 [FILTER] Isolated ${domainSlice.length} chunks out of ${allChunks.length} total`);
+        console.log(`📊 [FILTER] Slice ratio: ${((domainSlice.length / allChunks.length) * 100).toFixed(1)}% of database`);
 
-        // ────────────────────────────────────────────────────────────
-        // LLM FILTER: Diagnosis Selection
-        // ────────────────────────────────────────────────────────────
-        console.log('\n── LLM FILTER: Diagnosis Selection ───────────────────────');
-
-        const filterSystemPrompt = `You are a clinical logic filter for a triage system. Your task:
-1. Read the patient's symptom query.
-2. Read the top 3 retrieved medical records from the database (provided as JSON).
-3. Apply demographic constraints (age, gender) if the patient mentions them.
-4. Select the SINGLE most accurate record that matches the patient's presentation.
-
-You MUST respond with ONLY a valid JSON object in this exact format, with no other text:
-{"selected_id": "<the id of the best-matching record>", "primary_topic": "<the primary_topic of that record>"}`;
-
-        const filterUserPrompt = `Patient Query: "${query}"
-
-Top 3 Retrieved Records:
-${JSON.stringify(pass1Results, null, 2)}`;
-
-        const filterRawResponse = await llamaChat(filterSystemPrompt, filterUserPrompt, 0.1);
-        console.log(`📋 [LLM FILTER] Raw response: ${filterRawResponse}`);
-
-        // Parse the LLM's JSON selection — extract JSON from possible markdown fences
-        let selectedDiagnosis;
-        try {
-            // Strip markdown code fences if the LLM wraps its response
-            const jsonStr = filterRawResponse.replace(/```json\s*/gi, '').replace(/```\s*/g, '').trim();
-            selectedDiagnosis = JSON.parse(jsonStr);
-        } catch (parseErr) {
-            console.error(`❌ [LLM FILTER] Failed to parse LLM JSON: ${parseErr.message}`);
-            console.log('⚠️  [FALLBACK] Using top Pass 1 result as fallback selection.');
-            selectedDiagnosis = {
-                selected_id: pass1Results[0].id,
-                primary_topic: pass1Results[0].primary_topic,
-            };
+        if (domainSlice.length === 0) {
+            console.warn(`⚠️  [FILTER] Zero chunks in domain "${selectedDomain}" — expanding to full database`);
         }
 
-        console.log(`✅ [LLM FILTER] Selected: id="${selectedDiagnosis.selected_id}" topic="${selectedDiagnosis.primary_topic}"`);
+        // ── Temporary pipeline finish: return first 3 chunks ────────
+        const resultPool = domainSlice.length > 0 ? domainSlice : allChunks;
+        const previewChunks = resultPool.slice(0, 3).map(chunk => ({
+            chunk_id: chunk.chunk_id,
+            domain_spoke: chunk.domain_spoke,
+            source_text: chunk.source_text,
+            hierarchical_context: chunk.hierarchical_context,
+            clinical_category: chunk.clinical_category,
+            // Truncate text_content for preview to keep response lean
+            text_content: chunk.text_content.length > 500
+                ? chunk.text_content.substring(0, 500) + '...'
+                : chunk.text_content,
+            extracted_tables: chunk.extracted_tables,
+            page_reference: chunk.page_reference,
+        }));
 
-        // Retrieve the full selected record from the Pass 1 results
-        const diagnosisRecord = pass1Results.find(r => r.id === selectedDiagnosis.selected_id) || pass1Results[0];
-        console.log(`📌 [DIAGNOSIS] Locked onto: "${diagnosisRecord.primary_topic}" (${diagnosisRecord.record_type})`);
-
-        // ────────────────────────────────────────────────────────────
-        // PASS 2: Relational Lookup — Treatment records
-        // ────────────────────────────────────────────────────────────
-        console.log('\n── PASS 2: Relational Treatment Lookup ───────────────────');
-
-        const treatmentQueryText = selectedDiagnosis.primary_topic;
-        console.log(`🔍 [PASS 2] Searching treatments for: "${treatmentQueryText}"`);
-        console.log(`🔍 [PASS 2] Filtering to types: ${[...TREATMENT_TYPES].join(', ')}`);
-
-        const treatmentEmbedding = await getEmbedding(treatmentQueryText);
-        const pass2Results = vectorSearch(treatmentEmbedding, 2, TREATMENT_TYPES);
-
-        pass2Results.forEach((r, i) => {
-            console.log(`   #${i + 1} [${r.record_type}] ${r.primary_topic} (score: ${(r.score * 100).toFixed(1)}%) id=${r.id}`);
+        console.log(`\n── PREVIEW: Returning first ${previewChunks.length} chunk(s) from "${selectedDomain}" ──`);
+        previewChunks.forEach((c, i) => {
+            const topic = c.hierarchical_context?.primary_topic || '(untitled)';
+            const chapter = c.hierarchical_context?.chapter || '(no chapter)';
+            console.log(`   #${i + 1} [${c.clinical_category}] ${chapter} → ${topic}`);
+            console.log(`        source: ${c.source_text}`);
+            console.log(`        text: ${c.text_content.substring(0, 80)}...`);
         });
 
-        // ────────────────────────────────────────────────────────────
-        // FINAL GENERATION: Synthesise clinical recommendation
-        // ────────────────────────────────────────────────────────────
-        console.log('\n── FINAL GENERATION: Clinical Recommendation ─────────────');
-
-        const clinicalContext = `
-=== SELECTED TRIAGE DIAGNOSIS ===
-${JSON.stringify(diagnosisRecord, null, 2)}
-
-=== RELATED TREATMENT RECORDS ===
-${pass2Results.map((r, i) => `--- Treatment ${i + 1} ---\n${JSON.stringify(r, null, 2)}`).join('\n\n')}
-`;
-
-        const generationSystemPrompt = `You are a clinical decision-support assistant for healthcare workers in resource-limited settings. Given the clinical context retrieved from the knowledge base and the patient's presenting symptoms, synthesize a clear, professional clinical recommendation.
-
-Your recommendation MUST contain these sections:
-1. **Diagnosis**: The identified condition and its triage level.
-2. **Immediate Actions**: Step-by-step actions to take right now, based on the triage protocol.
-3. **Medication / Treatment Protocol**: Specific drug dosages, procedures, or chronic care plans from the treatment records.
-
-Be concise, actionable, and cite specific dosages or steps from the provided context. Do not fabricate information not present in the clinical context.`;
-
-        const generationUserPrompt = `Patient Presentation: "${query}"
-
-Clinical Context:
-${clinicalContext}`;
-
-        const recommendation = await llamaChat(generationSystemPrompt, generationUserPrompt, 0.3);
-        console.log(`📝 [GENERATION] Recommendation generated (${recommendation.length} chars)`);
-        console.log(`\n✅ [PIPELINE COMPLETE] Total time: ${Date.now() - pipelineStart}ms`);
+        const totalMs = Date.now() - pipelineStart;
+        console.log(`\n✅ [PIPELINE COMPLETE] Domain="${selectedDomain}" | ${domainSlice.length} chunks isolated | ${totalMs}ms total`);
         console.log('══════════════════════════════════════════════════════════════\n');
 
-        // ── Return the composite response ───────────────────────────
+        // ── Return temporary response ───────────────────────────────
         return NextResponse.json({
-            recommendation,
-            diagnosis: diagnosisRecord,
-            treatments: pass2Results,
-            // Preserve backward-compat with the frontend's existing results renderer
-            results: [diagnosisRecord, ...pass2Results],
+            // Pipeline metadata
+            routed_domain: selectedDomain,
+            domain_chunk_count: domainSlice.length,
+            total_chunk_count: allChunks.length,
+            pipeline_ms: totalMs,
+            // Preview data
+            results: previewChunks,
         });
 
     } catch (error) {
