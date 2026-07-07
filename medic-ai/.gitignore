@@ -44,3 +44,6 @@ next-env.d.ts
 # Local AI Engine and Models
 llama.cpp/
 models/
+
+# Manson's tropical diseases
+res/sources_pdf/ilide.info-tropical-diseases-pr_338f31cf40343a98298cfdf4ef180a39.pdf
