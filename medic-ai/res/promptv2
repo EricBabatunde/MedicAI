@@ -1,0 +1,49 @@
+Task: Create a standalone Node.js script at scripts/alpha_sweep_test.js to mathematically determine the optimal hybrid search ratio (BM25 vs. Vector) for our medical RAG pipeline using a Mean Reciprocal Rank (MRR) scoring system.
+
+Dependencies & Setup:
+
+    Import fs to read data/all_extracted_chunks.json.
+
+    Import the wink-bm25 library.
+
+    Import our local Transformers.js embedding utility.
+
+    The script must run natively in the terminal via node scripts/alpha_sweep_test.js.
+
+1. The Ground Truth Dataset:
+Implement the exact array of 16 test cases covering every domain spoke in testCases.js.
+
+2. The Sweep Mechanism (0.0 to 1.0 with 0.05 steps):
+
+    Define an alpha variable representing the Vector Weight (making 1 - alpha the BM25 weight).
+
+    Loop alpha from 0.0 to 1.0 in increments of 0.05.
+
+3. The Execution Logic:
+For each alpha step:
+
+    Initialize a variable total_mrr = 0.
+
+    Loop through the 16 test cases. For each case:
+
+        Filter the JSON database to match the test case's domain.
+
+        Run BM25 to get the Top 75 candidates and normalize their scores (0 to 1).
+
+        Run Transformers.js to get cosine similarity scores for the same 75 chunks.
+
+        Calculate the hybrid score: (alpha * vector_score) + ((1 - alpha) * bm25_score).
+
+        Sort the 75 chunks descending by hybrid score and slice the Top 5.
+
+        Check if the text_content of any chunk in the Top 5 .toLowerCase().includes() the target_phrase.
+
+        Apply MRR scoring: If found at index 0 (+1.0), index 1 (+0.5), index 2 (+0.33), index 3 (+0.25), index 4 (+0.20). If not found, +0.
+
+        Add the MRR score to total_mrr.
+
+4. The Final Output:
+
+    Calculate the Average MRR for that alpha (total_mrr / 16).
+
+    Store the results. Once all 21 alpha steps are completed, print a highly readable leaderboard to the terminal showing the Alpha ratio, the BM25/Vector percentage breakdown, and the final Average MRR score, sorted from highest score to lowest.
