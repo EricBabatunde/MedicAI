@@ -11,7 +11,7 @@ import nlp from 'wink-nlp-utils';
 // ──────────────────────────────────────────────────────────────────────
 
 const LLAMA_ENDPOINT = 'http://127.0.0.1:8080/v1/chat/completions';
-const LLAMA_TIMEOUT_MS = 90_000; // 90s to allow cold-start model weight loading
+const LLAMA_TIMEOUT_MS = 500_000; // 90s to allow cold-start model weight loading
 
 // Hybrid score weighting: 60% BM25 + 40% Vector (optimised via alpha sweep MRR test)
 const BM25_WEIGHT = 0.6;
@@ -439,10 +439,10 @@ ${evidenceBlock}`;
                 { role: 'user', content: synthesisUserPrompt },
             ],
             temperature: 0.1,
-            max_tokens: 800,
+            max_tokens: 1500,
         };
 
-        console.log(`🦙 [SYNTHESIS] Sending to llama.cpp (temp=0.1, max_tokens=800, timeout=${LLAMA_TIMEOUT_MS / 1000}s)...`);
+        console.log(`🦙 [SYNTHESIS] Sending to llama.cpp (temp=0.1, max_tokens=1500, timeout=${LLAMA_TIMEOUT_MS / 1000}s)...`);
         const synthesisStart = Date.now();
 
         const synthesisController = new AbortController();
