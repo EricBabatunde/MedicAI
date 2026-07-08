@@ -13,9 +13,9 @@ import nlp from 'wink-nlp-utils';
 const LLAMA_ENDPOINT = 'http://127.0.0.1:8080/v1/chat/completions';
 const LLAMA_TIMEOUT_MS = 90_000; // 90s to allow cold-start model weight loading
 
-// Hybrid score weighting: 40% BM25 + 60% Vector
-const BM25_WEIGHT = 0.4;
-const VECTOR_WEIGHT = 0.6;
+// Hybrid score weighting: 60% BM25 + 40% Vector (optimised via alpha sweep MRR test)
+const BM25_WEIGHT = 0.6;
+const VECTOR_WEIGHT = 0.4;
 const BM25_TOP_K = 75;
 const FINAL_TOP_K = 5;
 
@@ -394,7 +394,121 @@ export async function POST(req) {
             console.log(`        [${r.chunk.clinical_category}] source="${source}" pages=${JSON.stringify(r.chunk.page_reference || [])}`);
         });
 
+        // ────────────────────────────────────────────────────────────
+        // LLM SYNTHESIS: Generate clinical response from Top 5 chunks
+        // ────────────────────────────────────────────────────────────
+        console.log(`\n── LLM SYNTHESIS: Generating clinical response ──────────────`);
+
+        // 1. Construct the Evidence Block
+        const evidenceBlock = topResults.map((r, i) => {
+            const source = r.chunk.source_text || 'Unknown source';
+            const pages = (r.chunk.page_reference || []).join(', ') || 'N/A';
+            const text = r.chunk.text_content;
+            return `[Source: ${source}, Pages: ${pages}] ${text}`;
+        }).join('\n\n');
+
+        console.log(`📄 [SYNTHESIS] Evidence block constructed (${evidenceBlock.length} chars from ${topResults.length} chunks)`);
+
+        // 2. Clinical System Prompt
+        const synthesisSystemPrompt = `You are an offline clinical triage assistant operating in a resource-constrained environment.
+
+You must base your entire response STRICTLY on the provided "Evidence Block". Do not use outside knowledge. If the answer is not in the text, explicitly state: "Insufficient clinical data to confirm".
+
+You must cite the source inline when recommending dosages or procedures (e.g., [MSF Guidelines, pg 12]).
+
+You must output your response STRICTLY as a valid JSON object. Do not include markdown code blocks (like \`\`\`json) wrapping the output, just the raw JSON.
+
+Return exactly this JSON structure, using Markdown formatting for the string values:
+{
+  "clinical_assessment": "Brief markdown analysis of the condition",
+  "treatment_plan": "Markdown bullet points of dosages and procedures",
+  "critical_warnings": "Markdown text highlighting severe risks or contraindications",
+  "references": ["Array of source names used"]
+}`;
+
+        // 3. User prompt with query + evidence
+        const synthesisUserPrompt = `User Query: "${query}"
+
+Evidence Block:
+${evidenceBlock}`;
+
+        // 4. Send to llama.cpp
+        const synthesisPayload = {
+            messages: [
+                { role: 'system', content: synthesisSystemPrompt },
+                { role: 'user', content: synthesisUserPrompt },
+            ],
+            temperature: 0.1,
+            max_tokens: 800,
+        };
+
+        console.log(`🦙 [SYNTHESIS] Sending to llama.cpp (temp=0.1, max_tokens=800, timeout=${LLAMA_TIMEOUT_MS / 1000}s)...`);
+        const synthesisStart = Date.now();
+
+        const synthesisController = new AbortController();
+        const synthesisTimeoutId = setTimeout(() => {
+            console.error(`⏱️ [SYNTHESIS] Request timed out after ${LLAMA_TIMEOUT_MS / 1000}s — aborting`);
+            synthesisController.abort();
+        }, LLAMA_TIMEOUT_MS);
+
+        let clinicalResponse;
+        try {
+            const llmResponse = await fetch(LLAMA_ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(synthesisPayload),
+                signal: synthesisController.signal,
+            });
+
+            if (!llmResponse.ok) {
+                const errText = await llmResponse.text();
+                throw new Error(`llama.cpp synthesis error (${llmResponse.status}): ${errText}`);
+            }
+
+            const llmData = await llmResponse.json();
+            const rawContent = llmData.choices?.[0]?.message?.content ?? '';
+            const synthesisMs = Date.now() - synthesisStart;
+            console.log(`🦙 [SYNTHESIS] Response received (${rawContent.length} chars, ${synthesisMs}ms)`);
+
+            // 5. Parse the LLM's JSON response
+            try {
+                // Strip markdown fences if the model wraps its output despite instructions
+                const cleaned = rawContent
+                    .replace(/```json\s*/gi, '')
+                    .replace(/```\s*/g, '')
+                    .trim();
+                clinicalResponse = JSON.parse(cleaned);
+            } catch (parseErr) {
+                console.error(`❌ [SYNTHESIS] JSON parse failed: ${parseErr.message}`);
+                console.log(`📝 [SYNTHESIS] Raw LLM output:\n${rawContent}`);
+                // Fallback: wrap raw text as clinical_assessment
+                clinicalResponse = {
+                    clinical_assessment: rawContent,
+                    treatment_plan: 'Unable to parse structured response from LLM.',
+                    critical_warnings: 'Manual clinical review recommended.',
+                    references: topResults.map(r => r.chunk.source_text || 'Unknown'),
+                };
+            }
+        } catch (fetchErr) {
+            const errorMsg = fetchErr.name === 'AbortError'
+                ? `LLM synthesis timed out after ${LLAMA_TIMEOUT_MS / 1000}s`
+                : fetchErr.message;
+            console.error(`❌ [SYNTHESIS] ${errorMsg}`);
+            // Fallback response on LLM failure
+            clinicalResponse = {
+                clinical_assessment: 'LLM synthesis unavailable. Review retrieved evidence manually.',
+                treatment_plan: 'See retrieved chunks below for clinical guidance.',
+                critical_warnings: errorMsg,
+                references: topResults.map(r => r.chunk.source_text || 'Unknown'),
+            };
+        } finally {
+            clearTimeout(synthesisTimeoutId);
+        }
+
+        // 6. Terminal logging — formatted clinical output
         const totalMs = Date.now() - pipelineStart;
+        console.log(`\n── 📋 CLINICAL RESPONSE ─────────────────────────────────────`);
+        console.log(JSON.stringify(clinicalResponse, null, 2));
         console.log(`\n✅ [PIPELINE COMPLETE] domain="${selectedDomain}" | bm25=${bm25Results.length} candidates | top=${topResults.length} | ${totalMs}ms`);
         console.log('══════════════════════════════════════════════════════════════\n');
 
@@ -408,7 +522,6 @@ export async function POST(req) {
             text_content: r.chunk.text_content,
             extracted_tables: r.chunk.extracted_tables,
             page_reference: r.chunk.page_reference,
-            // Scoring metadata
             scores: {
                 bm25_raw: r.bm25Score,
                 bm25_normalised: r.normBm25,
@@ -419,11 +532,15 @@ export async function POST(req) {
         }));
 
         return NextResponse.json({
+            // LLM-generated clinical response
+            ...clinicalResponse,
+            // Pipeline metadata
             routed_domain: selectedDomain,
             domain_chunk_count: domainSlice.length,
             total_chunk_count: ALL_CHUNKS.length,
             bm25_candidates: bm25Results.length,
             pipeline_ms: totalMs,
+            // Retrieved evidence chunks
             results: responseResults,
         });
 
