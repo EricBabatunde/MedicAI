@@ -127,3 +127,97 @@ else:
     print("="*60)
     print(logs)
     print("="*60)
+
+
+
+
+
+# Download the official Cloudflare Tunnel binary
+if not os.path.exists('cloudflared'):
+    print("📥 Downloading Cloudflare Tunnel binary...")
+    !wget -q https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64 -O cloudflared
+    !chmod +x cloudflared
+
+print("\n🚀 Booting Llama.cpp with 8k Context & GPU Acceleration on PORT 9090...")
+# We redirect outputs to server.log to catch any silent GPU errors
+with open('server.log', 'w') as f:
+    subprocess.Popen([
+        "./llama.cpp/build/bin/llama-server",
+        "-m", "phi-4-mini.gguf",
+        "--port", "9090",
+        "-c", "8192",
+        "-ngl", "99"
+    ], stdout=f, stderr=f)
+
+print("⏳ Waiting for model to load into VRAM and initialize...")
+time.sleep(20) 
+
+print("🌐 Creating a Robust Cloudflare Tunnel...")
+# Start the free Cloudflare tunnel on the NEW port
+with open('cloudflare.log', 'w') as f:
+    subprocess.Popen(["./cloudflared", "tunnel", "--url", "http://127.0.0.1:9090"], stdout=f, stderr=f)
+time.sleep(8)
+
+# Extract the dynamically generated Cloudflare URL
+cf_url = None
+with open('cloudflare.log', 'r') as f:
+    logs = f.read()
+    match = re.search(r"https://[a-zA-Z0-9-]+\.trycloudflare\.com", logs)
+    if match:
+        cf_url = match.group(0)
+
+if cf_url:
+    print("\n" + "="*60)
+    print("✅ YOUR CLOUDFLARE GPU SERVER IS LIVE!")
+    print(f"Copy this exact URL into your test script:")
+    print(f"{cf_url}")
+    print("="*60 + "\n")
+else:
+    print("\n❌ Could not find the Cloudflare URL. Let's check the server logs to see if llama-server crashed:")
+    print("="*60)
+    with open('server.log', 'r') as f_server:
+        print(f_server.read())
+    print("="*60)
+
+
+
+
+
+print("\n🚀 Booting Llama.cpp with 8k Context & GPU Acceleration on PORT 9090...")
+with open('server.log', 'w') as f:
+    subprocess.Popen([
+        "./llama.cpp/build/bin/llama-server",
+        "-m", "phi-4-mini.gguf",
+        "--port", "9090",
+        "-c", "8192",
+        "-ngl", "99"
+    ], stdout=f, stderr=f)
+
+time.sleep(15) 
+
+print("🌐 Creating Pinggy Tunnel (API-Friendly, No WAF blocks)...")
+# Pinggy uses standard SSH to reverse tunnel directly to the internet
+pinggy_process = subprocess.Popen(
+    ["ssh", "-p", "443", "-R0:localhost:9090", "-o", "StrictHostKeyChecking=no", "a.pinggy.io"],
+    stdout=subprocess.PIPE,
+    stderr=subprocess.STDOUT,
+    text=True
+)
+
+pinggy_url = None
+# Scan the SSH output for the secure URL using regex to ignore ANSI formatting characters
+for _ in range(50):
+    line = pinggy_process.stdout.readline()
+    match = re.search(r"https://[a-zA-Z0-9-.]+\.pinggy\.link", line)
+    if match:
+        pinggy_url = match.group(0)
+        break
+
+if pinggy_url:
+    print("\n" + "="*60)
+    print("✅ YOUR PINGGY GPU SERVER IS LIVE!")
+    print(f"Copy this exact URL into your test script:")
+    print(f"{pinggy_url}")
+    print("="*60 + "\n")
+else:
+    print("\n❌ Tunnel failed to start. Please run this cell again.")
