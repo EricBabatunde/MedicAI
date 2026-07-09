@@ -1,0 +1,22 @@
+# Dependencies & build artifacts
+node_modules
+.next
+
+# Version control
+.git
+.gitignore
+
+# LLM model weights (mounted separately via docker-compose volume)
+models/
+
+# Source PDFs (not needed at runtime)
+res/sources_pdf/
+
+# Compiled llama.cpp binaries (server runs in its own container)
+llama.cpp/
+
+# IDE / OS files
+.vscode
+.idea
+*.swp
+.DS_Store

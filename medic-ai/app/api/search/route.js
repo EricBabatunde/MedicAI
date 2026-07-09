@@ -11,7 +11,7 @@ import nlp from 'wink-nlp-utils';
 // ──────────────────────────────────────────────────────────────────────
 
 const LLM_SERVER_URL = process.env.LLM_URL || 'http://127.0.0.1:8080/v1/chat/completions';
-const LLAMA_TIMEOUT_MS = 120_000; // 120s — headroom for cloud GPU cold-start or tunnel latency
+const LLAMA_TIMEOUT_MS = 480_000; // 180s — headroom for cloud GPU cold-start or tunnel latency
 
 // Hybrid score weighting: 60% BM25 + 40% Vector (optimised via alpha sweep MRR test)
 const BM25_WEIGHT = 0.6;

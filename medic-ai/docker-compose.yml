@@ -1,0 +1,56 @@
+# ═══════════════════════════════════════════════════════════════════════
+#  Medic-AI — Docker Compose Orchestration
+#  ─────────────────────────────────────────────────────────────────────
+#  Services:
+#    1. llm-server  — llama.cpp inference server (Phi-4-mini)
+#    2. web         — Next.js clinical RAG application
+#
+#  Usage:
+#    docker compose up              # Start both services
+#    docker compose up --build      # Rebuild after code changes
+#    docker compose down            # Stop and remove containers
+# ═══════════════════════════════════════════════════════════════════════
+
+services:
+  # ─────────────────────────────────────────────────────────────────────
+  #  LLM Server — llama.cpp with OpenAI-compatible API
+  # ─────────────────────────────────────────────────────────────────────
+  #
+  #  CPU image (default):
+  #    ghcr.io/ggml-org/llama.cpp:server
+  #
+  #  NVIDIA GPU image (uncomment and replace if target machine has CUDA):
+  #    ghcr.io/ggml-org/llama.cpp:server-cuda
+  #    Also add under this service:
+  #      deploy:
+  #        resources:
+  #          reservations:
+  #            devices:
+  #              - driver: nvidia
+  #                count: 1
+  #                capabilities: [gpu]
+  #
+  llm-server:
+    image: ghcr.io/ggml-org/llama.cpp:server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./models:/models
+    command: >
+      -m /models/phi-4-mini.gguf
+      --port 8080
+      --host 0.0.0.0
+      -c 8192
+
+  # ─────────────────────────────────────────────────────────────────────
+  #  Web App — Next.js Clinical RAG Pipeline
+  # ─────────────────────────────────────────────────────────────────────
+  web:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      # Docker internal DNS resolves 'llm-server' to the LLM container
+      - LLM_URL=http://llm-server:8080/v1/chat/completions
+    depends_on:
+      - llm-server
