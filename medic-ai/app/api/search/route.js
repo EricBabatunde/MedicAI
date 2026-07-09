@@ -10,8 +10,8 @@ import nlp from 'wink-nlp-utils';
 //  Pass 0: LLM Domain Router → BM25 Keyword Search → Vector Re-rank
 // ──────────────────────────────────────────────────────────────────────
 
-const LLAMA_ENDPOINT = 'http://127.0.0.1:8080/v1/chat/completions';
-const LLAMA_TIMEOUT_MS = 500_000; // 90s to allow cold-start model weight loading
+const LLM_SERVER_URL = process.env.LLM_URL || 'http://127.0.0.1:8080/v1/chat/completions';
+const LLAMA_TIMEOUT_MS = 120_000; // 120s — headroom for cloud GPU cold-start or tunnel latency
 
 // Hybrid score weighting: 60% BM25 + 40% Vector (optimised via alpha sweep MRR test)
 const BM25_WEIGHT = 0.6;
@@ -109,7 +109,7 @@ async function routeQueryToDomain(query) {
     }, LLAMA_TIMEOUT_MS);
 
     try {
-        const response = await fetch(LLAMA_ENDPOINT, {
+        const response = await fetch(LLM_SERVER_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload),
@@ -453,7 +453,7 @@ ${evidenceBlock}`;
 
         let clinicalResponse;
         try {
-            const llmResponse = await fetch(LLAMA_ENDPOINT, {
+            const llmResponse = await fetch(LLM_SERVER_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(synthesisPayload),
