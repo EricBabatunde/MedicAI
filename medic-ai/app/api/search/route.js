@@ -6,12 +6,12 @@ import bm25 from 'wink-bm25-text-search';
 import nlp from 'wink-nlp-utils';
 
 // ──────────────────────────────────────────────────────────────────────
-//  Clinical RAG Pipeline
+//  Clinical RAG Pipeline (SSE Streaming)
 //  Pass 0: LLM Domain Router → BM25 Keyword Search → Vector Re-rank
 // ──────────────────────────────────────────────────────────────────────
 
 const LLM_SERVER_URL = process.env.LLM_URL || 'http://127.0.0.1:8080/v1/chat/completions';
-const LLAMA_TIMEOUT_MS = 480_000; // 180s — headroom for cloud GPU cold-start or tunnel latency
+const LLAMA_TIMEOUT_MS = 480_000; // 480s — headroom for cloud GPU cold-start or tunnel latency
 
 // Hybrid score weighting: 60% BM25 + 40% Vector (optimised via alpha sweep MRR test)
 const BM25_WEIGHT = 0.6;
@@ -307,110 +307,139 @@ function computeHybridScores(results) {
 
 
 // ══════════════════════════════════════════════════════════════════════
-//  POST /api/search — Asymmetric Hybrid Search Pipeline
+//  POST /api/search — SSE Streaming Hybrid Search Pipeline
 // ══════════════════════════════════════════════════════════════════════
 export async function POST(req) {
     const pipelineStart = Date.now();
     console.log('\n══════════════════════════════════════════════════════════════');
-    console.log('  🚀 RAG PIPELINE — Pass 0 → BM25 → Vector Hybrid Search');
+    console.log('  🚀 RAG PIPELINE (SSE) — Pass 0 → BM25 → Vector → Stream');
     console.log('══════════════════════════════════════════════════════════════');
 
+    // ── Parse incoming request ──────────────────────────────────
+    let query;
     try {
-        // ── Parse incoming request ──────────────────────────────────
-        const { query } = await req.json();
-        if (!query || typeof query !== 'string' || !query.trim()) {
-            return NextResponse.json(
-                { error: 'A non-empty query string is required.' },
-                { status: 400 }
-            );
-        }
-        console.log(`📝 [INPUT] Query: "${query}"`);
-        console.log(`📦 [DB] Global cache: ${ALL_CHUNKS.length} chunks in memory`);
-
-        // ────────────────────────────────────────────────────────────
-        // PASS 0: Domain Classification via LLM Router
-        // ────────────────────────────────────────────────────────────
-        const selectedDomain = await routeQueryToDomain(query);
-
-        // ── Filter to domain slice ──────────────────────────────────
-        console.log(`\n🔬 [FILTER] Slicing to domain_spoke="${selectedDomain}"...`);
-        const domainSlice = ALL_CHUNKS.filter(
-            chunk => chunk.domain_spoke === selectedDomain
+        const body = await req.json();
+        query = body.query;
+    } catch {
+        return NextResponse.json(
+            { error: 'Invalid JSON body.' },
+            { status: 400 }
         );
-        console.log(`📊 [FILTER] Isolated ${domainSlice.length} / ${ALL_CHUNKS.length} chunks (${((domainSlice.length / ALL_CHUNKS.length) * 100).toFixed(1)}%)`);
+    }
 
-        // Fallback to full database if domain slice is empty
-        const searchPool = domainSlice.length > 0 ? domainSlice : ALL_CHUNKS;
-        if (domainSlice.length === 0) {
-            console.warn(`⚠️  [FILTER] Zero chunks in "${selectedDomain}" — searching full database`);
-        }
+    if (!query || typeof query !== 'string' || !query.trim()) {
+        return NextResponse.json(
+            { error: 'A non-empty query string is required.' },
+            { status: 400 }
+        );
+    }
 
-        // ────────────────────────────────────────────────────────────
-        // PASS 1: BM25 Keyword Search (fast filter on domain slice)
-        // ────────────────────────────────────────────────────────────
-        console.log(`\n── PASS 1: BM25 Keyword Search ────────────────────────────`);
-        const bm25Start = Date.now();
-        const bm25Results = bm25Search(searchPool, query, BM25_TOP_K);
-        const bm25Ms = Date.now() - bm25Start;
+    console.log(`📝 [INPUT] Query: "${query}"`);
+    console.log(`📦 [DB] Global cache: ${ALL_CHUNKS.length} chunks in memory`);
 
-        console.log(`📊 [BM25] Retrieved ${bm25Results.length} candidate(s) from ${searchPool.length} chunks (${bm25Ms}ms)`);
-        if (bm25Results.length > 0) {
-            console.log(`📊 [BM25] Score range: ${bm25Results[0].bm25Score.toFixed(3)} → ${bm25Results[bm25Results.length - 1].bm25Score.toFixed(3)}`);
-        }
+    // ── SSE stream ──────────────────────────────────────────────
+    const encoder = new TextEncoder();
+    const stream = new ReadableStream({
+        async start(controller) {
+            const sendEvent = (type, data) => {
+                try {
+                    controller.enqueue(
+                        encoder.encode(`data: ${JSON.stringify({ type, ...data })}\n\n`)
+                    );
+                } catch {
+                    // Controller may already be closed
+                }
+            };
 
-        if (bm25Results.length === 0) {
-            console.warn(`⚠️  [BM25] No keyword matches found — returning empty results`);
-            return NextResponse.json({
-                routed_domain: selectedDomain,
-                domain_chunk_count: domainSlice.length,
-                bm25_candidates: 0,
-                pipeline_ms: Date.now() - pipelineStart,
-                results: [],
-            });
-        }
+            try {
+                // ────────────────────────────────────────────────
+                // PASS 0: Domain Classification
+                // ────────────────────────────────────────────────
+                sendEvent('status', { step: 'Routing Domain...' });
+                const selectedDomain = await routeQueryToDomain(query);
+                sendEvent('status', { step: `Domain: ${selectedDomain.replace(/_/g, ' ')}` });
 
-        // ────────────────────────────────────────────────────────────
-        // PASS 2: Vector Re-ranking (semantic scalpel on BM25 top-K)
-        // ────────────────────────────────────────────────────────────
-        console.log(`\n── PASS 2: Vector Re-ranking (${bm25Results.length} candidates) ─────────`);
-        const vectorResults = await vectorRerank(bm25Results, query);
+                // ── Filter to domain slice ──────────────────────
+                console.log(`\n🔬 [FILTER] Slicing to domain_spoke="${selectedDomain}"...`);
+                const domainSlice = ALL_CHUNKS.filter(
+                    chunk => chunk.domain_spoke === selectedDomain
+                );
+                console.log(`📊 [FILTER] Isolated ${domainSlice.length} / ${ALL_CHUNKS.length} chunks (${((domainSlice.length / ALL_CHUNKS.length) * 100).toFixed(1)}%)`);
 
-        // ────────────────────────────────────────────────────────────
-        // FUSION: Hybrid Score (40% BM25 + 60% Vector)
-        // ────────────────────────────────────────────────────────────
-        console.log(`\n── FUSION: Hybrid Score (${(BM25_WEIGHT * 100).toFixed(0)}% BM25 + ${(VECTOR_WEIGHT * 100).toFixed(0)}% Vector) ──`);
-        const hybridResults = computeHybridScores(vectorResults);
+                const searchPool = domainSlice.length > 0 ? domainSlice : ALL_CHUNKS;
+                if (domainSlice.length === 0) {
+                    console.warn(`⚠️  [FILTER] Zero chunks in "${selectedDomain}" — searching full database`);
+                }
 
-        // Take the top 5
-        const topResults = hybridResults.slice(0, FINAL_TOP_K);
+                // ────────────────────────────────────────────────
+                // PASS 1: BM25 Keyword Search
+                // ────────────────────────────────────────────────
+                sendEvent('status', { step: 'Executing BM25 Keyword Search...' });
+                console.log(`\n── PASS 1: BM25 Keyword Search ────────────────────────────`);
+                const bm25Start = Date.now();
+                const bm25Results = bm25Search(searchPool, query, BM25_TOP_K);
+                const bm25Ms = Date.now() - bm25Start;
 
-        // ── Console tracing ─────────────────────────────────────────
-        console.log(`\n── TOP ${topResults.length} HYBRID RESULTS ──────────────────────────────`);
-        topResults.forEach((r, i) => {
-            const topic = r.chunk.hierarchical_context?.primary_topic || '(untitled)';
-            const chapter = r.chunk.hierarchical_context?.chapter || '';
-            const source = r.chunk.source_text || '';
-            console.log(`   #${i + 1} hybrid=${r.hybridScore.toFixed(4)} | bm25=${r.normBm25.toFixed(3)} vec=${r.normVector.toFixed(3)} | ${chapter} → ${topic}`);
-            console.log(`        [${r.chunk.clinical_category}] source="${source}" pages=${JSON.stringify(r.chunk.page_reference || [])}`);
-        });
+                console.log(`📊 [BM25] Retrieved ${bm25Results.length} candidate(s) from ${searchPool.length} chunks (${bm25Ms}ms)`);
+                if (bm25Results.length > 0) {
+                    console.log(`📊 [BM25] Score range: ${bm25Results[0].bm25Score.toFixed(3)} → ${bm25Results[bm25Results.length - 1].bm25Score.toFixed(3)}`);
+                }
 
-        // ────────────────────────────────────────────────────────────
-        // LLM SYNTHESIS: Generate clinical response from Top 5 chunks
-        // ────────────────────────────────────────────────────────────
-        console.log(`\n── LLM SYNTHESIS: Generating clinical response ──────────────`);
+                if (bm25Results.length === 0) {
+                    console.warn(`⚠️  [BM25] No keyword matches found — returning empty results`);
+                    sendEvent('complete', {
+                        routed_domain: selectedDomain,
+                        domain_chunk_count: domainSlice.length,
+                        bm25_candidates: 0,
+                        pipeline_ms: Date.now() - pipelineStart,
+                        results: [],
+                    });
+                    controller.close();
+                    return;
+                }
 
-        // 1. Construct the Evidence Block
-        const evidenceBlock = topResults.map((r, i) => {
-            const source = r.chunk.source_text || 'Unknown source';
-            const pages = (r.chunk.page_reference || []).join(', ') || 'N/A';
-            const text = r.chunk.text_content;
-            return `[Source: ${source}, Pages: ${pages}] ${text}`;
-        }).join('\n\n');
+                // ────────────────────────────────────────────────
+                // PASS 2: Vector Re-ranking
+                // ────────────────────────────────────────────────
+                sendEvent('status', { step: 'Calculating Vector Embeddings...' });
+                console.log(`\n── PASS 2: Vector Re-ranking (${bm25Results.length} candidates) ─────────`);
+                const vectorResults = await vectorRerank(bm25Results, query);
 
-        console.log(`📄 [SYNTHESIS] Evidence block constructed (${evidenceBlock.length} chars from ${topResults.length} chunks)`);
+                // ────────────────────────────────────────────────
+                // FUSION: Hybrid Score
+                // ────────────────────────────────────────────────
+                console.log(`\n── FUSION: Hybrid Score (${(BM25_WEIGHT * 100).toFixed(0)}% BM25 + ${(VECTOR_WEIGHT * 100).toFixed(0)}% Vector) ──`);
+                const hybridResults = computeHybridScores(vectorResults);
+                const topResults = hybridResults.slice(0, FINAL_TOP_K);
 
-        // 2. Clinical System Prompt
-        const synthesisSystemPrompt = `You are an offline clinical triage assistant operating in a resource-constrained environment.
+                // ── Console tracing ─────────────────────────────
+                console.log(`\n── TOP ${topResults.length} HYBRID RESULTS ──────────────────────────────`);
+                topResults.forEach((r, i) => {
+                    const topic = r.chunk.hierarchical_context?.primary_topic || '(untitled)';
+                    const chapter = r.chunk.hierarchical_context?.chapter || '';
+                    const source = r.chunk.source_text || '';
+                    console.log(`   #${i + 1} hybrid=${r.hybridScore.toFixed(4)} | bm25=${r.normBm25.toFixed(3)} vec=${r.normVector.toFixed(3)} | ${chapter} → ${topic}`);
+                    console.log(`        [${r.chunk.clinical_category}] source="${source}" pages=${JSON.stringify(r.chunk.page_reference || [])}`);
+                });
+
+                // ────────────────────────────────────────────────
+                // LLM SYNTHESIS: Streaming from llama.cpp
+                // ────────────────────────────────────────────────
+                sendEvent('status', { step: 'Synthesizing (GPU Active)...' });
+                console.log(`\n── LLM SYNTHESIS: Streaming clinical response ──────────────`);
+
+                // 1. Construct the Evidence Block
+                const evidenceBlock = topResults.map((r) => {
+                    const source = r.chunk.source_text || 'Unknown source';
+                    const pages = (r.chunk.page_reference || []).join(', ') || 'N/A';
+                    const text = r.chunk.text_content;
+                    return `[Source: ${source}, Pages: ${pages}] ${text}`;
+                }).join('\n\n');
+
+                console.log(`📄 [SYNTHESIS] Evidence block constructed (${evidenceBlock.length} chars from ${topResults.length} chunks)`);
+
+                // 2. Clinical System Prompt
+                const synthesisSystemPrompt = `You are an offline clinical triage assistant operating in a resource-constrained environment.
 
 You must base your entire response STRICTLY on the provided "Evidence Block". Do not use outside knowledge. If the answer is not in the text, explicitly state: "Insufficient clinical data to confirm".
 
@@ -426,127 +455,171 @@ Return exactly this JSON structure, using Markdown formatting for the string val
   "references": ["Array of source names used"]
 }`;
 
-        // 3. User prompt with query + evidence
-        const synthesisUserPrompt = `User Query: "${query}"
+                // 3. User prompt with query + evidence
+                const synthesisUserPrompt = `User Query: "${query}"
 
 Evidence Block:
 ${evidenceBlock}`;
 
-        // 4. Send to llama.cpp
-        const synthesisPayload = {
-            messages: [
-                { role: 'system', content: synthesisSystemPrompt },
-                { role: 'user', content: synthesisUserPrompt },
-            ],
-            temperature: 0.1,
-            max_tokens: 1500,
-        };
-
-        console.log(`🦙 [SYNTHESIS] Sending to llama.cpp (temp=0.1, max_tokens=1500, timeout=${LLAMA_TIMEOUT_MS / 1000}s)...`);
-        const synthesisStart = Date.now();
-
-        const synthesisController = new AbortController();
-        const synthesisTimeoutId = setTimeout(() => {
-            console.error(`⏱️ [SYNTHESIS] Request timed out after ${LLAMA_TIMEOUT_MS / 1000}s — aborting`);
-            synthesisController.abort();
-        }, LLAMA_TIMEOUT_MS);
-
-        let clinicalResponse;
-        try {
-            const llmResponse = await fetch(LLM_SERVER_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(synthesisPayload),
-                signal: synthesisController.signal,
-            });
-
-            if (!llmResponse.ok) {
-                const errText = await llmResponse.text();
-                throw new Error(`llama.cpp synthesis error (${llmResponse.status}): ${errText}`);
-            }
-
-            const llmData = await llmResponse.json();
-            const rawContent = llmData.choices?.[0]?.message?.content ?? '';
-            const synthesisMs = Date.now() - synthesisStart;
-            console.log(`🦙 [SYNTHESIS] Response received (${rawContent.length} chars, ${synthesisMs}ms)`);
-
-            // 5. Parse the LLM's JSON response
-            try {
-                // Strip markdown fences if the model wraps its output despite instructions
-                const cleaned = rawContent
-                    .replace(/```json\s*/gi, '')
-                    .replace(/```\s*/g, '')
-                    .trim();
-                clinicalResponse = JSON.parse(cleaned);
-            } catch (parseErr) {
-                console.error(`❌ [SYNTHESIS] JSON parse failed: ${parseErr.message}`);
-                console.log(`📝 [SYNTHESIS] Raw LLM output:\n${rawContent}`);
-                // Fallback: wrap raw text as clinical_assessment
-                clinicalResponse = {
-                    clinical_assessment: rawContent,
-                    treatment_plan: 'Unable to parse structured response from LLM.',
-                    critical_warnings: 'Manual clinical review recommended.',
-                    references: topResults.map(r => r.chunk.source_text || 'Unknown'),
+                // 4. Send to llama.cpp with streaming enabled
+                const synthesisPayload = {
+                    messages: [
+                        { role: 'system', content: synthesisSystemPrompt },
+                        { role: 'user', content: synthesisUserPrompt },
+                    ],
+                    temperature: 0.1,
+                    max_tokens: 1500,
+                    stream: true,
                 };
+
+                console.log(`🦙 [SYNTHESIS] Sending to llama.cpp (stream=true, temp=0.1, max_tokens=1500, timeout=${LLAMA_TIMEOUT_MS / 1000}s)...`);
+                const synthesisStart = Date.now();
+
+                const synthesisController = new AbortController();
+                const synthesisTimeoutId = setTimeout(() => {
+                    console.error(`⏱️ [SYNTHESIS] Request timed out after ${LLAMA_TIMEOUT_MS / 1000}s — aborting`);
+                    synthesisController.abort();
+                }, LLAMA_TIMEOUT_MS);
+
+                // Build response results for the 'complete' event
+                const responseResults = topResults.map(r => ({
+                    chunk_id: r.chunk.chunk_id,
+                    domain_spoke: r.chunk.domain_spoke,
+                    source_text: r.chunk.source_text,
+                    hierarchical_context: r.chunk.hierarchical_context,
+                    clinical_category: r.chunk.clinical_category,
+                    text_content: r.chunk.text_content,
+                    extracted_tables: r.chunk.extracted_tables,
+                    page_reference: r.chunk.page_reference,
+                    scores: {
+                        bm25_raw: r.bm25Score,
+                        bm25_normalised: r.normBm25,
+                        vector: r.vectorScore,
+                        vector_normalised: r.normVector,
+                        hybrid: r.hybridScore,
+                    },
+                }));
+
+                let accumulatedLLMText = '';
+
+                try {
+                    const llmResponse = await fetch(LLM_SERVER_URL, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(synthesisPayload),
+                        signal: synthesisController.signal,
+                    });
+
+                    if (!llmResponse.ok) {
+                        const errText = await llmResponse.text();
+                        throw new Error(`llama.cpp synthesis error (${llmResponse.status}): ${errText}`);
+                    }
+
+                    // Read the streaming response from llama.cpp
+                    const reader = llmResponse.body.getReader();
+                    const decoder = new TextDecoder();
+                    let buffer = '';
+
+                    while (true) {
+                        const { done, value } = await reader.read();
+                        if (done) break;
+
+                        buffer += decoder.decode(value, { stream: true });
+
+                        // Process complete SSE lines from llama.cpp
+                        const lines = buffer.split('\n');
+                        // Keep the last (potentially incomplete) line in the buffer
+                        buffer = lines.pop() || '';
+
+                        for (const line of lines) {
+                            const trimmed = line.trim();
+                            if (!trimmed || !trimmed.startsWith('data: ')) continue;
+
+                            const payload = trimmed.slice(6);
+                            if (payload === '[DONE]') continue;
+
+                            try {
+                                const chunk = JSON.parse(payload);
+                                const token = chunk.choices?.[0]?.delta?.content;
+                                if (token) {
+                                    accumulatedLLMText += token;
+                                    sendEvent('token', { text: token });
+                                }
+                            } catch {
+                                // Skip unparseable chunks
+                            }
+                        }
+                    }
+
+                    // Process any remaining buffer
+                    if (buffer.trim().startsWith('data: ') && buffer.trim().slice(6) !== '[DONE]') {
+                        try {
+                            const chunk = JSON.parse(buffer.trim().slice(6));
+                            const token = chunk.choices?.[0]?.delta?.content;
+                            if (token) {
+                                accumulatedLLMText += token;
+                                sendEvent('token', { text: token });
+                            }
+                        } catch {
+                            // Skip
+                        }
+                    }
+
+                    const synthesisMs = Date.now() - synthesisStart;
+                    console.log(`🦙 [SYNTHESIS] Stream complete (${accumulatedLLMText.length} chars, ${synthesisMs}ms)`);
+
+                } catch (fetchErr) {
+                    const errorMsg = fetchErr.name === 'AbortError'
+                        ? `LLM synthesis timed out after ${LLAMA_TIMEOUT_MS / 1000}s`
+                        : fetchErr.message;
+                    console.error(`❌ [SYNTHESIS] ${errorMsg}`);
+
+                    // If we got no tokens, send a fallback as tokens so frontend has something to parse
+                    if (!accumulatedLLMText) {
+                        const fallback = JSON.stringify({
+                            clinical_assessment: 'LLM synthesis unavailable. Review retrieved evidence manually.',
+                            treatment_plan: 'See retrieved chunks below for clinical guidance.',
+                            critical_warnings: errorMsg,
+                            references: topResults.map(r => r.chunk.source_text || 'Unknown'),
+                        });
+                        accumulatedLLMText = fallback;
+                        sendEvent('token', { text: fallback });
+                    }
+                } finally {
+                    clearTimeout(synthesisTimeoutId);
+                }
+
+                // ── Send the complete event with metadata + evidence ──
+                const totalMs = Date.now() - pipelineStart;
+                console.log(`\n── 📋 CLINICAL RESPONSE ─────────────────────────────────────`);
+                console.log(accumulatedLLMText.slice(0, 500) + (accumulatedLLMText.length > 500 ? '...' : ''));
+                console.log(`\n✅ [PIPELINE COMPLETE] domain="${selectedDomain}" | bm25=${bm25Results.length} candidates | top=${topResults.length} | ${totalMs}ms`);
+                console.log('══════════════════════════════════════════════════════════════\n');
+
+                sendEvent('complete', {
+                    routed_domain: selectedDomain,
+                    domain_chunk_count: domainSlice.length,
+                    total_chunk_count: ALL_CHUNKS.length,
+                    bm25_candidates: bm25Results.length,
+                    pipeline_ms: totalMs,
+                    results: responseResults,
+                });
+
+            } catch (error) {
+                console.error(`\n❌ [PIPELINE ERROR] ${error.message}`);
+                console.error(error.stack);
+                sendEvent('error', { message: error.message });
+            } finally {
+                controller.close();
             }
-        } catch (fetchErr) {
-            const errorMsg = fetchErr.name === 'AbortError'
-                ? `LLM synthesis timed out after ${LLAMA_TIMEOUT_MS / 1000}s`
-                : fetchErr.message;
-            console.error(`❌ [SYNTHESIS] ${errorMsg}`);
-            // Fallback response on LLM failure
-            clinicalResponse = {
-                clinical_assessment: 'LLM synthesis unavailable. Review retrieved evidence manually.',
-                treatment_plan: 'See retrieved chunks below for clinical guidance.',
-                critical_warnings: errorMsg,
-                references: topResults.map(r => r.chunk.source_text || 'Unknown'),
-            };
-        } finally {
-            clearTimeout(synthesisTimeoutId);
-        }
+        },
+    });
 
-        // 6. Terminal logging — formatted clinical output
-        const totalMs = Date.now() - pipelineStart;
-        console.log(`\n── 📋 CLINICAL RESPONSE ─────────────────────────────────────`);
-        console.log(JSON.stringify(clinicalResponse, null, 2));
-        console.log(`\n✅ [PIPELINE COMPLETE] domain="${selectedDomain}" | bm25=${bm25Results.length} candidates | top=${topResults.length} | ${totalMs}ms`);
-        console.log('══════════════════════════════════════════════════════════════\n');
-
-        // ── Build response ──────────────────────────────────────────
-        const responseResults = topResults.map(r => ({
-            chunk_id: r.chunk.chunk_id,
-            domain_spoke: r.chunk.domain_spoke,
-            source_text: r.chunk.source_text,
-            hierarchical_context: r.chunk.hierarchical_context,
-            clinical_category: r.chunk.clinical_category,
-            text_content: r.chunk.text_content,
-            extracted_tables: r.chunk.extracted_tables,
-            page_reference: r.chunk.page_reference,
-            scores: {
-                bm25_raw: r.bm25Score,
-                bm25_normalised: r.normBm25,
-                vector: r.vectorScore,
-                vector_normalised: r.normVector,
-                hybrid: r.hybridScore,
-            },
-        }));
-
-        return NextResponse.json({
-            // LLM-generated clinical response
-            ...clinicalResponse,
-            // Pipeline metadata
-            routed_domain: selectedDomain,
-            domain_chunk_count: domainSlice.length,
-            total_chunk_count: ALL_CHUNKS.length,
-            bm25_candidates: bm25Results.length,
-            pipeline_ms: totalMs,
-            // Retrieved evidence chunks
-            results: responseResults,
-        });
-
-    } catch (error) {
-        console.error(`\n❌ [PIPELINE ERROR] ${error.message}`);
-        console.error(error.stack);
-        return NextResponse.json({ error: error.message }, { status: 500 });
-    }
+    return new Response(stream, {
+        headers: {
+            'Content-Type': 'text/event-stream',
+            'Cache-Control': 'no-cache',
+            'Connection': 'keep-alive',
+        },
+    });
 }

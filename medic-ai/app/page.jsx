@@ -12,16 +12,9 @@ import {
   Database,
   Zap,
   Loader2,
+  Radio,
 } from "lucide-react";
 import ClinicalReport from "@/components/ClinicalReport";
-
-const LOADING_STEPS = [
-  { at: 0, text: "Analyzing query & routing domain..." },
-  { at: 3000, text: "Extracting WHO & MSF textbook chunks via BM25..." },
-  { at: 10000, text: "Re-ranking evidence via Vector Embeddings..." },
-  { at: 45000, text: "Synthesizing clinical response (GPU Processing)..." },
-  { at: 70000, text: "Finalizing medical formatting..." },
-];
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -34,7 +27,13 @@ export default function Dashboard() {
   const [activeQuery, setActiveQuery] = useState("");
   const [error, setError] = useState(null);
 
-  const intervalRef = useRef(null);
+  // SSE streaming state
+  const [isStreamingTokens, setIsStreamingTokens] = useState(false);
+  const [streamedText, setStreamedText] = useState("");
+  const [retrievedEvidence, setRetrievedEvidence] = useState([]);
+
+  const streamTextRef = useRef("");
+  const evidenceRef = useRef([]);
 
   // ── Load history from localStorage on mount ──
   useEffect(() => {
@@ -49,91 +48,144 @@ export default function Dashboard() {
     }
   }, []);
 
-  // ── Search handler ──
+  // ── Search handler (SSE consumer) ──
   const handleSearch = useCallback(
     async (e, overrideQuery) => {
       if (e) e.preventDefault();
       const trimmed = (overrideQuery ?? searchQuery).trim();
       if (!trimmed) return;
 
+      // Reset all state
       setIsLoading(true);
       setError(null);
       setClinicalResult(null);
       setActiveQuery(trimmed);
       setIsSidebarOpen(false);
-
-      // Loading‑step illusion
-      const start = Date.now();
-      setLoadingStep(LOADING_STEPS[0].text);
-
-      intervalRef.current = setInterval(() => {
-        const elapsed = Date.now() - start;
-        for (let i = LOADING_STEPS.length - 1; i >= 0; i--) {
-          if (elapsed >= LOADING_STEPS[i].at) {
-            setLoadingStep(LOADING_STEPS[i].text);
-            break;
-          }
-        }
-      }, 500);
+      setIsStreamingTokens(false);
+      setStreamedText("");
+      setRetrievedEvidence([]);
+      setLoadingStep("Connecting to pipeline...");
+      streamTextRef.current = "";
+      evidenceRef.current = [];
 
       try {
-        const res = await fetch("/api/search", {
+        const response = await fetch("/api/search", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ query: trimmed }),
         });
 
-        if (!res.ok) {
-          throw new Error(`Server responded with ${res.status}`);
+        if (!response.ok) {
+          throw new Error(`Server responded with ${response.status}`);
         }
 
-        const data = await res.json();
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = "";
+        let completeMeta = {};
 
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
 
-        setClinicalResult(data);
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split("\n");
+          buffer = lines.pop() || "";
 
-        // Persist to history (most recent first, deduplicated, max 20)
+          for (const line of lines) {
+            const trimmedLine = line.trim();
+            if (!trimmedLine.startsWith("data: ")) continue;
+
+            let data;
+            try {
+              data = JSON.parse(trimmedLine.slice(6));
+            } catch {
+              continue;
+            }
+
+            if (data.type === "status") {
+              setLoadingStep(data.step);
+            } else if (data.type === "token") {
+              setIsStreamingTokens(true);
+              streamTextRef.current += data.text;
+              setStreamedText(streamTextRef.current);
+            } else if (data.type === "complete") {
+              evidenceRef.current = data.results || [];
+              setRetrievedEvidence(evidenceRef.current);
+              completeMeta = data;
+            } else if (data.type === "error") {
+              throw new Error(data.message || "Pipeline error");
+            }
+          }
+        }
+
+        // Stream finished — parse accumulated LLM text into structured result
+        const rawLLM = streamTextRef.current;
+        let parsedClinical;
+
+        try {
+          const cleaned = rawLLM
+            .replace(/```json\s*/gi, "")
+            .replace(/```\s*/g, "")
+            .trim();
+          parsedClinical = JSON.parse(cleaned);
+        } catch {
+          console.warn("JSON parse failed on streamed text, using raw");
+          parsedClinical = {
+            clinical_assessment: rawLLM,
+            treatment_plan: "Unable to parse structured response.",
+            critical_warnings: "",
+            references: [],
+          };
+        }
+
+        // Merge with metadata from 'complete' event
+        setClinicalResult({
+          ...parsedClinical,
+          routed_domain: completeMeta.routed_domain,
+          domain_chunk_count: completeMeta.domain_chunk_count,
+          total_chunk_count: completeMeta.total_chunk_count,
+          bm25_candidates: completeMeta.bm25_candidates,
+          pipeline_ms: completeMeta.pipeline_ms,
+          results: evidenceRef.current,
+        });
+
+        // Persist to history
         setRecentQueries((prev) => {
-          const updated = [trimmed, ...prev.filter((q) => q !== trimmed)].slice(
-            0,
-            20
-          );
+          const updated = [
+            trimmed,
+            ...prev.filter((q) => q !== trimmed),
+          ].slice(0, 20);
           localStorage.setItem("medicai_history", JSON.stringify(updated));
           return updated;
         });
 
         setSearchQuery("");
       } catch (err) {
-        clearInterval(intervalRef.current);
-        intervalRef.current = null;
         setError(err.message || "Something went wrong");
       } finally {
         setIsLoading(false);
+        setIsStreamingTokens(false);
         setLoadingStep("");
       }
     },
     [searchQuery]
   );
 
-  // Cleanup interval on unmount
-  useEffect(() => {
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
-  }, []);
-
   function handleReset() {
     setClinicalResult(null);
     setActiveQuery("");
     setError(null);
     setSearchQuery("");
+    setStreamedText("");
+    setRetrievedEvidence([]);
+    setIsStreamingTokens(false);
   }
 
   // ── Decide what the central area shows ──
   const showSearch = !isLoading && !clinicalResult;
-  const showLoading = isLoading;
+  const showLoading = isLoading && !isStreamingTokens;
+  const showStreaming = isLoading && isStreamingTokens;
   const showResult = !isLoading && clinicalResult;
 
   return (
@@ -273,7 +325,7 @@ export default function Dashboard() {
             </div>
           )}
 
-          {/* ── Loading card ── */}
+          {/* ── Pipeline status spinner (pre-token phase) ── */}
           {showLoading && (
             <div className="flex-1 flex items-center justify-center w-full">
               <div className="glass-panel p-8 rounded-2xl max-w-md w-full flex flex-col items-center gap-6">
@@ -283,6 +335,44 @@ export default function Dashboard() {
                 </p>
                 <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                   <div className="bg-brand-500 h-full w-1/2 animate-pulse rounded-full" />
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ── Live Synthesis Terminal (streaming tokens) ── */}
+          {showStreaming && (
+            <div className="flex-1 flex items-center justify-center w-full">
+              <div className="glass-panel p-8 rounded-2xl max-w-2xl w-full flex flex-col gap-5">
+                {/* Header */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <Radio className="h-5 w-5 text-emerald-400" />
+                    <h3 className="text-base font-bold text-white">
+                      Live Synthesis
+                    </h3>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-emerald-400">
+                    <span className="relative flex h-2 w-2">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                    </span>
+                    GPU Connection Active
+                  </div>
+                </div>
+
+                {/* Streaming output */}
+                <pre className="font-mono text-sm text-brand-300 whitespace-pre-wrap overflow-y-auto max-h-96 bg-black/30 rounded-xl p-4 leading-relaxed">
+                  {streamedText}
+                  <span className="inline-block w-2 h-4 bg-brand-400 animate-pulse ml-0.5 align-middle" />
+                </pre>
+
+                {/* Bottom bar */}
+                <div className="flex items-center justify-between text-xs text-slate-500">
+                  <span>{streamedText.length} characters received</span>
+                  <span className="text-brand-400 font-medium">
+                    {loadingStep}
+                  </span>
                 </div>
               </div>
             </div>

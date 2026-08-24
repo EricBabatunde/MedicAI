@@ -3,7 +3,6 @@
 import { useState } from "react";
 import ReactMarkdown from "react-markdown";
 import {
-  FileText,
   AlertTriangle,
   Activity,
   CheckSquare,
@@ -14,7 +13,29 @@ import {
   Copy,
   Check,
   Sparkles,
+  Radio,
 } from "lucide-react";
+
+const ensureMarkdownString = (content) => {
+  if (!content) return "";
+  
+  // If the LLM returned an array instead of a string, stitch it into a Markdown list
+  if (Array.isArray(content)) {
+    return content.map(item => {
+      // Prevent double bullet points if the LLM already included them
+      const text = typeof item === 'string' ? item.trim() : JSON.stringify(item);
+      return text.startsWith('-') || text.startsWith('*') ? text : `- ${text}`;
+    }).join('\n');
+  }
+  
+  // If it's a string, return it as is
+  if (typeof content === 'string') {
+    return content;
+  }
+  
+  // Ultimate fallback for any other weird data types
+  return JSON.stringify(content);
+};
 
 function ScoreBadge({ score }) {
   const pct = Math.round((score ?? 0) * 100);
@@ -108,6 +129,17 @@ export default function ClinicalReport({ data, onReset, query }) {
 
   const domain = data.routed_domain?.replace(/_/g, " ") || "General Medicine";
   const pipelineMs = data.pipeline_ms;
+  
+  // Normalize fields to ensure strings
+  const normalizedAssessment = ensureMarkdownString(data.clinical_assessment);
+  const normalizedTreatment = ensureMarkdownString(data.treatment_plan);
+  const normalizedWarnings = ensureMarkdownString(data.critical_warnings);
+  
+  const hasWarnings = 
+    normalizedWarnings && 
+    normalizedWarnings.trim() && 
+    !normalizedWarnings.toLowerCase().includes("no critical") &&
+    !normalizedWarnings.toLowerCase().includes("no specific critical");
 
   function handleCopy() {
     const text = [
@@ -115,13 +147,13 @@ export default function ClinicalReport({ data, onReset, query }) {
       `Domain: ${domain}`,
       "",
       "── Clinical Assessment ──",
-      data.clinical_assessment,
+      normalizedAssessment,
       "",
       "── Treatment Plan ──",
-      data.treatment_plan,
+      normalizedTreatment,
       "",
-      data.critical_warnings ? "── Critical Warnings ──" : "",
-      data.critical_warnings || "",
+      hasWarnings ? "── Critical Warnings ──" : "",
+      hasWarnings ? normalizedWarnings : "",
     ]
       .filter(Boolean)
       .join("\n");
@@ -180,30 +212,27 @@ export default function ClinicalReport({ data, onReset, query }) {
       </div>
 
       {/* ── Section 1: Critical Warnings ── */}
-      {data.critical_warnings &&
-        data.critical_warnings.trim() &&
-        !data.critical_warnings.toLowerCase().includes("no critical") &&
-        !data.critical_warnings.toLowerCase().includes("no specific critical") && (
-          <div className="bg-rose-500/10 border border-rose-500/30 text-rose-100 rounded-2xl p-5 shadow-[0_0_20px_rgba(244,63,94,0.15)]">
-            <div className="flex items-start gap-3">
-              <div className="relative shrink-0 mt-0.5">
-                <AlertTriangle className="h-5 w-5 text-rose-400" />
-                <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-rose-400 animate-ping" />
-              </div>
-              <div className="min-w-0 flex-1">
-                <h3 className="text-sm font-bold text-rose-200 mb-2">
-                  Critical Warnings
-                </h3>
-                <div className="prose prose-invert prose-sm max-w-none text-rose-100/90 leading-relaxed">
-                  <ReactMarkdown>{data.critical_warnings}</ReactMarkdown>
-                </div>
+      {hasWarnings && (
+        <div className="bg-rose-500/10 border border-rose-500/30 text-rose-100 rounded-2xl p-5 shadow-[0_0_20px_rgba(244,63,94,0.15)]">
+          <div className="flex items-start gap-3">
+            <div className="relative shrink-0 mt-0.5">
+              <AlertTriangle className="h-5 w-5 text-rose-400" />
+              <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-rose-400 animate-ping" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h3 className="text-sm font-bold text-rose-200 mb-2">
+                Critical Warnings
+              </h3>
+              <div className="prose prose-invert prose-sm max-w-none text-rose-100/90 leading-relaxed">
+                <ReactMarkdown>{normalizedWarnings}</ReactMarkdown>
               </div>
             </div>
           </div>
-        )}
+        </div>
+      )}
 
       {/* ── Section 2: Clinical Assessment ── */}
-      {data.clinical_assessment && (
+      {normalizedAssessment && (
         <div className="glass-panel rounded-2xl p-6 border-l-2 border-brand-500/40">
           <div className="flex items-center gap-2 mb-4">
             <Activity className="h-5 w-5 text-brand-400" />
@@ -212,13 +241,13 @@ export default function ClinicalReport({ data, onReset, query }) {
             </h3>
           </div>
           <div className="prose prose-invert max-w-none text-slate-100 leading-relaxed">
-            <ReactMarkdown>{data.clinical_assessment}</ReactMarkdown>
+            <ReactMarkdown>{normalizedAssessment}</ReactMarkdown>
           </div>
         </div>
       )}
 
       {/* ── Section 3: Treatment Plan ── */}
-      {data.treatment_plan && (
+      {normalizedTreatment && (
         <div className="glass-panel rounded-2xl p-6">
           <div className="flex items-center gap-2 mb-4">
             <CheckSquare className="h-5 w-5 text-emerald-400" />
@@ -227,7 +256,7 @@ export default function ClinicalReport({ data, onReset, query }) {
             </h3>
           </div>
           <div className="prose prose-invert max-w-none text-slate-200 leading-relaxed [&_li]:marker:text-brand-400">
-            <ReactMarkdown>{data.treatment_plan}</ReactMarkdown>
+            <ReactMarkdown>{normalizedTreatment}</ReactMarkdown>
           </div>
         </div>
       )}
@@ -246,7 +275,11 @@ export default function ClinicalReport({ data, onReset, query }) {
           </div>
           <div className="space-y-3">
             {data.results.map((result, i) => (
-              <EvidenceCard key={result.chunk_id || i} result={result} index={i} />
+              <EvidenceCard
+                key={result.chunk_id || i}
+                result={result}
+                index={i}
+              />
             ))}
           </div>
         </div>
@@ -254,4 +287,3 @@ export default function ClinicalReport({ data, onReset, query }) {
     </div>
   );
 }
-
