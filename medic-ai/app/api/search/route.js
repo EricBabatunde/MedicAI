@@ -4,13 +4,24 @@ import path from 'path';
 import { getEmbedding, cosineSimilarity } from '@/lib/embedding';
 import bm25 from 'wink-bm25-text-search';
 import nlp from 'wink-nlp-utils';
+import { pipeline, env } from '@xenova/transformers';
+
+env.allowLocalModels = false;
+
+let crossEncoder = null;
+async function getCrossEncoder() {
+  if (!crossEncoder) {
+    crossEncoder = await pipeline('text-classification', 'Xenova/ms-marco-MiniLM-L-6-v2', { quantized: true });
+  }
+  return crossEncoder;
+}
 
 function sanitizeText(text) {
   if (!text || typeof text !== 'string') return '';
   return text
-    .replace(/[\x00-\x09\x0B-\x1F\x7F]/g, ' ') // Strip ASCII control characters
-    .replace(/[\uFFFD\u0000]/g, '')            // Strip replacement & null characters
-    .replace(/\s+/g, ' ')                      // Normalize excessive whitespace
+    // Strip absolutely everything that isn't standard text, numbers, or basic punctuation
+    .replace(/[^\x20-\x7E\n\r\t.,!?'"()\[\]{}:;-]/g, ' ')
+    .replace(/\s+/g, ' ')
     .trim();
 }
 
@@ -419,15 +430,38 @@ export async function POST(req) {
                 // ────────────────────────────────────────────────
                 console.log(`\n── FUSION: Hybrid Score (${(BM25_WEIGHT * 100).toFixed(0)}% BM25 + ${(VECTOR_WEIGHT * 100).toFixed(0)}% Vector) ──`);
                 const hybridResults = computeHybridScores(vectorResults);
-                const topResults = hybridResults.slice(0, FINAL_TOP_K);
+
+                // ────────────────────────────────────────────────
+                // PASS 3: Cross-Encoder Deep Reading
+                // ────────────────────────────────────────────────
+                const top10Candidates = hybridResults.slice(0, 10);
+                sendEvent('status', { step: 'Pass 3: Cross-Encoder Deep Reading...' });
+                console.log(`\n── PASS 3: Cross-Encoder Deep Reading (${top10Candidates.length} candidates) ──`);
+
+                const ranker = await getCrossEncoder();
+
+                // Score each chunk logically against the query
+                const rerankedPromises = top10Candidates.map(async (r) => {
+                    const result = await ranker(`${query} [SEP] ${r.chunk.text_content}`);
+                    const score = result[0]?.score || 0;
+                    return { ...r, cross_score: score };
+                });
+
+                let finalResults = await Promise.all(rerankedPromises);
+
+                // Sort by the new cross-encoder score
+                finalResults.sort((a, b) => b.cross_score - a.cross_score);
+
+                // Now slice the absolute best Top K for the LLM Synthesis
+                const topResults = finalResults.slice(0, FINAL_TOP_K);
 
                 // ── Console tracing ─────────────────────────────
-                console.log(`\n── TOP ${topResults.length} HYBRID RESULTS ──────────────────────────────`);
+                console.log(`\n── TOP ${topResults.length} FINAL RESULTS (Cross-Encoder) ──────────────────────────────`);
                 topResults.forEach((r, i) => {
                     const topic = r.chunk.hierarchical_context?.primary_topic || '(untitled)';
                     const chapter = r.chunk.hierarchical_context?.chapter || '';
                     const source = r.chunk.source_text || '';
-                    console.log(`   #${i + 1} hybrid=${r.hybridScore.toFixed(4)} | bm25=${r.normBm25.toFixed(3)} vec=${r.normVector.toFixed(3)} | ${chapter} → ${topic}`);
+                    console.log(`   #${i + 1} cross=${r.cross_score.toFixed(4)} | hybrid=${r.hybridScore.toFixed(4)} | ${chapter} → ${topic}`);
                     console.log(`        [${r.chunk.clinical_category}] source="${source}" pages=${JSON.stringify(r.chunk.page_reference || [])}`);
                 });
 
@@ -511,6 +545,7 @@ ${evidenceBlock}`;
                         vector: r.vectorScore,
                         vector_normalised: r.normVector,
                         hybrid: r.hybridScore,
+                        cross_score: r.cross_score,
                     },
                 }));
 
