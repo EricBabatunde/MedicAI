@@ -5,6 +5,15 @@ import { getEmbedding, cosineSimilarity } from '@/lib/embedding';
 import bm25 from 'wink-bm25-text-search';
 import nlp from 'wink-nlp-utils';
 
+function sanitizeText(text) {
+  if (!text || typeof text !== 'string') return '';
+  return text
+    .replace(/[\x00-\x09\x0B-\x1F\x7F]/g, ' ') // Strip ASCII control characters
+    .replace(/[\uFFFD\u0000]/g, '')            // Strip replacement & null characters
+    .replace(/\s+/g, ' ')                      // Normalize excessive whitespace
+    .trim();
+}
+
 // ──────────────────────────────────────────────────────────────────────
 //  Clinical RAG Pipeline (SSE Streaming)
 //  Pass 0: LLM Domain Router → BM25 Keyword Search → Vector Re-rank
@@ -17,7 +26,7 @@ const LLAMA_TIMEOUT_MS = 480_000; // 480s — headroom for cloud GPU cold-start 
 const BM25_WEIGHT = 0.6;
 const VECTOR_WEIGHT = 0.4;
 const BM25_TOP_K = 75;
-const FINAL_TOP_K = 5;
+const FINAL_TOP_K = 3;
 
 // ─────────────────────────────────────────────────────────────────────
 //  Global Database Cache — loaded ONCE at module init, never re-read
@@ -429,12 +438,16 @@ export async function POST(req) {
                 console.log(`\n── LLM SYNTHESIS: Streaming clinical response ──────────────`);
 
                 // 1. Construct the Evidence Block
-                const evidenceBlock = topResults.map((r) => {
+                let evidenceBlock = topResults.map((r) => {
                     const source = r.chunk.source_text || 'Unknown source';
                     const pages = (r.chunk.page_reference || []).join(', ') || 'N/A';
-                    const text = r.chunk.text_content;
-                    return `[Source: ${source}, Pages: ${pages}] ${text}`;
+                    const cleanContent = sanitizeText(r.chunk.text_content).slice(0, 1200);
+                    return `[Source: ${source}, Pages: ${pages}] ${cleanContent}`;
                 }).join('\n\n');
+
+                if (evidenceBlock.length > 10000) {
+                    evidenceBlock = evidenceBlock.slice(0, 10000);
+                }
 
                 console.log(`📄 [SYNTHESIS] Evidence block constructed (${evidenceBlock.length} chars from ${topResults.length} chunks)`);
 
@@ -446,11 +459,12 @@ You must base your entire response STRICTLY on the provided "Evidence Block". Do
 You must cite the source inline when recommending dosages or procedures (e.g., [MSF Guidelines, pg 12]).
 
 You must output your response STRICTLY as a valid JSON object. Do not include markdown code blocks (like \`\`\`json) wrapping the output, just the raw JSON.
+Provide detailed, exhaustive treatment steps with bullet points rather than brief summaries.
 
 Return exactly this JSON structure, using Markdown formatting for the string values:
 {
-  "clinical_assessment": "Brief markdown analysis of the condition",
-  "treatment_plan": "Markdown bullet points of dosages and procedures",
+  "clinical_assessment": "Detailed markdown analysis of the condition",
+  "treatment_plan": "Exhaustive markdown bullet points of dosages, steps, and procedures",
   "critical_warnings": "Markdown text highlighting severe risks or contraindications",
   "references": ["Array of source names used"]
 }`;
@@ -505,14 +519,15 @@ ${evidenceBlock}`;
                 try {
                     const llmResponse = await fetch(LLM_SERVER_URL, {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'application/json', 'Connection': 'close' },
                         body: JSON.stringify(synthesisPayload),
                         signal: synthesisController.signal,
                     });
 
                     if (!llmResponse.ok) {
-                        const errText = await llmResponse.text();
-                        throw new Error(`llama.cpp synthesis error (${llmResponse.status}): ${errText}`);
+                        const errBody = await llmResponse.text().catch(() => 'No error body');
+                        console.error(`[SYNTHESIS ERROR] HTTP ${llmResponse.status}: ${errBody}`);
+                        throw new Error(`llama.cpp synthesis error (${llmResponse.status}): ${errBody}`);
                     }
 
                     // Read the streaming response from llama.cpp
@@ -568,23 +583,9 @@ ${evidenceBlock}`;
                     const synthesisMs = Date.now() - synthesisStart;
                     console.log(`🦙 [SYNTHESIS] Stream complete (${accumulatedLLMText.length} chars, ${synthesisMs}ms)`);
 
-                } catch (fetchErr) {
-                    const errorMsg = fetchErr.name === 'AbortError'
-                        ? `LLM synthesis timed out after ${LLAMA_TIMEOUT_MS / 1000}s`
-                        : fetchErr.message;
-                    console.error(`❌ [SYNTHESIS] ${errorMsg}`);
-
-                    // If we got no tokens, send a fallback as tokens so frontend has something to parse
-                    if (!accumulatedLLMText) {
-                        const fallback = JSON.stringify({
-                            clinical_assessment: 'LLM synthesis unavailable. Review retrieved evidence manually.',
-                            treatment_plan: 'See retrieved chunks below for clinical guidance.',
-                            critical_warnings: errorMsg,
-                            references: topResults.map(r => r.chunk.source_text || 'Unknown'),
-                        });
-                        accumulatedLLMText = fallback;
-                        sendEvent('token', { text: fallback });
-                    }
+                } catch (err) {
+                    console.error('[SYNTHESIS CATCH]', err.message, err.cause || '');
+                    throw err;
                 } finally {
                     clearTimeout(synthesisTimeoutId);
                 }
