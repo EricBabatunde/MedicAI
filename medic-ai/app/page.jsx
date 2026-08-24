@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import {
   Activity,
   PlusCircle,
@@ -11,18 +11,117 @@ import {
   Server,
   Database,
   Zap,
+  Loader2,
 } from "lucide-react";
+
+const LOADING_STEPS = [
+  { at: 0, text: "Analyzing query & routing domain..." },
+  { at: 3000, text: "Extracting WHO & MSF textbook chunks via BM25..." },
+  { at: 10000, text: "Re-ranking evidence via Vector Embeddings..." },
+  { at: 45000, text: "Synthesizing clinical response (GPU Processing)..." },
+  { at: 70000, text: "Finalizing medical formatting..." },
+];
 
 export default function Dashboard() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-  const [recentQueries] = useState([
-    "Magnesium sulfate loading dose",
-    "Severe eclampsia criteria",
-    "Neonatal jaundice phototherapy thresholds",
-    "Malaria in pregnancy treatment",
-    "Postpartum haemorrhage management",
-  ]);
+  const [recentQueries, setRecentQueries] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const [loadingStep, setLoadingStep] = useState("");
+  const [clinicalResult, setClinicalResult] = useState(null);
+  const [error, setError] = useState(null);
+
+  const intervalRef = useRef(null);
+
+  // ── Load history from localStorage on mount ──
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("medicai_history");
+      if (stored) {
+        const parsed = JSON.parse(stored);
+        if (Array.isArray(parsed)) setRecentQueries(parsed);
+      }
+    } catch {
+      /* ignore corrupt data */
+    }
+  }, []);
+
+  // ── Search handler ──
+  async function handleSearch(e) {
+    e.preventDefault();
+    const trimmed = searchQuery.trim();
+    if (!trimmed) return;
+
+    setIsLoading(true);
+    setError(null);
+    setClinicalResult(null);
+
+    // Loading‑step illusion
+    const start = Date.now();
+    setLoadingStep(LOADING_STEPS[0].text);
+
+    intervalRef.current = setInterval(() => {
+      const elapsed = Date.now() - start;
+      // Walk backwards to find the latest step we've passed
+      for (let i = LOADING_STEPS.length - 1; i >= 0; i--) {
+        if (elapsed >= LOADING_STEPS[i].at) {
+          setLoadingStep(LOADING_STEPS[i].text);
+          break;
+        }
+      }
+    }, 500);
+
+    try {
+      const res = await fetch("/api/search", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ query: trimmed }),
+      });
+
+      if (!res.ok) {
+        throw new Error(`Server responded with ${res.status}`);
+      }
+
+      const data = await res.json();
+
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+
+      setClinicalResult(data);
+
+      // Persist to history (most recent first, deduplicated, max 20)
+      setRecentQueries((prev) => {
+        const updated = [trimmed, ...prev.filter((q) => q !== trimmed)].slice(
+          0,
+          20
+        );
+        localStorage.setItem("medicai_history", JSON.stringify(updated));
+        return updated;
+      });
+
+      setSearchQuery("");
+    } catch (err) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+      setError(err.message || "Something went wrong");
+    } finally {
+      setIsLoading(false);
+      setLoadingStep("");
+    }
+  }
+
+  // Cleanup interval on unmount
+  useEffect(() => {
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
+  }, []);
+
+  // ── Decide what the central area shows ──
+  const showSearch = !isLoading && !clinicalResult;
+  const showLoading = isLoading;
+  const showResult = !isLoading && clinicalResult;
 
   return (
     <div className="flex h-screen w-full relative">
@@ -51,8 +150,6 @@ export default function Dashboard() {
           <span className="text-lg font-bold text-white tracking-tight">
             MedicAI
           </span>
-
-          {/* Close button (mobile) */}
           <button
             onClick={() => setIsSidebarOpen(false)}
             className="ml-auto lg:hidden text-slate-400 hover:text-white transition-colors"
@@ -63,7 +160,14 @@ export default function Dashboard() {
 
         {/* New Consultation */}
         <div className="px-4 py-4">
-          <button className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/20 hover:from-brand-400 hover:to-brand-500 transition-all duration-300">
+          <button
+            onClick={() => {
+              setClinicalResult(null);
+              setError(null);
+              setSearchQuery("");
+            }}
+            className="flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-brand-500 to-brand-600 px-4 py-2.5 text-sm font-semibold text-white shadow-lg shadow-brand-500/20 hover:from-brand-400 hover:to-brand-500 transition-all duration-300"
+          >
             <PlusCircle className="h-4 w-4" />
             New Consultation
           </button>
@@ -74,16 +178,25 @@ export default function Dashboard() {
           <p className="px-2 pb-2 text-[11px] font-semibold uppercase tracking-widest text-slate-500">
             Recent
           </p>
-          <ul className="space-y-1">
-            {recentQueries.map((query, i) => (
-              <li key={i}>
-                <button className="glass-panel-hover flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-slate-300">
-                  <MessageSquare className="h-4 w-4 shrink-0 text-slate-500" />
-                  <span className="truncate">{query}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          {recentQueries.length === 0 ? (
+            <p className="px-2 text-xs text-slate-600 italic">
+              No history yet
+            </p>
+          ) : (
+            <ul className="space-y-1">
+              {recentQueries.map((query, i) => (
+                <li key={i}>
+                  <button
+                    onClick={() => setSearchQuery(query)}
+                    className="glass-panel-hover flex w-full items-center gap-2.5 rounded-lg px-3 py-2 text-left text-sm text-slate-300"
+                  >
+                    <MessageSquare className="h-4 w-4 shrink-0 text-slate-500" />
+                    <span className="truncate">{query}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
 
         {/* User profile */}
@@ -122,28 +235,66 @@ export default function Dashboard() {
           </div>
         </header>
 
-        {/* Central search canvas */}
-        <main className="flex-1 flex flex-col items-center justify-center px-6">
-          <div className="w-full max-w-2xl text-center">
-            <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">
-              Clinical Triage Assistant
-            </h1>
-            <p className="text-slate-400 mb-8">
-              Search across 19,034 medical knowledge chunks instantly.
-            </p>
+        {/* Central area */}
+        <main className="flex-1 flex flex-col items-center justify-center px-6 overflow-y-auto">
+          {/* ── Search canvas ── */}
+          {showSearch && (
+            <div className="w-full max-w-2xl text-center">
+              <h1 className="text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">
+                Clinical Triage Assistant
+              </h1>
+              <p className="text-slate-400 mb-8">
+                Search across 19,034 medical knowledge chunks instantly.
+              </p>
 
-            {/* Search bar */}
-            <div className="relative">
-              <Search className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-500" />
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Describe symptoms or ask a clinical question…"
-                className="glass-input w-full rounded-2xl py-4 pl-14 pr-6 text-lg placeholder:text-slate-600 focus:placeholder:text-slate-500"
-              />
+              <form onSubmit={handleSearch} className="relative">
+                <Search className="pointer-events-none absolute left-5 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-500" />
+                <input
+                  type="text"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder="Describe symptoms or ask a clinical question…"
+                  className="glass-input w-full rounded-2xl py-4 pl-14 pr-6 text-lg placeholder:text-slate-600 focus:placeholder:text-slate-500"
+                />
+              </form>
+
+              {error && (
+                <p className="mt-4 text-sm text-red-400">⚠ {error}</p>
+              )}
             </div>
-          </div>
+          )}
+
+          {/* ── Loading card ── */}
+          {showLoading && (
+            <div className="glass-panel p-8 rounded-2xl max-w-md w-full flex flex-col items-center gap-6">
+              <Loader2 className="w-12 h-12 text-brand-400 animate-spin" />
+              <p className="text-brand-300 font-medium text-lg text-center">
+                {loadingStep}
+              </p>
+              {/* Progress bar */}
+              <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
+                <div className="bg-brand-500 h-full w-1/2 animate-pulse rounded-full" />
+              </div>
+            </div>
+          )}
+
+          {/* ── Raw result viewer ── */}
+          {showResult && (
+            <div className="w-full max-w-4xl flex flex-col items-center gap-4">
+              <button
+                onClick={() => {
+                  setClinicalResult(null);
+                  setError(null);
+                }}
+                className="text-sm text-brand-400 hover:text-brand-300 transition-colors"
+              >
+                ← Back to search
+              </button>
+              <pre className="glass-panel p-6 rounded-xl overflow-auto text-xs text-brand-200 w-full max-h-[70vh]">
+                {JSON.stringify(clinicalResult, null, 2)}
+              </pre>
+            </div>
+          )}
         </main>
 
         {/* Telemetry footer */}
