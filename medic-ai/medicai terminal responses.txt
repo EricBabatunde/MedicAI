@@ -1,0 +1,338 @@
+npm run dev
+
+> medic-ai@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.10 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+✓ Ready in 332ms
+(node:19166) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///home/eric/Documents/projects/MedicAI/medic-ai/next.config.js is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /home/eric/Documents/projects/MedicAI/medic-ai/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+ GET / 200 in 524ms (next.js: 336ms, application-code: 187ms)
+ GET /? 200 in 52ms (next.js: 6ms, application-code: 46ms)
+ GET /? 200 in 30ms (next.js: 1499µs, application-code: 29ms)
+ GET /? 200 in 72ms (next.js: 11ms, application-code: 61ms)
+ GET / 200 in 56ms (next.js: 8ms, application-code: 48ms)
+
+📦 [INIT] Loading chunk database from /home/eric/Documents/projects/MedicAI/medic-ai/data/all_extracted_chunks.json...
+✅ [INIT] Loaded 19034 chunks in 316ms
+📊 [INIT] Domain distribution:
+     general_medicine: 7625
+     obstetrics: 3532
+     infectious_disease: 2796
+     chronic_care: 937
+     dermatology: 745
+     minor_surgery: 711
+     pharmacology: 666
+     mental_health: 588
+     emergency_medicine: 386
+     nutrition: 384
+     ophthalmology: 276
+     neonatology: 126
+     ent: 121
+     orthopaedics: 63
+     dental: 61
+     anaesthesia: 17
+
+══════════════════════════════════════════════════════════════
+  🚀 RAG PIPELINE (SSE) — Pass 0 → BM25 → Vector → Stream
+══════════════════════════════════════════════════════════════
+📝 [INPUT] Query: "patient is a pregnant woman presenting with a severe headache and high blood pressure"
+📦 [DB] Global cache: 19034 chunks in memory
+
+🧭 [PASS 0] Dispatching domain classification (temp=0.1, max_tokens=30)...
+🦙 [PASS 0] Raw LLM response (7723ms): {"domain_spoke": "obstetrics"}
+✅ [PASS 0] Domain classified: "obstetrics" (7723ms)
+
+🔬 [FILTER] Slicing to domain_spoke="obstetrics"...
+📊 [FILTER] Isolated 3532 / 19034 chunks (18.6%)
+
+── PASS 1: BM25 Keyword Search ────────────────────────────
+[DEBUG] Raw BM25 output array length: 75
+📊 [BM25] Retrieved 75 candidate(s) from 3532 chunks (4153ms)
+📊 [BM25] Score range: 19.772 → 10.532
+
+── PASS 2: Vector Re-ranking (75 candidates) ─────────
+🔬 [VECTOR] Embedding query + 75 candidate chunk(s)...
+✅ [VECTOR] Embedded 75 chunks in 97424ms
+
+── FUSION: Hybrid Score (60% BM25 + 40% Vector) ──
+
+── PASS 3: Cross-Encoder Deep Reading (10 candidates) ──
+
+── TOP 3 FINAL RESULTS (Cross-Encoder) ──────────────────────────────
+   #1 cross=1.0000 | hybrid=0.8938 | Pregnancy and Childbirth: → A guide for midwives and doctors
+        [diagnosis] source="9789241565493-eng" pages=[200,201]
+   #2 cross=1.0000 | hybrid=0.8418 | Pregnancy and Childbirth: → A guide for midwives and doctors
+        [treatment] source="9789241565493-eng" pages=[210,211]
+   #3 cross=1.0000 | hybrid=0.8172 | Pregnancy and Childbirth: → A guide for midwives and doctors
+        [diagnosis] source="9789241565493-eng" pages=[]
+
+── LLM SYNTHESIS: Streaming clinical response ──────────────
+📄 [SYNTHESIS] Evidence block constructed (2777 chars from 3 chunks)
+🦙 [SYNTHESIS] Sending to llama.cpp (stream=true, temp=0.1, max_tokens=1500, timeout=480s)...
+🦙 [SYNTHESIS] Stream complete (3665 chars, 170972ms)
+
+── 📋 CLINICAL RESPONSE ─────────────────────────────────────
+```json
+{
+  "clinical_assessment": "The patient is a pregnant woman presenting with a severe headache and high blood pressure. These symptoms may indicate gestational hypertension or pre-eclampsia. It is crucial to monitor the patient's blood pressure, urine for proteinuria, and fetal condition weekly. If blood pressure worsens or the woman develops features of pre-eclampsia, manage as pre-eclampsia. If there are signs of severe fetal growth restriction or fetal compromise, admit the woman to th...
+
+✅ [PIPELINE COMPLETE] domain="obstetrics" | bm25=75 candidates | top=3 | 308312ms
+══════════════════════════════════════════════════════════════
+
+ POST /api/search 200 in 5.2min (next.js: 916ms, application-code: 5.1min)
+
+══════════════════════════════════════════════════════════════
+  🚀 RAG PIPELINE (SSE) — Pass 0 → BM25 → Vector → Stream
+══════════════════════════════════════════════════════════════
+📝 [INPUT] Query: "Patient is a 24-year-old female in her third trimester experiencing sudden bright red vaginal bleeding since labour began"
+📦 [DB] Global cache: 19034 chunks in memory
+
+🧭 [PASS 0] Dispatching domain classification (temp=0.1, max_tokens=30)...
+🦙 [PASS 0] Raw LLM response (2600ms): {"domain_spoke": "obstetrics"}
+✅ [PASS 0] Domain classified: "obstetrics" (2600ms)
+
+🔬 [FILTER] Slicing to domain_spoke="obstetrics"...
+📊 [FILTER] Isolated 3532 / 19034 chunks (18.6%)
+
+── PASS 1: BM25 Keyword Search ────────────────────────────
+[DEBUG] Raw BM25 output array length: 75
+📊 [BM25] Retrieved 75 candidate(s) from 3532 chunks (4416ms)
+📊 [BM25] Score range: 24.357 → 11.470
+
+── PASS 2: Vector Re-ranking (75 candidates) ─────────
+🔬 [VECTOR] Embedding query + 75 candidate chunk(s)...
+✅ [VECTOR] Embedded 75 chunks in 6545ms
+
+── FUSION: Hybrid Score (60% BM25 + 40% Vector) ──
+
+── PASS 3: Cross-Encoder Deep Reading (10 candidates) ──
+
+── TOP 3 FINAL RESULTS (Cross-Encoder) ──────────────────────────────
+   #1 cross=1.0000 | hybrid=0.9189 | Adolescents and Adults → Adolescents and Adults
+        [treatment] source="9789241548281 Vol1 eng" pages=[]
+   #2 cross=1.0000 | hybrid=0.8065 | Williams → OBSTETRICS
+        [diagnosis] source="Williams Obstetrics-1376hlm" pages=[]
+   #3 cross=1.0000 | hybrid=0.7825 | Pregnancy and Childbirth: → A guide for midwives and doctors
+        [treatment] source="9789241565493-eng" pages=[]
+
+── LLM SYNTHESIS: Streaming clinical response ──────────────
+📄 [SYNTHESIS] Evidence block constructed (2894 chars from 3 chunks)
+🦙 [SYNTHESIS] Sending to llama.cpp (stream=true, temp=0.1, max_tokens=1500, timeout=480s)...
+🦙 [SYNTHESIS] Stream complete (1685 chars, 77526ms)
+
+── 📋 CLINICAL RESPONSE ─────────────────────────────────────
+{
+  "clinical_assessment": "The patient is experiencing sudden bright red vaginal bleeding during the third trimester, which is concerning for conditions such as placenta praevia, abruptio placenta, or ruptured uterus. The bleeding is potentially severe, as it is described as dangerous and could lead to maternal hemorrhage with serious fetal consequences.",
+  "treatment_plan": "- Do not perform a vaginal examination to avoid exacerbating any potential injury or bleeding.\n- Insert an IV line to ...
+
+✅ [PIPELINE COMPLETE] domain="obstetrics" | bm25=75 candidates | top=3 | 91706ms
+══════════════════════════════════════════════════════════════
+
+ POST /api/search 200 in 92s (next.js: 5ms, application-code: 92s)
+
+══════════════════════════════════════════════════════════════
+  🚀 RAG PIPELINE (SSE) — Pass 0 → BM25 → Vector → Stream
+══════════════════════════════════════════════════════════════
+📝 [INPUT] Query: "An 82-year-old female presents with sudden confusion, acute urinary incontinence, and a mild fall. She has no fever, cough, or dysuria."
+📦 [DB] Global cache: 19034 chunks in memory
+
+🧭 [PASS 0] Dispatching domain classification (temp=0.1, max_tokens=30)...
+🦙 [PASS 0] Raw LLM response (2510ms): {"domain_spoke": "general_medicine"}
+✅ [PASS 0] Domain classified: "general_medicine" (2510ms)
+
+🔬 [FILTER] Slicing to domain_spoke="general_medicine"...
+📊 [FILTER] Isolated 7625 / 19034 chunks (40.1%)
+
+── PASS 1: BM25 Keyword Search ────────────────────────────
+[DEBUG] Raw BM25 output array length: 75
+📊 [BM25] Retrieved 75 candidate(s) from 7625 chunks (1872ms)
+📊 [BM25] Score range: 22.581 → 10.594
+
+── PASS 2: Vector Re-ranking (75 candidates) ─────────
+🔬 [VECTOR] Embedding query + 75 candidate chunk(s)...
+✅ [VECTOR] Embedded 75 chunks in 1922ms
+
+── FUSION: Hybrid Score (60% BM25 + 40% Vector) ──
+
+── PASS 3: Cross-Encoder Deep Reading (10 candidates) ──
+
+── TOP 3 FINAL RESULTS (Cross-Encoder) ──────────────────────────────
+   #1 cross=1.0000 | hybrid=1.0000 | Adolescents and Adults → Adolescents and Adults
+        [diagnosis] source="9789241548290 Vol2 eng" pages=[332,333]
+   #2 cross=1.0000 | hybrid=0.6646 | Adolescents and Adults → Adolescents and Adults
+        [diagnosis] source="9789241548290 Vol2 eng" pages=[]
+   #3 cross=1.0000 | hybrid=0.6479 | Acute pyelonephritis → Clinical features
+        [diagnosis] source="MSF clinical guidelines" pages=[]
+
+── LLM SYNTHESIS: Streaming clinical response ──────────────
+📄 [SYNTHESIS] Evidence block constructed (900 chars from 3 chunks)
+🦙 [SYNTHESIS] Sending to llama.cpp (stream=true, temp=0.1, max_tokens=1500, timeout=480s)...
+🦙 [SYNTHESIS] Stream complete (1989 chars, 68387ms)
+
+── 📋 CLINICAL RESPONSE ─────────────────────────────────────
+{
+  "clinical_assessment": "The patient is an 82-year-old female presenting with sudden confusion, acute urinary incontinence, and a mild fall. There is no fever, cough, or dysuria reported. Urinary incontinence in elderly females can be due to various causes including urinary tract infections, neurological disorders, or musculoskeletal issues. Sudden confusion could indicate a neurological issue or possibly a urinary tract infection causing urosepsis. The absence of fever and dysuria makes a ur...
+
+✅ [PIPELINE COMPLETE] domain="general_medicine" | bm25=75 candidates | top=3 | 74832ms
+══════════════════════════════════════════════════════════════
+
+ POST /api/search 200 in 75s (next.js: 11ms, application-code: 75s)
+
+══════════════════════════════════════════════════════════════
+  🚀 RAG PIPELINE (SSE) — Pass 0 → BM25 → Vector → Stream
+══════════════════════════════════════════════════════════════
+📝 [INPUT] Query: "Male patient brought in by family. He is incredibly combative, shouting at invisible things, highly paranoid, and trying to pull out his old IV line"
+📦 [DB] Global cache: 19034 chunks in memory
+
+🧭 [PASS 0] Dispatching domain classification (temp=0.1, max_tokens=30)...
+🦙 [PASS 0] Raw LLM response (2247ms): {"domain_spoke": "mental_health"}
+✅ [PASS 0] Domain classified: "mental_health" (2247ms)
+
+🔬 [FILTER] Slicing to domain_spoke="mental_health"...
+📊 [FILTER] Isolated 588 / 19034 chunks (3.1%)
+
+── PASS 1: BM25 Keyword Search ────────────────────────────
+[DEBUG] Raw BM25 output array length: 75
+📊 [BM25] Retrieved 75 candidate(s) from 588 chunks (505ms)
+📊 [BM25] Score range: 15.195 → 3.624
+
+── PASS 2: Vector Re-ranking (75 candidates) ─────────
+🔬 [VECTOR] Embedding query + 75 candidate chunk(s)...
+✅ [VECTOR] Embedded 75 chunks in 3022ms
+
+── FUSION: Hybrid Score (60% BM25 + 40% Vector) ──
+
+── PASS 3: Cross-Encoder Deep Reading (10 candidates) ──
+
+── TOP 3 FINAL RESULTS (Cross-Encoder) ──────────────────────────────
+   #1 cross=1.0000 | hybrid=0.8085 | Adolescents and Adults → Adolescents and Adults
+        [treatment] source="9789241548281 Vol1 eng" pages=[]
+   #2 cross=1.0000 | hybrid=0.7882 | Adolescents and Adults → Adolescents and Adults
+        [diagnosis] source="9789241548290 Vol2 eng" pages=[269]
+   #3 cross=1.0000 | hybrid=0.7768 | Tetanus → Treatment
+        [treatment] source="MSF clinical guidelines" pages=[226,227]
+
+── LLM SYNTHESIS: Streaming clinical response ──────────────
+📄 [SYNTHESIS] Evidence block constructed (3089 chars from 3 chunks)
+🦙 [SYNTHESIS] Sending to llama.cpp (stream=true, temp=0.1, max_tokens=1500, timeout=480s)...
+🦙 [SYNTHESIS] Stream complete (2845 chars, 112063ms)
+
+── 📋 CLINICAL RESPONSE ─────────────────────────────────────
+```json
+{
+  "clinical_assessment": "The patient is combative, paranoid, and attempting to remove an old IV line. There is no direct evidence of opioid overdose or respiratory depression in the provided text. The patient may have a mental health issue that requires psycho-education and supportive counseling.",
+  "treatment_plan": [
+    "Explain to the family why naloxone is necessary and the risks involved, including the possibility of the patient becoming unconscious again upon awakening.",
+    ...
+
+✅ [PIPELINE COMPLETE] domain="mental_health" | bm25=75 candidates | top=3 | 118153ms
+══════════════════════════════════════════════════════════════
+
+ POST /api/search 200 in 118s (next.js: 8ms, application-code: 118s)
+
+══════════════════════════════════════════════════════════════
+  🚀 RAG PIPELINE (SSE) — Pass 0 → BM25 → Vector → Stream
+══════════════════════════════════════════════════════════════
+📝 [INPUT] Query: "A 36-year-old pregnant woman in her first trimester has severe right lower quadrant abdominal pain and mild nausea"
+📦 [DB] Global cache: 19034 chunks in memory
+
+🧭 [PASS 0] Dispatching domain classification (temp=0.1, max_tokens=30)...
+🦙 [PASS 0] Raw LLM response (2274ms): {"domain_spoke": "obstetrics"}
+✅ [PASS 0] Domain classified: "obstetrics" (2274ms)
+
+🔬 [FILTER] Slicing to domain_spoke="obstetrics"...
+📊 [FILTER] Isolated 3532 / 19034 chunks (18.6%)
+
+── PASS 1: BM25 Keyword Search ────────────────────────────
+[DEBUG] Raw BM25 output array length: 75
+📊 [BM25] Retrieved 75 candidate(s) from 3532 chunks (4356ms)
+📊 [BM25] Score range: 29.384 → 13.713
+
+── PASS 2: Vector Re-ranking (75 candidates) ─────────
+🔬 [VECTOR] Embedding query + 75 candidate chunk(s)...
+✅ [VECTOR] Embedded 75 chunks in 4706ms
+
+── FUSION: Hybrid Score (60% BM25 + 40% Vector) ──
+
+── PASS 3: Cross-Encoder Deep Reading (10 candidates) ──
+
+── TOP 3 FINAL RESULTS (Cross-Encoder) ──────────────────────────────
+   #1 cross=1.0000 | hybrid=0.9201 | Williams → OBSTETRICS
+        [procedure] source="Williams Obstetrics-1376hlm" pages=[1099]
+   #2 cross=1.0000 | hybrid=0.5564 | Williams → OBSTETRICS
+        [diagnosis] source="Williams Obstetrics-1376hlm" pages=[]
+   #3 cross=1.0000 | hybrid=0.5401 | Pregnancy and Childbirth: → A guide for midwives and doctors
+        [diagnosis] source="9789241565493-eng" pages=[272,273,274]
+
+── LLM SYNTHESIS: Streaming clinical response ──────────────
+📄 [SYNTHESIS] Evidence block constructed (3755 chars from 3 chunks)
+🦙 [SYNTHESIS] Sending to llama.cpp (stream=true, temp=0.1, max_tokens=1500, timeout=480s)...
+🦙 [SYNTHESIS] Stream complete (1939 chars, 95451ms)
+
+── 📋 CLINICAL RESPONSE ─────────────────────────────────────
+{
+  "clinical_assessment": "The patient is a 36-year-old pregnant woman in her first trimester presenting with severe right lower quadrant abdominal pain and mild nausea. Pregnancy can complicate the diagnosis of appendicitis due to factors such as nausea, vomiting, leukocytosis, and the upward movement of the appendix. The symptoms may be confused with other conditions like cholecystitis, preterm labor, pyelonephritis, renal colic, placental abruption, or uterine leiomyoma degeneration. The app...
+
+✅ [PIPELINE COMPLETE] domain="obstetrics" | bm25=75 candidates | top=3 | 107285ms
+══════════════════════════════════════════════════════════════
+
+ POST /api/search 200 in 107s (next.js: 1882µs, application-code: 107s)
+
+══════════════════════════════════════════════════════════════
+  🚀 RAG PIPELINE (SSE) — Pass 0 → BM25 → Vector → Stream
+══════════════════════════════════════════════════════════════
+📝 [INPUT] Query: "Patient is a newborn, born at 34 weeks struggling to breathe with grunting and nasal flaring."
+📦 [DB] Global cache: 19034 chunks in memory
+
+🧭 [PASS 0] Dispatching domain classification (temp=0.1, max_tokens=30)...
+🦙 [PASS 0] Raw LLM response (2543ms): {"domain_spoke": "neonatology"}
+✅ [PASS 0] Domain classified: "neonatology" (2543ms)
+
+🔬 [FILTER] Slicing to domain_spoke="neonatology"...
+📊 [FILTER] Isolated 126 / 19034 chunks (0.7%)
+
+── PASS 1: BM25 Keyword Search ────────────────────────────
+[DEBUG] Raw BM25 output array length: 75
+📊 [BM25] Retrieved 75 candidate(s) from 126 chunks (168ms)
+📊 [BM25] Score range: 11.306 → 0.794
+
+── PASS 2: Vector Re-ranking (75 candidates) ─────────
+🔬 [VECTOR] Embedding query + 75 candidate chunk(s)...
+✅ [VECTOR] Embedded 75 chunks in 4225ms
+
+── FUSION: Hybrid Score (60% BM25 + 40% Vector) ──
+
+── PASS 3: Cross-Encoder Deep Reading (10 candidates) ──
+
+── TOP 3 FINAL RESULTS (Cross-Encoder) ──────────────────────────────
+   #1 cross=1.0000 | hybrid=0.9287 | Williams → OBSTETRICS
+        [treatment] source="Williams Obstetrics-1376hlm" pages=[]
+   #2 cross=1.0000 | hybrid=0.7967 | for children → and young infant
+        [treatment] source="9789241548373 eng" pages=[70,71,72,73,74,75,76,77]
+   #3 cross=1.0000 | hybrid=0.7629 | Williams → OBSTETRICS
+        [treatment] source="Williams Obstetrics-1376hlm" pages=[674]
+
+── LLM SYNTHESIS: Streaming clinical response ──────────────
+📄 [SYNTHESIS] Evidence block constructed (2871 chars from 3 chunks)
+🦙 [SYNTHESIS] Sending to llama.cpp (stream=true, temp=0.1, max_tokens=1500, timeout=480s)...
+🦙 [SYNTHESIS] Stream complete (2557 chars, 110644ms)
+
+── 📋 CLINICAL RESPONSE ─────────────────────────────────────
+{
+  "clinical_assessment": "The newborn is showing signs of respiratory distress syndrome (RDS), characterized by grunting, nasal flaring, and difficulty breathing. These symptoms are indicative of inadequate surfactant production, leading to poor lung compliance and hypoxemia. The clinical course of RDS typically involves tachypnea, chest wall retraction, and grunting during expiration. Other potential causes of respiratory insufficiency in this context include sepsis, pneumonia, meconium aspir...
+
+✅ [PIPELINE COMPLETE] domain="neonatology" | bm25=75 candidates | top=3 | 118077ms
+══════════════════════════════════════════════════════════════
+
+ POST /api/search 200 in 118s (next.js: 10ms, application-code: 118s)
+^C
+
+eric@eric-ThinkPad-P53:~/Documents/projects/MedicAI/medic-ai$ 
+
+
